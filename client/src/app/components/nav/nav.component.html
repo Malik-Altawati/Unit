@@ -1,1 +1,44 @@
-<p>nav works!</p>
+<nav id="navBarLandingPg">
+  <div class="nav-wrapper">
+    <a
+      href="#"
+      class="brand-logo center"
+      [routerLink]="['/']"
+      routerLinkActive="router-link-active"
+      >UNIT</a
+    >
+    <ul id="nav-left" class="left hide-on-med-and-down">
+      <li><a href="#">Team</a></li>
+      <li><a href="#">About</a></li>
+    </ul>
+
+    <ul id="nav-right" class="right hide-on-med-and-down">
+      <li>
+        <a
+          href="#"
+          [routerLink]="['/login']"
+          routerLinkActive="router-link-active"
+          >Login</a
+        >
+      </li>
+      <li><a href="#">SignUp</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- <mat-toolbar>
+  <a href="#" style="position: absolute; left: 0;">UNIT</a>
+
+  <div style="position: absolute; right: 0;">
+    <a href="#" style="padding-right: 30px;">My Application</a>
+    <a href="#" style="padding-right: 30px;">My Application</a>
+    <a href="#">My Application</a>
+  </div>
+</mat-toolbar> -->
+
+<!-- in the profie page this can be used as categorising the posts -->
+<!-- <mat-tab-group animationDuration="0ms">
+  <mat-tab label="Home"> <app-home></app-home> </mat-tab>
+  <mat-tab label="login"> <app-profile></app-profile> </mat-tab>
+  <mat-tab label="signUp">Content 3</mat-tab>
+</mat-tab-group> -->

@@ -1,0 +1,32 @@
+#navBarLandingPg {
+  a {
+    text-decoration: none;
+    color: white;
+  }
+  background: transparent;
+  .nav-wrapper {
+    #nav-left {
+      margin-left: 150px;
+      li:hover {
+        border-bottom-right-radius: 20%;
+        border-bottom-left-radius: 20%;
+        background-color: rgb(1, 80, 1);
+      }
+      li {
+        margin-right: 50px;
+      }
+    }
+
+    #nav-right {
+      margin-right: 150px;
+      li:hover {
+        border-top-right-radius: 20%;
+        border-top-left-radius: 20%;
+        background-color: rgb(1, 80, 1);
+      }
+      li {
+        margin-right: 50px;
+      }
+    }
+  }
+}

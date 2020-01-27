@@ -1,0 +1,51 @@
+img {
+  top: 0;
+  bottom: 0;
+  opacity: 0.3;
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+}
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container > * {
+  width: 100%;
+}
+
+#formDiv {
+  margin-top: 5%;
+  // opacity: 0.5;
+  #formLogin {
+    background-color: rgba(255, 255, 255, 0.445);
+    // border: 1px solid white;
+    border-radius: 10%;
+    font-weight: bold;
+    margin: auto;
+    width: 40%;
+    display: grid;
+    padding: 5% 10% 10% 10%;
+    label {
+      color: white;
+    }
+    input {
+      border: 1px solid rgb(110, 110, 110);
+      border-radius: 10px;
+      padding-inline-start: 10px;
+      height: 40px;
+    }
+    button {
+      background-color: rgb(61, 61, 61);
+      &:hover {
+        background-color: rgb(1, 80, 1);
+      }
+    }
+    h2 {
+      text-align: center;
+      color: white;
+    }
+  }
+}

@@ -1,1 +1,43 @@
-<p>login works!</p>
+<img
+  src="https://thumbor.forbes.com/thumbor/1280x868/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F753656677%2F960x0.jpg%3Ffit%3Dscale"
+/>
+<div class="alert alert-success" *ngIf="notifyMessage">{{ notifyMessage }}</div>
+
+<div id="formDiv">
+  <form
+    class=" heartBeat"
+    id="formLogin"
+    [formGroup]="loginForm"
+    (ngSubmit)="login()"
+  >
+    <h2>Login</h2>
+    <div class="form-group">
+      <label for="userName">User Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="userName"
+        aria-describedby="userName"
+        formControlName="userName"
+      />
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        placeholder="********"
+        formControlName="password"
+      />
+    </div>
+    <button [disabled]="!loginForm.valid" type="submit" class="btn btn-primary">
+      login
+    </button>
+  </form>
+  <div *ngIf="errors.length > 0" class="alert alert-danger">
+    <p *ngFor="let error of errors">
+      {{ error.detail }}
+    </p>
+  </div>
+</div>
