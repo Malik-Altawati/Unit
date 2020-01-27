@@ -1,48 +1,54 @@
-
-const User = require('../models/users')
+const User = require("../models/users");
+//const tokens = require("../models/token");
 
 function createUser(userObj) {
-    var username = userObj.username
-    var password = userObj.password
-    return User.create(username, password)
+  var email = userObj.email;
+  var username = userObj.username;
+  var password = userObj.password;
+  var confirmPassword = userObj.confirmPassword;
+  return User.create(username, email, password)
+    .then(data => {
+      return User.find(email)
         .then(data => {
-            return "user created successfully"
+          return data.rows[0];
         })
         .catch(err => {
-            throw "user exists";
-        })
-
+          throw "user not Found";
+        });
+    })
+    .catch(err => {
+      throw "user exists";
+    });
 }
 
-function findUser(user) {
-    return User.find(user)
-        .then(data => {
-            return data
-        })
-        .catch(err => {
-            throw "user not Found"
-        })
-
+function findUser(email) {
+  return User.find(email)
+    .then(data => {
+      return data;
+    })
+    .catch(err => {
+      throw "user not Found";
+    });
 }
 
 function updateUser(user, pass) {
-    return User.update(user, pass)
-        .then(data => {
-            return "user was updates"
-        })
-        .catch(err => {
-            throw "USER NOT FOUND"
-        })
+  return User.update(user, pass)
+    .then(data => {
+      return "user was updates";
+    })
+    .catch(err => {
+      throw "USER NOT FOUND";
+    });
 }
 
 function deleteUser(user) {
-    return User.delete(user)
-        .then(data => {
-            return " user was deleted"
-        })
-        .catch(err => {
-            throw "USER NOT FOUND"
-        })
+  return User.delete(user)
+    .then(data => {
+      return " user was deleted";
+    })
+    .catch(err => {
+      throw "USER NOT FOUND";
+    });
 }
 
 module.exports.create = createUser;
