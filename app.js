@@ -6,6 +6,7 @@ const IncomingForm = require('formidable').IncomingForm;
 const path = require('path')
 //
 const fs = require('fs');
+const uniqueId = require('uuid');
 
 //
 var corsOptions = {
@@ -19,11 +20,6 @@ const User = require('./controllers/users');
 
 app.post('/upload', (req, res) => {
     const form = new IncomingForm();
-
-    // form.keepExtensions = true;
-    // form.maxFieldsSize = 30 * 1024 * 1024; // 10mb
-    // form.multiples = false;
-
     var user_id;
     var post;
     var link;
@@ -39,9 +35,10 @@ app.post('/upload', (req, res) => {
     });
 
     form.on('fileBegin', function (name, file) {
-        file.path = 'folders/up/' + file.name;
-        console.log(path.join(__dirname, "/../Unit/folders/up/", file.name))
-        link = path.join(__dirname, "/../Unit/folders/up/", file.name)
+        var id = uniqueId()
+        file.path = 'folders/uploaded/' + id + "." + file.name.split(".")[1];
+        console.log(path.join(__dirname, "/../Unit/folders/uploaded/", id + "." + file.name.split(".")[1]))
+        link = path.join(__dirname, "/../Unit/folders/uploaded/", id + "." + file.name.split(".")[1])
     });
 
     form.on('end', (err, data) => {
