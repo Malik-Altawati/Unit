@@ -14,5 +14,4 @@ app.get('/posts/get', Post.find);
 app.patch('/posts/update/:id', Post.update);
 app.delete('/posts/delete/:id', Post.delete);
 
-
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
