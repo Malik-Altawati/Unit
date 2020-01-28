@@ -1,4 +1,4 @@
-const Post = require("./../../controllers/posts.js");
+const Post = require("./../../../controllers/posts.js");
 
 function createPost(req, res) {
     let postObj = { post : req.body.post, link : req.body.link, user_id : req.body.user_id};

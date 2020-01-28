@@ -2,7 +2,7 @@ const express = require('express')
 const cors = require("cors");
 const port = process.env.PORT || 5000
 const User = require('./controllers/users');
-const Post = require('./server/routes/post.js');
+const Post = require('./server/routes/api/post.js');
 
 const app = express()
 
