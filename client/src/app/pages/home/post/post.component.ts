@@ -37,7 +37,8 @@ export class PostComponent implements OnInit {
   onSubmit() {
     const formData = new FormData();
     console.log(this.fileData)
-    if (this.fileData.size > 10000) {
+    if (this.fileData.size > 10000000) {
+      console.log(this.fileData.size, "ayy", 10000000)
       return alert("file is bigger than 10MB")
     }
     formData.append('files', this.fileData);

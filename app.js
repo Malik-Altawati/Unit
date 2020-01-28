@@ -34,6 +34,7 @@ app.post('/upload', (req, res) => {
     });
 
     form.on('fileBegin', function (name, file) {
+        console.log(file)
         var id = uniqueId()
         file.path = 'folders/uploaded/' + id + "." + file.name.split(".")[1];
         console.log(path.join(__dirname, "/../Unit/folders/uploaded/", id + "." + file.name.split(".")[1]))
