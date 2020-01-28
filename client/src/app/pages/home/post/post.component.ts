@@ -46,7 +46,7 @@ export class PostComponent implements OnInit {
     formData.append("user_id", "123")
     formData.append("post_text", "hello world")
 
-    this.http.post('http://localhost:3000/posts/post', formData, {
+    this.http.post('http://localhost:5000/posts/post', formData, {
       reportProgress: true,
       observe: 'events'
     })
