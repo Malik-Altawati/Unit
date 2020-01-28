@@ -31,7 +31,7 @@ app.post('/upload', (req, res) => {
         if (err) {
             res.send(err)
         }
-        res.end();
+        res.end("ALL GOOD BABY");
     });
 
     form.on('fileBegin', function (name, file) {
