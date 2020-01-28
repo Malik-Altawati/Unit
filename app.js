@@ -1,52 +1,29 @@
 const express = require('express')
-const app = express()
 const cors = require("cors");
-const port = process.env.PORT || 3000
-const IncomingForm = require('formidable').IncomingForm;
-const path = require('path')
-//
-const fs = require('fs');
-const uniqueId = require('uuid');
+const port = process.env.PORT || 5000
 
-//
+
+const app = express()
 var corsOptions = {
     origin: '*',
     optionsSuccessStatus: 200
 };
 app.use(cors(corsOptions));
 app.use(express.json());
-const User = require('./controllers/users');
+// const User = require('./controllers/users');
+const Post = require('./server/routes/api/post.js');
 
+//////////////////// routes
 
-app.post('/upload', (req, res) => {
-    const form = new IncomingForm();
-    var user_id;
-    var post;
-    var link;
-    form.parse(req, function (err, fields, files) {
-        user_id = fields.user_id
-        post = fields.post_text
-
-        if (err) {
-            res.send(err)
-        }
-        res.end();
-    });
-
-    form.on('fileBegin', function (name, file) {
-        var id = uniqueId()
-        file.path = 'folders/uploaded/' + id + "." + file.name.split(".")[1];
-        console.log(path.join(__dirname, "/../Unit/folders/uploaded/", id + "." + file.name.split(".")[1]))
-        link = path.join(__dirname, "/../Unit/folders/uploaded/", id + "." + file.name.split(".")[1])
-    });
-
-    form.on('end', (err, data) => {
-        console.log("done")
-        console.log(user_id, post, link)
-    })
-});
-
-
-
+app.post('/posts/post', Post.create);
+app.get('/posts/get', Post.find);
+app.patch('/posts/update/:id', Post.update);
+app.delete('/posts/delete/:id', Post.delete);
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+
+
+
+
+
+
