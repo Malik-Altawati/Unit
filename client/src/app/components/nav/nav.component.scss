@@ -3,14 +3,15 @@
     text-decoration: none;
     color: white;
   }
+
   background: linear-gradient(to right, #00b4db, #0083b0);
   .nav-wrapper {
     #nav-left {
       margin-left: 150px;
       li:hover {
-        border-bottom-right-radius: 20%;
-        border-bottom-left-radius: 20%;
-        background: linear-gradient(to top, #ffe600, #d8d403);
+        border-top-right-radius: 20%;
+        border-top-left-radius: 20%;
+        background: linear-gradient(to bottom, #ffe600, #d8d403);
       }
       li {
         margin-right: 50px;
@@ -22,7 +23,8 @@
       li:hover {
         border-top-right-radius: 20%;
         border-top-left-radius: 20%;
-        background: linear-gradient(to bottom, #ff0099, #493240);
+        // background: linear-gradient(to bottom, #ff0099, #493240);
+        background-image: linear-gradient(to top, #a6c0fe 0%, #f68084 100%);
       }
       li {
         margin-right: 50px;

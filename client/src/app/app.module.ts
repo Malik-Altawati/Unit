@@ -17,6 +17,8 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+import { MatIconModule } from "@angular/material/icon";
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { HttpClientModule } from "@angular/common/http";
     MatFormFieldModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FontAwesomeModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
