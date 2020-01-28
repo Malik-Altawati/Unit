@@ -23,7 +23,6 @@ app.post('/upload', (req, res) => {
     var user_id;
     var post;
     var link;
-
     form.parse(req, function (err, fields, files) {
         user_id = fields.user_id
         post = fields.post_text
@@ -31,7 +30,7 @@ app.post('/upload', (req, res) => {
         if (err) {
             res.send(err)
         }
-        res.end("ALL GOOD BABY");
+        res.end();
     });
 
     form.on('fileBegin', function (name, file) {
