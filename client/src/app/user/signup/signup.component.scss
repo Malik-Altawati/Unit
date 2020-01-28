@@ -1,0 +1,53 @@
+// img {
+//   top: 0;
+//   bottom: 0;
+//   opacity: 0.3;
+//   position: absolute;
+//   z-index: -1;
+//   width: 100%;
+//   height: 100%;
+// }
+
+#body {
+  background: linear-gradient(to right, #2c3e50, #3498db);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+  position: absolute;
+}
+
+#formDiv {
+  margin-top: 5%;
+  #formSignup {
+    background-color: rgba(255, 255, 255, 0.253);
+    border-radius: 10%;
+    font-weight: bold;
+    margin: auto;
+    width: 40%;
+    display: grid;
+    padding: 2% 10% 5% 10%;
+    label {
+      color: white;
+    }
+    input {
+      // background-color: white;
+      border-bottom: 1px solid rgb(110, 110, 110);
+      border-radius: 10px;
+      padding-inline-start: 10px;
+      height: 35px;
+    }
+    button {
+      width: 100%;
+      background-color: rgb(61, 61, 61);
+      &:hover {
+        background: linear-gradient(to right, #fe8c00, #f83600);
+      }
+    }
+    h2 {
+      text-align: center;
+      color: white;
+    }
+  }
+}

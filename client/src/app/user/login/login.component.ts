@@ -12,18 +12,13 @@ export class LoginComponent implements OnInit {
   errors: any = [];
   notifyMessage = "";
 
-  constructor(
-    private fb: FormBuilder,
-    private router: Router,
-    private route: ActivatedRoute
-  ) {}
+  constructor(private fb: FormBuilder, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.createForm();
     this.route.params.subscribe(params => {
       if (params.registered === "success") {
-        this.notifyMessage =
-          "You have been successfully registered, you can log in now";
+        this.notifyMessage = "You have been successfully loggedIn";
       }
     });
   }
