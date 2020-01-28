@@ -4,13 +4,13 @@ const Post = require('../models/posts')
 function createPost(postObj) {
     var post= postObj.post
     var link = postObj.link
-    var user_id = postObj.user_id
+     var user_id = postObj.user_id
     return Post.create(post, link, user_id)
         .then(data => {
-            return "post created successfully"
+            return data
         })
         .catch(err => {
-            throw "Error";
+            throw err;
         })
 
 }
@@ -18,7 +18,7 @@ function createPost(postObj) {
 function findPost(user_id) {
     return Post.find(user_id)
         .then(data => {
-            return data
+            return data.rows
         })
         .catch(err => {
             throw "post not Found"
