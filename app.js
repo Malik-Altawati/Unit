@@ -16,22 +16,23 @@ const port = process.env.PORT || 5000;
 const User = require("./server/routes/api/user");
 const Post = require("./server/routes/api/post.js");
 const Follow = require("./server/routes/api/follow.js");
+const isAuth = require("./server/validation/tokenValidation");
 
 //////////////////// routes
-
-app.post("/posts/post", Post.create);
-app.get("/posts/get", Post.find);
-app.patch("/posts/update/:id", Post.update);
-app.delete("/posts/delete/:id", Post.delete);
-//
-app.post("/follow/create", Follow.create);
-app.post("/follow/delete", Follow.delete);
-app.post("/follow/getfollowers", Follow.getfollowers);
-//
 app.post("/signup", User.signUp);
 app.post("/login", User.logIn);
-app.get("/", User.enter);
+//app.get("/", User.enter);
 app.post("/logout", User.logOut);
 app.post("/refreshtoken", User.refreshToken);
+
+app.post("/posts/post", isAuth, Post.create);
+app.get("/posts/get", isAuth, Post.find);
+app.patch("/posts/update/:id", isAuth, Post.update);
+app.delete("/posts/delete/:id", isAuth, Post.delete);
+//
+app.post("/follow/create", isAuth, Follow.create);
+app.post("/follow/delete", isAuth, Follow.delete);
+app.post("/follow/getfollowers", isAuth, Follow.getfollowers);
+//
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
