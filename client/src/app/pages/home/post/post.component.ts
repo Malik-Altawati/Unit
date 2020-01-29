@@ -36,16 +36,32 @@ export class PostComponent implements OnInit {
   }
   onSubmit() {
     const formData = new FormData();
-    console.log(this.fileData)
-    if (this.fileData.size > 10000000) {
-      console.log(this.fileData.size, "ayy", 10000000)
-      return alert("file is bigger than 10MB")
+
+    if (!this.fileData) {
+      return alert("you have to post something")
     }
-    formData.append('files', this.fileData);
+    var type = this.fileData.type.split("/")[0]
+    var size = this.fileData.size
+
+    if (size > 10000000 && type === "video") {
+      return alert(` your ${type} cant be bigger than 10MB`)
+    }
+    if (size > 3000000 && type === "audio") {
+      return alert(` your ${type} cant be bigger than 3MB`)
+    }
+    if (size > 5000000 && type === "image") {
+      return alert(` your ${type} cant be bigger than 5MB`)
+    }
+    if (type !== 'image' && type !== 'video' && type !== 'audio') {
+      return alert(" You can only post images / videos and audios")
+    }
+
+    formData.append('files', this.fileData); // here we pass the file
+    formData.append("user_id", "123")  // here we pass user id 
+    formData.append("post_text", "hello world") // here we pass post text
+    formData.append("type", this.fileData.type) // here we pass data type
+
     this.fileUploadProgress = '0%';
-    formData.append("user_id", "123")
-    formData.append("post_text", "hello world")
-    formData.append("type", this.fileData.type)
 
     this.http.post('http://localhost:5000/posts/post', formData, {
       reportProgress: true,
