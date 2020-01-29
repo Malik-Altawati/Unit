@@ -51,8 +51,12 @@ export class PostComponent implements OnInit {
     console.log(this.post)
     console.log(this.fileData)
 
+
     if (!this.fileData) {
-      return alert("you have to post something")
+      return alert("you have to upload something")
+    }
+    if (!this.post) {
+      return alert("you have to write something")
     }
     var type = this.fileData.type.split("/")[0]
     var size = this.fileData.size
