@@ -15,7 +15,7 @@ function createToken(
   )
     .then(data => {
       console.log(data);
-      return Tokens.find(user_id)
+      return Tokens.findtoken(user_id)
         .then(data => {
           return data.rows[0];
         })
@@ -38,8 +38,20 @@ function findRefreshToken(refresh_token) {
     });
 }
 
-function updateUser(user, pass) {
-  return User.update(user, pass)
+function updateToken(
+  newtoken,
+  newExpiryTokenDate,
+  newRefreshToken,
+  newRefreshTokenExpiryDate,
+  user_id
+) {
+  return Tokens.updateToken(
+    newtoken,
+    newExpiryTokenDate,
+    newRefreshToken,
+    newRefreshTokenExpiryDate,
+    user_id
+  )
     .then(data => {
       return "user was updates";
     })
@@ -48,17 +60,17 @@ function updateUser(user, pass) {
     });
 }
 
-function deleteUser(user) {
-  return User.delete(user)
+function deleteToken(id) {
+  return Tokens.deleteToken(id)
     .then(data => {
-      return " user was deleted";
+      return " token was deleted successfully";
     })
     .catch(err => {
-      throw "USER NOT FOUND";
+      throw "token NOT FOUND";
     });
 }
 
 module.exports.create = createToken;
 module.exports.findRefreshToken = findRefreshToken;
-module.exports.delete = deleteUser;
-module.exports.update = updateUser;
+module.exports.delete = deleteToken;
+module.exports.update = updateToken;

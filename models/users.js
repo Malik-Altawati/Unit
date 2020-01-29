@@ -25,7 +25,9 @@ conn.query(userSchema, (err, data) => {
 function getUser(email) {
   return conn.query(`SELECT * FROM users WHERE email = $1`, [email]);
 }
-
+function findById(id) {
+  return conn.query(`SELECT * FROM users WHERE id = $1`, [id]);
+}
 function createUser(username, email, password) {
   return conn.query(
     `INSERT into users(username, email, password) VALUES($1, $2 , $3)`,
@@ -42,8 +44,9 @@ function updateUser(username, password) {
     `UPDATE users SET password ='${password}' WHERE username = '${username}'`
   );
 }
-
+module.exports.findById = findById;
 module.exports.find = getUser;
+
 module.exports.create = createUser;
 module.exports.delete = deleteUser;
 module.exports.update = updateUser;

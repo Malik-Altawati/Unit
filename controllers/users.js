@@ -30,6 +30,15 @@ function findUser(email) {
       throw "user not Found";
     });
 }
+function findById(id) {
+  return User.findById(id)
+    .then(data => {
+      return data;
+    })
+    .catch(err => {
+      throw "user not Found";
+    });
+}
 
 function updateUser(user, pass) {
   return User.update(user, pass)
@@ -50,7 +59,7 @@ function deleteUser(user) {
       throw "USER NOT FOUND";
     });
 }
-
+module.exports.findById = findById;
 module.exports.create = createUser;
 module.exports.find = findUser;
 module.exports.delete = deleteUser;

@@ -69,7 +69,7 @@ app.post("/signup", (req, res) => {
                       result.id
                     );
                     res.cookie("refreshtoken", refreshToken, {
-                      maxAge: 900000,
+                      maxAge: 9000000000,
                       httpOnly: true
                     });
                     return res.json({
@@ -155,9 +155,9 @@ app.post("/login", (req, res) => {
 });
 /////////////////////////////////////////////////////////////////////////////////////first request
 app.get("/", (req, res) => {
-  console.log(req.cookies.refreshtoken, "we have it");
+  //console.log(req.cookies.refreshtoken, "we have it");
   var cookieValue = req.cookies.refreshtoken;
-  console.log(cookieValue, "we have it'oot");
+  //console.log(cookieValue, "we have it'oot");
 
   if (cookieValue !== undefined) {
     Token.findRefreshToken(cookieValue)
@@ -172,4 +172,77 @@ app.get("/", (req, res) => {
   } else {
     return res.send("no cookie found");
   }
+});
+
+////////////////////////////////////////////////////////////////////////////logout request
+app.post("/logout", (req, res) => {
+  var user_id = req.body.id;
+  Token.delete(user_id)
+    .then(result => {
+      res.status(200).json(result);
+    })
+    .catch(err => console.log(err));
+});
+//////////////////////////////////////////////////////////////////////// refresh token request
+app.post("/refreshtoken", (req, res) => {
+  var refreshTokenFormCookies = req.cookies.refreshtoken;
+  Token.findRefreshToken(refreshTokenFormCookies)
+    .then(result => {
+      var expirydate = result.refresh_token_expires_at;
+      console.log("user_id", result.user_id);
+      var newDate = new Date();
+      var comparison = expirydate.getTime() > newDate.getTime() ? true : false;
+      console.log(comparison);
+      if (comparison) {
+        User.findById(result.user_id)
+          .then(data => {
+            console.log(data.rows);
+            if (data.rows.length > 0) {
+              // res.send("you logged in successfully");
+              var payload = {
+                id: data.rows[0].id,
+                email: data.rows[0].email
+              };
+              console.log(payload);
+              //console.log(process.env.secretOrkey);
+              jwt.sign(
+                payload,
+                process.env.secretOrkey,
+                { expiresIn: 900 },
+                (err, token) => {
+                  var refreshToken = randToken.uid(250);
+                  var date = new Date();
+                  console.log(refreshToken);
+                  //console.log(token);
+                  Token.update(
+                    token,
+                    new Date(date.getTime() + 5 * 60 * 1000),
+                    refreshToken,
+                    new Date(date.getTime() + 30 * 24 * 60 * 60 * 1000),
+                    data.rows[0].id
+                  );
+                  res.cookie("refreshtoken", refreshToken, {
+                    maxAge: 900000,
+                    httpOnly: true
+                  });
+                  return res.json({
+                    payload,
+                    success: true,
+                    token: "Bearer " + token
+                  });
+                  //) res.status(200).send(result);
+                }
+              );
+            } else {
+              res.status(400).json("no user with such id found");
+            }
+          })
+          .catch(err => console.log(err));
+      } else {
+        res
+          .status(400)
+          .json({ message: "invalid refresh token please login again" });
+      }
+    })
+    .catch(err => console.log(err));
 });

@@ -46,10 +46,22 @@ function getRefreshToken(refresh_token) {
     refresh_token
   ]);
 }
-function updateToken(newtoken, newExpiryTokenDate, user_id) {
+function updateToken(
+  newtoken,
+  newExpiryTokenDate,
+  newRefreshToken,
+  newRefreshTokenExpiryDate,
+  user_id
+) {
   return db.query(
-    `update users set tokenValue = '${newtoken}' token_expires_at = '${newExpiryTokenDate}' where user_id = $1 `,
-    [user_id]
+    `update tokens set tokenValue = $1, token_expires_at = $2, refresh_token = $3, refresh_token_expires_at = $4 where user_id = $5 `,
+    [
+      newtoken,
+      newExpiryTokenDate,
+      newRefreshToken,
+      newRefreshTokenExpiryDate,
+      user_id
+    ]
   );
 }
 function deleteToken(id) {
