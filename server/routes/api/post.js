@@ -9,10 +9,11 @@ function createPost(req, res) {
   var user_id;
   var post;
   var link;
+  var type;
   form.parse(req, function(err, fields, files) {
     user_id = fields.user_id;
     post = fields.post_text;
-
+    type = fields.type.split("/")[0];
     if (err) {
       res.send(err);
     }
@@ -25,19 +26,19 @@ function createPost(req, res) {
     console.log(
       path.join(
         __dirname,
-        "/../../../../Unit-1/folders/uploaded/",
+        "/../../../../Unit/folders/uploaded/",
         id + "." + file.name.split(".")[1]
       )
     );
     link = path.join(
       __dirname,
-      "/../../../../Unit-1/folders/uploaded/",
+      "/../../../../Unit/folders/uploaded/",
       id + "." + file.name.split(".")[1]
     );
   });
 
   form.on("end", (err, data) => {
-    var postObj = { post: post, link: link, user_id: user_id };
+    var postObj = { post: post, link: link, user_id: user_id, type: type };
     Post.create(postObj)
       .then(data => {
         if (data) {

@@ -15,7 +15,7 @@ conn.query(followsSchema, (err, data) => {
 //User functionality
 
 function getfollowers(followed_id) {
-    return conn.query(`SELECT * FROM followers WHERE followed_id = $1`, [followed_id])
+    return conn.query(`SELECT * FROM follows WHERE followed_id = $1`, [followed_id])
 }
 
 
@@ -25,7 +25,8 @@ function follow(follower_id, followed_id) {
 
 
 function unfollow(follower_id, followed_id) {
-    return conn.query(`DELETE FROM users WHERE follower_id =  '${follower_id}' && followed_id =  '${followed_id}'`)
+
+    return conn.query(`DELETE FROM follows WHERE follower_id =  '${follower_id}' AND followed_id =  '${followed_id}'`)
 }
 
 

@@ -2,6 +2,10 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6 offset-md-3">
+      <h2>Write Something</h2>
+      <div class="form-group">
+        <input #pRef type="text" name="text" (change)="postText($event)" />
+      </div>
       <h3>Choose File</h3>
       <div class="form-group">
         <input type="file" name="image" (change)="fileProgress($event)" />
