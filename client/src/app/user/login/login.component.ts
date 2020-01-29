@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router, ActivatedRoute } from "@angular/router";
+import { HttpClient } from "@angular/common/http";
+import { HttpService } from "src/app/http.service";
 
 @Component({
   selector: "app-login",
@@ -11,16 +13,18 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   errors: any = [];
   notifyMessage = "";
+  token = "";
 
-  constructor(private fb: FormBuilder, private route: ActivatedRoute) {}
+  constructor(
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private http: HttpClient,
+    private router: Router,
+    private httpService: HttpService
+  ) {}
 
   ngOnInit() {
     this.createForm();
-    this.route.params.subscribe(params => {
-      if (params.registered === "success") {
-        this.notifyMessage = "You have been successfully loggedIn";
-      }
-    });
   }
 
   createForm() {
@@ -42,6 +46,20 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    console.log(this.loginForm.value);
+    this.http
+      .post("http://localhost:5000/login", this.loginForm.value)
+      .subscribe(data => {
+        localStorage.setItem("user_id", data["payload"]["id"]);
+        localStorage.setItem("email", data["payload"]["email"]);
+        localStorage.setItem("token", data["token"]);
+        localStorage.setItem("refreshtoken", data["refreshToken"]);
+
+        if (data["success"]) {
+          this.token = data["token"];
+          this.router.navigate(["home"]);
+        } else {
+          alert(data["error"]);
+        }
+      });
   }
 }

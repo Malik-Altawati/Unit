@@ -8,12 +8,13 @@ const regiteryValidation = require("./../../validation/registryValidation");
 const loginValidation = require("./../../validation/loginValidation");
 
 ///////////////////////////////////////////////////////////////////////////////////// SIGN UP SECTION
+var refreshTokenYolo;
 function signUp(req, res) {
   let { errors, isValid } = regiteryValidation(req.body);
   if (!isValid) {
     // console.log("not valid");
     // console.log(errors);
-    res.status(400).json(errors);
+    res.status(200).json(errors);
   } else {
     // console.log("is valid");
     var { username, email, password, ConfirmPassword } = req.body;
@@ -21,7 +22,9 @@ function signUp(req, res) {
       .then(data => {
         //console.log(data);
         if (data.rows.length > 0) {
-          res.status(400).json("user already exists");
+          res
+            .status(200)
+            .json({ message: "user already exists", success: false });
         } else {
           //if no user with this email we will hash the password,save the
           //user data in the database and generate the authentication token
@@ -51,6 +54,7 @@ function signUp(req, res) {
                     var date = new Date();
                     // console.log(refreshToken);
                     //console.log(token);
+                    refreshTokenYolo = refreshToken;
                     Token.create(
                       token,
                       new Date(date.getTime() + 5 * 60 * 1000),
@@ -65,7 +69,8 @@ function signUp(req, res) {
                     return res.json({
                       payload,
                       success: true,
-                      token: "Bearer " + token
+                      token: "Bearer " + token,
+                      refreshToken: refreshTokenYolo
                     });
                     //) res.status(200).send(result);
                   }
@@ -111,6 +116,7 @@ function logIn(req, res) {
                   var date = new Date();
                   // console.log(refreshToken);
                   //console.log(token);
+                  refreshTokenYolo = refreshToken;
                   Token.create(
                     token,
                     new Date(date.getTime() + 5 * 60 * 1000),
@@ -125,7 +131,8 @@ function logIn(req, res) {
                   return res.json({
                     payload,
                     success: true,
-                    token: "Bearer " + token
+                    token: "Bearer " + token,
+                    refreshToken: refreshTokenYolo
                   });
                   //) res.status(200).send(result);
                 }
@@ -135,7 +142,7 @@ function logIn(req, res) {
             }
           });
         } else {
-          res.status(400).json("no user with such email found");
+          res.status(200).json("no user with such email found");
         }
       })
       .catch(err => console.log(err));
@@ -175,7 +182,7 @@ function logOut(req, res) {
 }
 //////////////////////////////////////////////////////////////////////// refresh token request
 function refreshToken(req, res) {
-  var refreshTokenFormCookies = req.cookies.refreshtoken;
+  var refreshTokenFormCookies = req.body.refreshtoken;
   Token.findRefreshToken(refreshTokenFormCookies)
     .then(result => {
       var expirydate = result.refresh_token_expires_at;

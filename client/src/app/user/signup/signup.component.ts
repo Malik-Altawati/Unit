@@ -16,7 +16,8 @@ export class SignupComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -48,9 +49,16 @@ export class SignupComponent implements OnInit {
   }
 
   signup() {
-    this.http.post("signup", {}).subscribe(data => {
-      console.log(data);
-    });
-    console.log(this.signupForm.value);
+    this.http
+      .post("http://localhost:5000/signup", this.signupForm.value)
+      .subscribe(data => {
+        console.log(data);
+        if (data["success"]) {
+          this.router.navigate(["home"]);
+        } else {
+          alert(data["message"]);
+        }
+      });
+    // console.log(this.signupForm.value);
   }
 }
