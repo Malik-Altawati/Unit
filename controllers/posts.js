@@ -2,10 +2,11 @@
 const Post = require('../models/posts')
 
 function createPost(postObj) {
-    var post= postObj.post
+    var post = postObj.post
     var link = postObj.link
-     var user_id = postObj.user_id
-    return Post.create(post, link, user_id)
+    var user_id = postObj.user_id
+    var type = postObj.type
+    return Post.create(post, link, user_id, type)
         .then(data => {
             return data
         })

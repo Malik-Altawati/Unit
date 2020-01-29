@@ -45,6 +45,7 @@ export class PostComponent implements OnInit {
     this.fileUploadProgress = '0%';
     formData.append("user_id", "123")
     formData.append("post_text", "hello world")
+    formData.append("type", this.fileData.type)
 
     this.http.post('http://localhost:5000/posts/post', formData, {
       reportProgress: true,
