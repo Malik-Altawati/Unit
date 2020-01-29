@@ -11,6 +11,7 @@ export class PostComponent implements OnInit {
   previewUrl: any = null;
   fileUploadProgress: string = null;
   uploadedFilePath: string = null;
+  post: string = null;
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
@@ -19,6 +20,9 @@ export class PostComponent implements OnInit {
   fileProgress(fileInput: any) {
     this.fileData = <File>fileInput.target.files[0];
     this.preview();
+  }
+  postText(event: any) {
+    this.post = event.target.value
   }
 
   preview() {
@@ -44,6 +48,8 @@ export class PostComponent implements OnInit {
   }
   onSubmit() {
     const formData = new FormData();
+    console.log(this.post)
+    console.log(this.fileData)
 
     if (!this.fileData) {
       return alert("you have to post something")
@@ -66,7 +72,7 @@ export class PostComponent implements OnInit {
 
     formData.append('files', this.fileData); // here we pass the file
     formData.append("user_id", "123")  // here we pass user id 
-    formData.append("post_text", "hello world") // here we pass post text
+    formData.append("post_text", this.post) // here we pass post text
     formData.append("type", this.fileData.type) // here we pass data type
 
     this.fileUploadProgress = '0%';
