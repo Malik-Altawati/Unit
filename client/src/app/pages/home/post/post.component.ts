@@ -41,10 +41,6 @@ export class PostComponent implements OnInit {
         this.previewUrl = "https://cdn2.iconfinder.com/data/icons/flat-ui-icons-24-px/24/volume-24-512.png";
       }
     }
-
-    // var reader = new FileReader();
-    // reader.readAsDataURL(this.fileData);
-
   }
   onSubmit() {
     const formData = new FormData();
