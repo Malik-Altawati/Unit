@@ -5,13 +5,13 @@
     <form id="formLogin" [formGroup]="loginForm" (ngSubmit)="login()">
       <h2>Login</h2>
       <div class="form-group">
-        <label for="userName">User Name</label>
+        <label for="email">Email</label>
         <input
-          type="text"
+          type="email"
           class="form-control"
-          id="userName"
-          aria-describedby="userName"
-          formControlName="userName"
+          id="email"
+          aria-describedby="email"
+          formControlName="email"
         />
       </div>
       <div class="form-group">
