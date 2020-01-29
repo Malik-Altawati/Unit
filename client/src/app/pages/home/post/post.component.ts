@@ -23,16 +23,28 @@ export class PostComponent implements OnInit {
 
   preview() {
     // Show preview 
-    var mimeType = this.fileData.type;
-    if (mimeType.match(/image\/*/) == null) {
-      return;
-    }
+    var mimeType = this.fileData.type.split("/")[0];
 
     var reader = new FileReader();
     reader.readAsDataURL(this.fileData);
-    reader.onload = (_event) => {
-      this.previewUrl = reader.result;
+
+    if (mimeType == "video") {
+      reader.onload = (_event) => {
+        this.previewUrl = "https://cdn4.iconfinder.com/data/icons/social-messaging-productivity-1/128/play-icon-2-512.png";
+      }
+    } else if (mimeType == "image") {
+      reader.onload = (_event) => {
+        this.previewUrl = reader.result;
+      }
+    } else if (mimeType == "audio") {
+      reader.onload = (_event) => {
+        this.previewUrl = "https://cdn2.iconfinder.com/data/icons/flat-ui-icons-24-px/24/volume-24-512.png";
+      }
     }
+
+    // var reader = new FileReader();
+    // reader.readAsDataURL(this.fileData);
+
   }
   onSubmit() {
     const formData = new FormData();
