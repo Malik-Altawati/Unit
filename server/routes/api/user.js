@@ -11,11 +11,11 @@ const loginValidation = require("./../../validation/loginValidation");
 function signUp(req, res) {
   let { errors, isValid } = regiteryValidation(req.body);
   if (!isValid) {
-    console.log("not valid");
-    console.log(errors);
+    // console.log("not valid");
+    // console.log(errors);
     res.status(400).json(errors);
   } else {
-    console.log("is valid");
+    // console.log("is valid");
     var { username, email, password, ConfirmPassword } = req.body;
     User.find(email)
       .then(data => {
@@ -49,7 +49,7 @@ function signUp(req, res) {
                   (err, token) => {
                     var refreshToken = randToken.uid(250);
                     var date = new Date();
-                    console.log(refreshToken);
+                    // console.log(refreshToken);
                     //console.log(token);
                     Token.create(
                       token,
@@ -89,12 +89,12 @@ function logIn(req, res) {
     var { email, password } = req.body;
     User.find(email)
       .then(data => {
-        console.log(data.rows);
+        // console.log(data.rows);
         if (data.rows.length > 0) {
           var pass = data.rows[0].password;
           var password = req.body.password;
           bcrypt.compare(password, pass).then(isMatch => {
-            console.log(isMatch);
+            // console.log(isMatch);
             if (isMatch) {
               //return res.send("you logged in successfully");
               var payload = {
@@ -109,7 +109,7 @@ function logIn(req, res) {
                 (err, token) => {
                   var refreshToken = randToken.uid(250);
                   var date = new Date();
-                  console.log(refreshToken);
+                  // console.log(refreshToken);
                   //console.log(token);
                   Token.create(
                     token,
@@ -152,8 +152,8 @@ function enter(req, res) {
   if (cookieValue !== undefined) {
     Token.findRefreshToken(cookieValue)
       .then(data => {
-        console.log("data from refresh token");
-        console.log(data);
+        // console.log("data from refresh token");
+        // console.log(data);
         if (data) {
           return res.status(200).json(data);
         }
@@ -179,21 +179,21 @@ function refreshToken(req, res) {
   Token.findRefreshToken(refreshTokenFormCookies)
     .then(result => {
       var expirydate = result.refresh_token_expires_at;
-      console.log("user_id", result.user_id);
+      // console.log("user_id", result.user_id);
       var newDate = new Date();
       var comparison = expirydate.getTime() > newDate.getTime() ? true : false;
-      console.log(comparison);
+      // console.log(comparison);
       if (comparison) {
         User.findById(result.user_id)
           .then(data => {
-            console.log(data.rows);
+            // console.log(data.rows);
             if (data.rows.length > 0) {
               // res.send("you logged in successfully");
               var payload = {
                 id: data.rows[0].id,
                 email: data.rows[0].email
               };
-              console.log(payload);
+              // console.log(payload);
               //console.log(process.env.secretOrkey);
               jwt.sign(
                 payload,
@@ -202,7 +202,7 @@ function refreshToken(req, res) {
                 (err, token) => {
                   var refreshToken = randToken.uid(250);
                   var date = new Date();
-                  console.log(refreshToken);
+                  // console.log(refreshToken);
                   //console.log(token);
                   Token.update(
                     token,
