@@ -1,5 +1,10 @@
+@import "@angular/material/prebuilt-themes/deeppurple-amber.css";
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  max-height: 100vh;
+  // min-height: 100vh;
   background: linear-gradient(to right, #232526, #414345);
   z-index: auto;
 }

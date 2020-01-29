@@ -1,34 +1,40 @@
 <nav id="navBarLandingPg">
   <div class="nav-wrapper">
+    <input type="checkbox" id="check" />
+    <label for="check" class="checkbtn">
+      <mat-icon>reorder</mat-icon>
+    </label>
     <a
       href="#"
-      class="brand-logo center"
+      class="logo brand-logo center"
       [routerLink]="['/']"
       routerLinkActive="router-link-active"
       >UNIT</a
     >
-    <ul id="nav-left" class="left hide-on-med-and-down">
-      <li><a href="#">Team</a></li>
-      <li><a href="#">About</a></li>
-    </ul>
+    <ul id="ul">
+      <ul id="nav-left" class="left hide-on-med-and-down">
+        <li><a href="#">Team</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
 
-    <ul id="nav-right" class="right hide-on-med-and-down">
-      <li>
-        <a
-          href="#"
-          [routerLink]="['/login']"
-          routerLinkActive="router-link-active"
-          >Login</a
-        >
-      </li>
-      <li>
-        <a
-          href="#"
-          [routerLink]="['/signUp']"
-          routerLinkActive="router-link-active"
-          >SignUp</a
-        >
-      </li>
+      <ul id="nav-right" class="right hide-on-med-and-down">
+        <li>
+          <a
+            href="#"
+            [routerLink]="['/login']"
+            routerLinkActive="router-link-active"
+            >Login</a
+          >
+        </li>
+        <li>
+          <a
+            href="#"
+            [routerLink]="['/signUp']"
+            routerLinkActive="router-link-active"
+            >SignUp</a
+          >
+        </li>
+      </ul>
     </ul>
   </div>
 </nav>
