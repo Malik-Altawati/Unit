@@ -7,13 +7,13 @@
     <form id="formSignup" [formGroup]="signupForm" (ngSubmit)="signup()">
       <h2>Sign Up</h2>
       <div class="form-group">
-        <label for="userName">User Name*</label>
+        <label for="username">User Name*</label>
         <input
           type="text"
           class="form-control"
-          id="userName"
-          aria-describedby="userName"
-          formControlName="userName"
+          id="username"
+          aria-describedby="username"
+          formControlName="username"
         />
       </div>
 
@@ -54,27 +54,27 @@
       </div>
 
       <div class="form-group">
-        <label for="cPassword">Confirm Password*</label>
+        <label for="confirmPassword">Confirm Password*</label>
         <input
-          #cPassword
+          #confirmPassword
           type="password"
           class="form-control"
-          id="cPassword"
+          id="confirmPassword"
           placeholder="********"
-          formControlName="cPassword"
-          aria-describedby="cPassword"
+          formControlName="confirmPassword"
+          aria-describedby="confirmPassword"
         />
       </div>
 
       <div
         *ngIf="
-          cPassword.value !== password.value &&
+          confirmPassword.value !== password.value &&
           signupForm.controls.password.touched &&
-          signupForm.controls.cPassword.touched
+          signupForm.controls.confirmPassword.touched
         "
         class="alert alert-danger"
       >
-        <!-- <div *ngIf="cPassword.errors.required"> -->
+        <!-- <div *ngIf="confirmPassword.errors.required"> -->
         Password should be the same!!.
         <!-- </div> -->
       </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router, ActivatedRoute } from "@angular/router";
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: "app-signup",
@@ -12,7 +13,11 @@ export class SignupComponent implements OnInit {
   errors: any = [];
   notifyMessage = "";
 
-  constructor(private fb: FormBuilder, private route: ActivatedRoute) {}
+  constructor(
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private http: HttpClient
+  ) {}
 
   ngOnInit() {
     this.createForm();
@@ -25,11 +30,10 @@ export class SignupComponent implements OnInit {
 
   createForm() {
     this.signupForm = this.fb.group({
-      name: ["", Validators.required],
-      userName: ["", Validators.required],
+      username: ["", Validators.required],
       email: ["", Validators.required],
       password: ["", Validators.required],
-      cPassword: ["", Validators.required]
+      confirmPassword: ["", Validators.required]
     });
   }
   isInvalidForm(fieldName): boolean {
@@ -44,6 +48,9 @@ export class SignupComponent implements OnInit {
   }
 
   signup() {
+    this.http.post("signup", {}).subscribe(data => {
+      console.log(data);
+    });
     console.log(this.signupForm.value);
   }
 }
