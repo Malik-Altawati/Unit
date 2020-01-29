@@ -75,17 +75,17 @@ export class PostComponent implements OnInit {
     }
 
     formData.append('files', this.fileData); // here we pass the file
-    formData.append("user_id", "123")  // here we pass user id 
+    formData.append("user_id", localStorage.user_id)  // here we pass user id 
     formData.append("post_text", this.post) // here we pass post text
     formData.append("type", this.fileData.type) // here we pass data type
 
     this.fileUploadProgress = '0%';
-
     this.http.post('http://localhost:5000/posts/post', formData, {
       reportProgress: true,
       observe: 'events'
     })
       .subscribe(events => {
+        this.post = ""
         if (events.type === HttpEventType.UploadProgress) {
           this.fileUploadProgress = Math.round(events.loaded / events.total * 100) + '%';
           console.log(this.fileUploadProgress);
