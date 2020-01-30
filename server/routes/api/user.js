@@ -48,7 +48,7 @@ function signUp(req, res) {
                 jwt.sign(
                   payload,
                   process.env.secretOrkey,
-                  { expiresIn: 900 },
+                  { expiresIn: 900000 },
                   (err, token) => {
                     var refreshToken = randToken.uid(250);
                     var date = new Date();
@@ -205,7 +205,7 @@ function refreshToken(req, res) {
               jwt.sign(
                 payload,
                 process.env.secretOrkey,
-                { expiresIn: 900 },
+                { expiresIn: 900000 },
                 (err, token) => {
                   var refreshToken = randToken.uid(250);
                   var date = new Date();
