@@ -20,7 +20,9 @@ const isAuth = require("./server/validation/tokenValidation");
 
 //////////////////// routes
 app.post("/auth", isAuth, (req, res) => {
-  res.send("token verified");
+  res.json({
+    message: "all good"
+  });
 });
 app.post("/signup", User.signUp);
 app.post("/login", User.logIn);
