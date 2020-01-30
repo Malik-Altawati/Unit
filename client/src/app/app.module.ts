@@ -9,6 +9,10 @@ import { NavComponent } from './components/nav/nav.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PostComponent } from './pages/home/post/post.component';
 import { HttpClientModule } from '@angular/common/http';
+import { InfoSectionComponent } from './pages/profile/info-section/info-section.component';
+import { PostsSectionComponent } from './pages/profile/posts-section/posts-section.component';
+import { EditComponent } from './pages/profile/edit/edit.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +22,11 @@ import { HttpClientModule } from '@angular/common/http';
     SignupComponent,
     NavComponent,
     FooterComponent,
-    PostComponent
+    PostComponent,
+    InfoSectionComponent,
+    PostsSectionComponent,
+    EditComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
