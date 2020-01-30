@@ -62,4 +62,8 @@ export class LoginComponent implements OnInit {
         }
       });
   }
+
+  loggedIn() {
+    return !!localStorage.getItem("token");
+  }
 }

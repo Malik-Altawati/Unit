@@ -5,13 +5,14 @@ import { LandingPageComponent } from "./pages/landingPage/landing-page/landing-p
 import { SignupComponent } from "./user/signup/signup.component";
 import { PostComponent } from "./pages/home/post/post.component";
 import { HomeComponent } from "./pages/home/home.component";
+import { AuthGuard } from "./auth.guard";
 
 const routes: Routes = [
   { path: "", component: LandingPageComponent },
   { path: "login", component: LoginComponent },
   { path: "signUp", component: SignupComponent },
-  { path: "post", component: PostComponent },
-  { path: "home", component: HomeComponent }
+  { path: "post", component: PostComponent, canActivate: [AuthGuard] },
+  { path: "home", component: HomeComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

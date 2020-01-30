@@ -19,6 +19,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { MatIconModule } from "@angular/material/icon";
+import { AuthGuard } from "./auth.guard";
 
 @NgModule({
   declarations: [
@@ -46,7 +47,7 @@ import { MatIconModule } from "@angular/material/icon";
     FontAwesomeModule,
     MatIconModule
   ],
-  providers: [],
+  providers: [AuthGuard, LoginComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
