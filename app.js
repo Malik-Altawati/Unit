@@ -19,6 +19,9 @@ const Follow = require("./server/routes/api/follow.js");
 const isAuth = require("./server/validation/tokenValidation");
 
 //////////////////// routes
+app.post("/auth", isAuth, (req, res) => {
+  res.send("token verified");
+});
 app.post("/signup", User.signUp);
 app.post("/login", User.logIn);
 //app.get("/", User.enter);
