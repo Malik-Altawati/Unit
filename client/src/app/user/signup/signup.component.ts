@@ -17,7 +17,7 @@ export class SignupComponent implements OnInit {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private http: HttpClient,
-    private router: Router
+    private _router: Router
   ) {}
 
   ngOnInit() {
@@ -55,10 +55,10 @@ export class SignupComponent implements OnInit {
         localStorage.setItem("user_id", data["payload"]["id"]);
         localStorage.setItem("email", data["payload"]["email"]);
         localStorage.setItem("token", data["token"]);
-        localStorage.setItem("refreshtoken", data["refreshToken"]);
+        localStorage.setItem("refreshtoken", data["refreshtoken"]);
         console.log(data);
         if (data["success"]) {
-          this.router.navigate(["home"]);
+          this._router.navigate(["home"]);
         } else {
           alert(data["message"]);
         }

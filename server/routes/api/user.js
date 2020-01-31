@@ -48,7 +48,7 @@ function signUp(req, res) {
                 jwt.sign(
                   payload,
                   process.env.secretOrkey,
-                  { expiresIn: 900000 },
+                  { expiresIn: 60 },
                   (err, token) => {
                     var refreshToken = randToken.uid(250);
                     var date = new Date();
@@ -110,7 +110,7 @@ function logIn(req, res) {
               jwt.sign(
                 payload,
                 process.env.secretOrkey,
-                { expiresIn: 900 },
+                { expiresIn: 60 },
                 (err, token) => {
                   var refreshToken = randToken.uid(250);
                   var date = new Date();
@@ -183,8 +183,11 @@ function logOut(req, res) {
 //////////////////////////////////////////////////////////////////////// refresh token request
 function refreshToken(req, res) {
   var refreshTokenFormCookies = req.body.refreshtoken;
+  console.log(refreshTokenFormCookies, "ayy");
+
   Token.findRefreshToken(refreshTokenFormCookies)
     .then(result => {
+      console.log("results", result);
       var expirydate = result.refresh_token_expires_at;
       // console.log("user_id", result.user_id);
       var newDate = new Date();
@@ -205,7 +208,7 @@ function refreshToken(req, res) {
               jwt.sign(
                 payload,
                 process.env.secretOrkey,
-                { expiresIn: 900000 },
+                { expiresIn: 60 },
                 (err, token) => {
                   var refreshToken = randToken.uid(250);
                   var date = new Date();

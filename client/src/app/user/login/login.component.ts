@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   errors: any = [];
   notifyMessage = "";
   token = "";
-  x = "";
+  // x = "";
 
   constructor(
     private fb: FormBuilder,
@@ -64,24 +64,20 @@ export class LoginComponent implements OnInit {
       });
   }
 
-  loggedIn() {
-    // return !!localStorage.getItem("token");
-    if (localStorage.getItem("token")) {
-      this.x = localStorage.getItem("token");
-    }
-    return this.http
-      .post("http://localhost:5000/auth", {
-        token: this.x
-      })
-      .subscribe(data => {
-        console.log("hi");
-
-        console.log(data, "this is the data we get");
-        if (data === "token verified") {
-          return true;
-        } else {
-          return false;
-        }
-      });
-  }
+  // loggedIn() {
+  //   // return !!localStorage.getItem("token");
+  //   if (localStorage.getItem("token")) {
+  //     this.x = localStorage.getItem("token").slice(7);
+  //   }
+  //   return this.http.post("http://localhost:5000/auth", {
+  //     token: this.x
+  //   });
+  //   // .subscribe(data => {
+  //   //   console.log(data["message"]);
+  //   //   if (data["message"] === "all good") {
+  //   //     return true;
+  //   //   }
+  //   //   return false;
+  //   // });
+  // }
 }

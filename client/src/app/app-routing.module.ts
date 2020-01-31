@@ -8,11 +8,15 @@ import { HomeComponent } from "./pages/home/home.component";
 import { AuthGuard } from "./auth.guard";
 
 const routes: Routes = [
-  { path: "", component: LandingPageComponent },
+  {
+    path: "",
+    component: localStorage.token ? HomeComponent : LandingPageComponent
+  },
   { path: "login", component: LoginComponent },
   { path: "signUp", component: SignupComponent },
   { path: "post", component: PostComponent, canActivate: [AuthGuard] },
-  { path: "home", component: HomeComponent, canActivate: [AuthGuard] }
+  { path: "home", component: HomeComponent, canActivate: [AuthGuard] },
+  { path: "**", component: LandingPageComponent }
 ];
 
 @NgModule({

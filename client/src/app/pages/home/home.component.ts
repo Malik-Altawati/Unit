@@ -15,6 +15,6 @@ export class HomeComponent implements OnInit {
         console.log("no tokeeeeeeeeeeen");
         this.router.navigate(["/"]);
       }
-    }, 250000); //about 4 minsS
+    }, 60000); //about 4 minsS
   }
 }

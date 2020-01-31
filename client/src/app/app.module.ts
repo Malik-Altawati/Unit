@@ -20,6 +20,9 @@ import { HttpClientModule } from "@angular/common/http";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { MatIconModule } from "@angular/material/icon";
 import { AuthGuard } from "./auth.guard";
+import { EditComponent } from "./pages/profile/edit/edit.component";
+import { InfoSectionComponent } from "./pages/profile/info-section/info-section.component";
+import { PostsSectionComponent } from "./pages/profile/posts-section/posts-section.component";
 
 @NgModule({
   declarations: [
@@ -31,7 +34,10 @@ import { AuthGuard } from "./auth.guard";
     PostComponent,
     ProfileComponent,
     SignupComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    EditComponent,
+    InfoSectionComponent,
+    PostsSectionComponent
   ],
   imports: [
     BrowserModule,
