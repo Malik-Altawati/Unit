@@ -14,7 +14,7 @@ function createToken(
     user_id
   )
     .then(data => {
-      console.log(data);
+      // console.log(data);
       return Tokens.findtoken(user_id)
         .then(data => {
           return data.rows[0];

@@ -3,13 +3,25 @@ const app = express();
 const cors = require("cors");
 const dotenv = require("dotenv").config();
 const cookieParser = require("cookie-parser");
+
+app.use(
+  cors({
+    preflightContinue: true,
+    credentials: true,
+    origin: "http://localhost:4200"
+  })
+);
 app.use(cookieParser());
-var corsOptions = {
-  origin: "*",
-  optionsSuccessStatus: 200
-};
-app.use(cors(corsOptions));
 app.use(express.json());
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "http://localhost:4200");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
 
 const port = process.env.PORT || 5000;
 
@@ -19,16 +31,16 @@ const Follow = require("./server/routes/api/follow.js");
 const isAuth = require("./server/validation/tokenValidation");
 
 //////////////////// routes
-
 app.post("/auth", isAuth, (req, res) => {
-  res.send("Its all good in the hood");
+  res.json({
+    message: "all good"
+  });
 });
-
 app.post("/signup", User.signUp);
 app.post("/login", User.logIn);
 //app.get("/", User.enter);
 app.post("/logout", User.logOut);
-app.post("/refreshtoken", User.refreshToken);
+app.get("/refreshtoken", User.refreshToken);
 
 app.post("/posts/post", isAuth, Post.create);
 app.get("/posts/get", isAuth, Post.find);

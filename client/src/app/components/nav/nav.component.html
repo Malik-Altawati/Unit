@@ -1,1 +1,73 @@
-<p>nav works!</p>
+<nav id="navBarLandingPg">
+  <div class="nav-wrapper">
+    <input type="checkbox" id="check" />
+    <label for="check" class="checkbtn">
+      <mat-icon>reorder</mat-icon>
+    </label>
+    <a
+      href="#"
+      class="logo brand-logo center"
+      [routerLink]="['/']"
+      routerLinkActive="router-link-active"
+      >UNIT</a
+    >
+    <ul id="ul">
+      <ul id="nav-left" class="left hide-on-med-and-down">
+        <li><a href="#">Team</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+
+      <ul *ngIf="!token" id="nav-right" class="right hide-on-med-and-down">
+        <li>
+          <a
+            href="#"
+            [routerLink]="['/login']"
+            routerLinkActive="router-link-active"
+            >Login</a
+          >
+        </li>
+        <li>
+          <a
+            href="#"
+            [routerLink]="['/signUp']"
+            routerLinkActive="router-link-active"
+            >SignUp</a
+          >
+        </li>
+      </ul>
+
+      <div id="profile" *ngIf="token" ngbDropdown class="d-inline-block">
+        <a ngbDropdownToggle><mat-icon>account_circle</mat-icon></a>
+        <div id="list" ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <a class="logout" href="#" ngbDropdownItem>profile</a>
+          <a class="logout" href="#" ngbDropdownItem (click)="logout()"
+            >logout</a
+          >
+        </div>
+      </div>
+
+      <!-- <ul *ngIf="token" id="nav-right" class="right hide-on-med-and-down">
+        <li id="profile">
+          <a href="#" (click)="logout()"><mat-icon>account_circle</mat-icon></a>
+        </li>
+      </ul> -->
+    </ul>
+  </div>
+</nav>
+
+<!-- <mat-toolbar>
+  <a href="#" style="position: absolute; left: 0;">UNIT</a>
+
+  <div style="position: absolute; right: 0;">
+    <a href="#" style="padding-right: 30px;">My Application</a>
+    <a href="#" style="padding-right: 30px;">My Application</a>
+    <a href="#">My Application</a>
+  </div>
+</mat-toolbar> -->
+
+<!-- in the profie page this can be used as categorising the posts -->
+<!-- <mat-tab-group animationDuration="0ms">
+  <mat-tab label="Home"> <app-home></app-home> </mat-tab>
+  <mat-tab label="login"> <app-profile></app-profile> </mat-tab>
+  <mat-tab label="signUp">Content 3</mat-tab>
+</mat-tab-group> -->
