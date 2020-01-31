@@ -23,6 +23,8 @@ import { AuthGuard } from "./auth.guard";
 import { EditComponent } from "./pages/profile/edit/edit.component";
 import { InfoSectionComponent } from "./pages/profile/info-section/info-section.component";
 import { PostsSectionComponent } from "./pages/profile/posts-section/posts-section.component";
+import { MatCardModule } from "@angular/material/card";
+import { PostCardComponentComponent } from "./pages/home/post-card-component/post-card-component.component";
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { PostsSectionComponent } from "./pages/profile/posts-section/posts-secti
     LandingPageComponent,
     EditComponent,
     InfoSectionComponent,
-    PostsSectionComponent
+    PostsSectionComponent,
+    PostCardComponentComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +54,8 @@ import { PostsSectionComponent } from "./pages/profile/posts-section/posts-secti
     ReactiveFormsModule,
     HttpClientModule,
     FontAwesomeModule,
-    MatIconModule
+    MatIconModule,
+    MatCardModule
   ],
   providers: [AuthGuard, LoginComponent],
   bootstrap: [AppComponent]

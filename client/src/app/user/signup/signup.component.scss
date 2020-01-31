@@ -19,7 +19,9 @@
 }
 
 #formDiv {
-  margin-top: 8%;
+  // margin-top: 8%;
+  margin-top: 7%;
+  padding: 0 10%;
   #formSignup {
     background-color: rgba(255, 255, 255, 0.253);
     border-radius: 10%;
@@ -27,7 +29,7 @@
     margin: auto;
     width: 40%;
     display: grid;
-    padding: 2% 10% 5% 10%;
+    padding: 5% 10%;
     label {
       color: white;
     }
