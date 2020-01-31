@@ -19,6 +19,11 @@ const Follow = require("./server/routes/api/follow.js");
 const isAuth = require("./server/validation/tokenValidation");
 
 //////////////////// routes
+
+app.post("/auth", isAuth, (req, res) => {
+  res.send("Its all good in the hood");
+});
+
 app.post("/signup", User.signUp);
 app.post("/login", User.logIn);
 //app.get("/", User.enter);
@@ -33,6 +38,7 @@ app.delete("/posts/delete/:id", isAuth, Post.delete);
 app.post("/follow/create", isAuth, Follow.create);
 app.post("/follow/delete", isAuth, Follow.delete);
 app.post("/follow/getfollowers", isAuth, Follow.getfollowers);
+
 //
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

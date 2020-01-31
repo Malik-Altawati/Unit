@@ -45,7 +45,7 @@ function signUp(req, res) {
                 jwt.sign(
                   payload,
                   process.env.secretOrkey,
-                  { expiresIn: 900000 },
+                  { expiresIn: 900 },
                   (err, token) => {
                     var refreshToken = randToken.uid(250);
                     var date = new Date();
@@ -119,7 +119,7 @@ function logIn(req, res) {
                     data.rows[0].id
                   );
                   res.cookie("refreshtoken", refreshToken, {
-                    maxAge: 900000,
+                    maxAge: 30 * 24 * 60 * 60 * 1000,
                     httpOnly: true
                   });
                   return res.json({
@@ -212,7 +212,7 @@ function refreshToken(req, res) {
                     data.rows[0].id
                   );
                   res.cookie("refreshtoken", refreshToken, {
-                    maxAge: 900000,
+                    maxAge: 30 * 24 * 60 * 60 * 1000,
                     httpOnly: true
                   });
                   return res.json({
