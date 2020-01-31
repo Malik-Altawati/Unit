@@ -18,7 +18,7 @@ export class SignupComponent implements OnInit {
     private route: ActivatedRoute,
     private http: HttpClient,
     private _router: Router
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.createForm();

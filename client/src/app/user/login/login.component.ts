@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router, ActivatedRoute } from "@angular/router";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { HttpService } from "src/app/http.service";
 
 @Component({
@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
     private http: HttpClient,
     private router: Router,
     private httpService: HttpService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.createForm();
@@ -45,13 +45,17 @@ export class LoginComponent implements OnInit {
   isRequired(fieldName): boolean {
     return this.loginForm.controls[fieldName].errors.required;
   }
+  // This should be in a service and is called like this await this.authService.login().subscribe()
+  // The login inside the service should be async login(){}
 
   login() {
+    let options = {
+      withCredentials: true
+    };
+
     this.http
-      .post("http://localhost:5000/login", this.loginForm.value)
+      .post("http://localhost:5000/login", this.loginForm.value, options)
       .subscribe(data => {
-
-
         if (data["success"]) {
           localStorage.setItem("user_id", data["payload"]["id"]);
           localStorage.setItem("email", data["payload"]["email"]);

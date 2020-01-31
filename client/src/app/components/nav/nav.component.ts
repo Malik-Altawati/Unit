@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { HttpService } from "src/app/http.service";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 @Component({
   selector: "app-nav",
@@ -8,7 +9,7 @@ import { HttpService } from "src/app/http.service";
 })
 export class NavComponent implements OnInit {
   token;
-  constructor(private http: HttpService) {}
+  constructor(private http: HttpClient) {}
 
   ngOnInit() {
     var check = setInterval(() => {
@@ -21,8 +22,12 @@ export class NavComponent implements OnInit {
 
   logout() {
     localStorage.removeItem("token");
-    localStorage.removeItem("refreshtoken");
-    localStorage.removeItem("email");
-    localStorage.removeItem("user_id");
+
+    this.http
+      .post("http://localhost:5000/logout", localStorage.getItem("user_id"))
+      .subscribe(data => {
+        console.log(data);
+        localStorage.clear();
+      });
   }
 }

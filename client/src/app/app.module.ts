@@ -1,3 +1,4 @@
+import { HTTP_INTERCEPTORS } from "@angular/common/http"; // use this
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { AppRoutingModule } from "./app-routing.module";
@@ -23,6 +24,7 @@ import { AuthGuard } from "./auth.guard";
 import { EditComponent } from "./pages/profile/edit/edit.component";
 import { InfoSectionComponent } from "./pages/profile/info-section/info-section.component";
 import { PostsSectionComponent } from "./pages/profile/posts-section/posts-section.component";
+import { HttpRequestInterceptor } from "./HttpRequestInterceptor";
 
 @NgModule({
   declarations: [
@@ -53,7 +55,18 @@ import { PostsSectionComponent } from "./pages/profile/posts-section/posts-secti
     FontAwesomeModule,
     MatIconModule
   ],
-  providers: [AuthGuard, LoginComponent],
+  providers: [
+    LoginComponent,
+    AuthGuard,
+
+    [
+      {
+        provide: HTTP_INTERCEPTORS,
+        useClass: HttpRequestInterceptor,
+        multi: true
+      }
+    ]
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
