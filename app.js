@@ -19,6 +19,11 @@ const Follow = require("./server/routes/api/follow.js");
 const isAuth = require("./server/validation/tokenValidation");
 
 //////////////////// routes
+app.post("/auth", isAuth, (req, res) => {
+  res.json({
+    message: "all good"
+  });
+});
 app.post("/signup", User.signUp);
 app.post("/login", User.logIn);
 //app.get("/", User.enter);

@@ -1,16 +1,26 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { PostComponent } from './pages/home/post/post.component';
-import { ProfileComponent } from './pages/profile/profile.component';
-
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
+import { LoginComponent } from "./user/login/login.component";
+import { LandingPageComponent } from "./pages/landingPage/landing-page/landing-page.component";
+import { SignupComponent } from "./user/signup/signup.component";
+import { PostComponent } from "./pages/home/post/post.component";
+import { HomeComponent } from "./pages/home/home.component";
+import { AuthGuard } from "./auth.guard";
 
 const routes: Routes = [
-  { path: 'post', component: PostComponent },
-  { path: 'profile', component: ProfileComponent }
+  {
+    path: "",
+    component: localStorage.token ? HomeComponent : LandingPageComponent
+  },
+  { path: "login", component: LoginComponent },
+  { path: "signUp", component: SignupComponent },
+  { path: "post", component: PostComponent, canActivate: [AuthGuard] },
+  { path: "home", component: HomeComponent, canActivate: [AuthGuard] },
+  { path: "**", component: LandingPageComponent }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

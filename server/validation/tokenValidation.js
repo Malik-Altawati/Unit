@@ -7,7 +7,7 @@ function isAuth(req, res, next) {
     jwt.verify(token, process.env.secretOrKey, function(err, decoded) {
       console.log(decoded);
       if (err) {
-        return res.status(401).json({
+        return res.status(200).json({
           message: "failed authentication: invalid token"
         });
       }
@@ -16,7 +16,7 @@ function isAuth(req, res, next) {
       next();
     });
   } else {
-    return res.status(401).json({
+    return res.status(200).json({
       message: "failed authentication: no token provided."
     });
   }

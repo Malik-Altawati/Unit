@@ -42,7 +42,7 @@ function createToken(
   );
 }
 function getRefreshToken(refresh_token) {
-  return db.query(`select * from tokens where refresh_token =$1 `, [
+  return db.query(`select * from tokens where refresh_token = $1 `, [
     refresh_token
   ]);
 }
