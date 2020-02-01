@@ -48,7 +48,7 @@ function signUp(req, res) {
                 jwt.sign(
                   payload,
                   process.env.secretOrkey,
-                  { expiresIn: 10 },
+                  { expiresIn: 300 },
                   (err, token) => {
                     var refreshToken = randToken.uid(250);
                     var date = new Date();
@@ -65,6 +65,10 @@ function signUp(req, res) {
                     res.cookie("refreshtoken", refreshToken, {
                       maxAge: 9000000000,
                       httpOnly: true
+                    });
+                    res.cookie("token", token, {
+                      maxAge: 5 * 60 * 1000,
+                      httpOnly: false
                     });
                     return res.json({
                       payload,
@@ -111,7 +115,7 @@ function logIn(req, res) {
               jwt.sign(
                 payload,
                 process.env.secretOrkey,
-                { expiresIn: 10 },
+                { expiresIn: 300 },
                 (err, token) => {
                   var refreshToken = randToken.uid(250);
                   var date = new Date();
@@ -127,6 +131,10 @@ function logIn(req, res) {
                   );
                   res.cookie("refreshtoken", refreshToken, {
                     maxAge: 30 * 24 * 60 * 60 * 1000,
+                    httpOnly: false
+                  });
+                  res.cookie("token", token, {
+                    maxAge: 5 * 60 * 1000,
                     httpOnly: false
                   });
 
@@ -210,7 +218,7 @@ function refreshToken(req, res) {
               jwt.sign(
                 payload,
                 process.env.secretOrkey,
-                { expiresIn: 10 },
+                { expiresIn: 300 },
                 (err, token) => {
                   var refreshToken = randToken.uid(250);
                   var date = new Date();
@@ -226,6 +234,10 @@ function refreshToken(req, res) {
                   res.cookie("refreshtoken", refreshToken, {
                     maxAge: 30 * 24 * 60 * 60 * 1000,
                     httpOnly: true
+                  });
+                  res.cookie("token", token, {
+                    maxAge: 5 * 60 * 1000,
+                    httpOnly: false
                   });
                   return res.json({
                     payload,

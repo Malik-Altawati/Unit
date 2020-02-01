@@ -1,7 +1,12 @@
 const dotenv = require("dotenv").config();
 const jwt = require("jsonwebtoken");
 function isAuth(req, res, next) {
-  var token = req.body.token || req.query.token || req.headers["authorization"];
+  var token =
+    req.body.token ||
+    req.query.token ||
+    req.headers["authorization"] ||
+    req.cookies.token;
+  console.log(req.cookies.token, "auth token");
 
   if (token) {
     jwt.verify(token, process.env.secretOrKey, function(err, decoded) {
