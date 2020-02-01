@@ -28,6 +28,7 @@ const port = process.env.PORT || 5000;
 const User = require("./server/routes/api/user");
 const Post = require("./server/routes/api/post.js");
 const Follow = require("./server/routes/api/follow.js");
+const path = require('path');
 const isAuth = require("./server/validation/tokenValidation");
 
 //////////////////// routes
@@ -41,7 +42,9 @@ app.post("/login", User.logIn);
 //app.get("/", User.enter);
 app.post("/logout", User.logOut);
 app.get("/refreshtoken", User.refreshToken);
-
+app.get('/uploads/:name', (req, res) => {
+  res.sendFile(path.resolve('folders/uploaded', req.params.name))
+})
 app.post("/posts/post", isAuth, Post.create);
 app.post("/posts/get", Post.find);
 app.patch("/posts/update/:id", isAuth, Post.update);

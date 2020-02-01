@@ -4,13 +4,7 @@
     <label for="check" class="checkbtn">
       <mat-icon>reorder</mat-icon>
     </label>
-    <a
-      href="#"
-      class="logo brand-logo center"
-      [routerLink]="['/']"
-      routerLinkActive="router-link-active"
-      >UNIT</a
-    >
+    <a href="#" class="logo brand-logo center" [routerLink]="['/']" routerLinkActive="router-link-active">UNIT</a>
     <ul id="ul">
       <ul id="nav-left" class="left hide-on-med-and-down">
         <li><a href="#">Team</a></li>
@@ -19,30 +13,20 @@
 
       <ul *ngIf="!token" id="nav-right" class="right hide-on-med-and-down">
         <li>
-          <a
-            href="#"
-            [routerLink]="['/login']"
-            routerLinkActive="router-link-active"
-            >Login</a
-          >
+          <a href="#" [routerLink]="['/login']" routerLinkActive="router-link-active">Login</a>
         </li>
         <li>
-          <a
-            href="#"
-            [routerLink]="['/signUp']"
-            routerLinkActive="router-link-active"
-            >SignUp</a
-          >
+          <a href="#" [routerLink]="['/signUp']" routerLinkActive="router-link-active">SignUp</a>
         </li>
       </ul>
 
       <div id="profile" *ngIf="token" ngbDropdown class="d-inline-block">
-        <a ngbDropdownToggle><mat-icon>account_circle</mat-icon></a>
+        <a ngbDropdownToggle>
+          <mat-icon>account_circle</mat-icon>
+        </a>
         <div id="list" ngbDropdownMenu aria-labelledby="dropdownBasic1">
-          <a class="logout" href="#" ngbDropdownItem>profile</a>
-          <a class="logout" href="#" ngbDropdownItem (click)="logout()"
-            >logout</a
-          >
+          <a class="logout" href="#" [routerLink]="['/profile']" ngbDropdownItem>profile</a>
+          <a class="logout" href="#" ngbDropdownItem (click)="logout()">logout</a>
         </div>
       </div>
 
