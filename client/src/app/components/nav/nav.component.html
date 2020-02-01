@@ -55,17 +55,6 @@
       >
 
       <div id="searchBar">
-        <!-- <form class="form-inline">
-          <input
-            class="form-control mr-sm-2"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-          />
-          <button class="btn btn-success" type="submit">
-            search
-          </button>
-        </form> -->
         <a
           style="width: 65%; text-decoration: underline;"
           *ngIf="token"
@@ -74,9 +63,6 @@
           <mat-icon>search</mat-icon>
           search for a user
         </a>
-        <!-- <button *ngIf="token" (click)="lookUp()">
-          Do it!
-        </button> -->
       </div>
 
       <div id="profile" *ngIf="token" ngbDropdown class="d-inline-block">

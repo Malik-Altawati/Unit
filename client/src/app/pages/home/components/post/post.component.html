@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <div class="row">
     <div class="col-md-6 offset-md-3">
       <h2>Write Something</h2>
@@ -24,5 +24,12 @@
         <button class="btn btn-primary" (click)="onSubmit()">Submit</button>
       </div>
     </div>
+  </div>
+</div> -->
+
+<div class="container">
+  <div id="text" class="form-group">
+    <h5>what would you like to say !!</h5>
+    <input #pRef type="text" name="text" (change)="postText($event)" />
   </div>
 </div>

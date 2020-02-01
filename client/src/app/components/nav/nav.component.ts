@@ -44,6 +44,12 @@ export class NavComponent implements OnInit {
   lookUp() {
     Swal.fire({
       title: "Search by Username",
+      showClass: {
+        popup: "animated fadeInDownBig"
+      },
+      hideClass: {
+        popup: "animated fadeOutUpBig"
+      },
       input: "text",
       inputAttributes: {
         autocapitalize: "off"
