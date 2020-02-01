@@ -24,13 +24,12 @@ export class NavComponent implements OnInit {
 
   logout() {
     localStorage.removeItem("token");
-
-    this.http
-      .post("http://localhost:5000/logout", localStorage.getItem("user_id"))
-      .subscribe(data => {
-        console.log(data);
-        localStorage.clear();
-      });
+    const id = Number(localStorage.getItem("user_id"));
+    console.log("idddd", id);
+    this.http.post("http://localhost:5000/logout", { id }).subscribe(data => {
+      console.log(data);
+      localStorage.clear();
+    });
   }
 
   routing() {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-posts-section',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostsSectionComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private http: HttpClient) { }
+  user_id = localStorage.getItem("user_id")
   ngOnInit() {
+    this.http.post("http://localhost:5000/posts/get", { user_id: this.user_id }).subscribe(data => {
+      console.log(data)
+    })
   }
 
 }

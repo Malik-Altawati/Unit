@@ -8,6 +8,6 @@ export class HttpService {
   constructor(private _http: HttpClient) {}
 
   getPosts() {
-    return this._http.get("http://localhost:5000/posts/get");
+    return this._http.post("http://localhost:5000/posts/get", { user_id: "4" });
   }
 }

@@ -54,25 +54,47 @@ export class PostComponent implements OnInit {
     console.log(this.fileData);
 
     if (!this.fileData) {
-      return alert("you have to upload something");
+      return Swal.fire("Empty?", "You Have To Upload Something", "error");
+      // alert("you have to upload something");
     }
     if (!this.post) {
-      return alert("you have to write something");
+      return Swal.fire("No Post ??", "You have to write something", "info");
+      // alert("you have to write something");
     }
     var type = this.fileData.type.split("/")[0];
     var size = this.fileData.size;
 
     if (size > 10000000 && type === "video") {
-      return alert(` your ${type} cant be bigger than 10MB`);
+      return Swal.fire(
+        "So Large !!",
+        ` Your ${type} Can't be larger than 10MB`,
+        "warning"
+      );
+      // alert(` your ${type} cant be bigger than 10MB`);
     }
     if (size > 3000000 && type === "audio") {
-      return alert(` your ${type} cant be bigger than 3MB`);
+      return Swal.fire(
+        "So Large For an Image..",
+        ` Your ${type} Can't be larger than 3MB`,
+        "warning"
+      );
+      // alert(` your ${type} cant be bigger than 3MB`);
     }
     if (size > 5000000 && type === "image") {
-      return alert(` your ${type} cant be bigger than 5MB`);
+      return Swal.fire(
+        "So Large For an Image..",
+        ` Your ${type} Can't be larger than 5MB`,
+        "warning"
+      );
+      // alert(` your ${type} cant be bigger than 5MB`);
     }
     if (type !== "image" && type !== "video" && type !== "audio") {
-      return alert(" You can only post images / videos and audios");
+      return Swal.fire(
+        "So Large For an Image..",
+        "You only can post Images / Videos and Audios",
+        "warning"
+      );
+      // alert(" You can only post images / videos and audios");
     }
 
     formData.append("files", this.fileData); // here we pass the file

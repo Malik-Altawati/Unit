@@ -14,7 +14,7 @@ app.use(
 app.use(cookieParser());
 app.use(express.json());
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "http://localhost:4200");
   res.header(
     "Access-Control-Allow-Headers",
@@ -45,7 +45,7 @@ app.post("/logout", User.logOut);
 app.get("/refreshtoken", User.refreshToken);
 
 app.post("/posts/post", isAuth, Post.create);
-app.get("/posts/get", isAuth, Post.find);
+app.post("/posts/get", Post.find);
 app.patch("/posts/update/:id", isAuth, Post.update);
 app.delete("/posts/delete/:id", isAuth, Post.delete);
 //
