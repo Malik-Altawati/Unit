@@ -22,6 +22,7 @@ export class AuthGuard implements CanActivate {
     if (localStorage.getItem("token")) {
       this.tokenValue = localStorage.getItem("token").slice(7);
     }
+    console.log(this.tokenValue, "token from client");
     return this.http
       .post("http://localhost:5000/auth", {
         token: this.tokenValue

@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { HttpClient, HttpEventType } from "@angular/common/http";
+import { HttpClient, HttpEventType, HttpHeaders } from "@angular/common/http";
 
 @Component({
   selector: "app-post",
@@ -78,6 +78,11 @@ export class PostComponent implements OnInit {
     formData.append("user_id", localStorage.user_id); // here we pass user id
     formData.append("post_text", this.post); // here we pass post text
     formData.append("type", this.fileData.type); // here we pass data type
+
+    // let headers = new HttpHeaders({
+    //   "Content-Type": "application/json",
+    //   authentication: localStorage.getItem("token")
+    // });
 
     this.fileUploadProgress = "0%";
     this.http
