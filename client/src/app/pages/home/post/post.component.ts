@@ -12,9 +12,9 @@ export class PostComponent implements OnInit {
   fileUploadProgress: string = null;
   uploadedFilePath: string = null;
   post: string = null;
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   fileProgress(fileInput: any) {
     this.fileData = <File>fileInput.target.files[0];
@@ -64,7 +64,7 @@ export class PostComponent implements OnInit {
     if (size > 10000000 && type === "video") {
       return alert(` your ${type} cant be bigger than 10MB`);
     }
-    if (size > 3000000 && type === "audio") {
+    if (size > 300000000 && type === "audio") {
       return alert(` your ${type} cant be bigger than 3MB`);
     }
     if (size > 5000000 && type === "image") {

@@ -22,6 +22,19 @@
                     <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
             </div>
+
+            <div *ngIf="item.type == 'audio'" class="card" style="width: 18rem;">
+                <!-- <iframe class="card-img-top" [src]="'http://127.0.0.1:5000/uploads/' + item.link | safe"
+                    alt="Card image cap">
+                </iframe> -->
+                <audio class="card-img-top" [src]="'http://127.0.0.1:5000/uploads/' + item.link | safe"
+                    alt="Card image cap" controls></audio>
+                <div class="card-body">
+                    <h5 class="card-title">{{item.created_at}}</h5>
+                    <p class="card-text">{{item.post}}</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
