@@ -6,7 +6,7 @@ import { SignupComponent } from "./pages/user/signup/signup.component";
 import { PostComponent } from "./pages/home/components/post/post.component";
 import { HomeComponent } from "./pages/home/home.component";
 import { AuthGuard } from "./auth.guard";
-
+import { ProfileComponent } from "./pages/profile/profile.component";
 const routes: Routes = [
   {
     path: "",
@@ -14,8 +14,10 @@ const routes: Routes = [
   },
   { path: "login", component: LoginComponent },
   { path: "signUp", component: SignupComponent },
-  { path: "post", component: PostComponent, canActivate: [AuthGuard] },
   { path: "home", component: HomeComponent, canActivate: [AuthGuard] },
+  { path: "post", component: PostComponent, canActivate: [AuthGuard] },
+  { path: "profile", component: ProfileComponent, canActivate: [AuthGuard] },
+
   { path: "**", component: LandingPageComponent }
 ];
 

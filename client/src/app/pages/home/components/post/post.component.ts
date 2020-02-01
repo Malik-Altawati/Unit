@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { HttpClient, HttpEventType, HttpHeaders } from "@angular/common/http";
+import Swal from "sweetalert2";
 
 @Component({
   selector: "app-post",
@@ -99,7 +100,14 @@ export class PostComponent implements OnInit {
         } else if (events.type === HttpEventType.Response) {
           this.fileUploadProgress = "";
           console.log(events.body);
-          alert("SUCCESS !!");
+          // alert("SUCCESS !!");
+          Swal.fire({
+            position: "top",
+            icon: "success",
+            title: "Posted !!",
+            showConfirmButton: false,
+            timer: 1500
+          });
         }
       });
   }

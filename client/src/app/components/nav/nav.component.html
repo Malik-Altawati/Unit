@@ -68,10 +68,15 @@
       <div id="profile" *ngIf="token" ngbDropdown class="d-inline-block">
         <a ngbDropdownToggle><mat-icon>account_circle</mat-icon></a>
         <div id="list" ngbDropdownMenu aria-labelledby="dropdownBasic1">
-          <a class="logout" href="" ngbDropdownItem>profile</a>
-          <a class="logout" href="" ngbDropdownItem (click)="logout()"
-            >logout</a
+          <a
+            class="pro"
+            href=""
+            ngbDropdownItem
+            [routerLink]="['/profile']"
+            routerLinkActive="router-link-active"
+            >profile</a
           >
+          <a class="pro" href="" ngbDropdownItem (click)="logout()">logout</a>
         </div>
       </div>
 
