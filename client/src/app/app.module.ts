@@ -25,6 +25,7 @@ import { EditComponent } from "./pages/profile/edit/edit.component";
 import { InfoSectionComponent } from "./pages/profile/info-section/info-section.component";
 import { PostsSectionComponent } from "./pages/profile/posts-section/posts-section.component";
 import { HttpRequestInterceptor } from "./HttpRequestInterceptor";
+import { SafePipe } from './pipes/safe.pipe';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { HttpRequestInterceptor } from "./HttpRequestInterceptor";
     LandingPageComponent,
     EditComponent,
     InfoSectionComponent,
-    PostsSectionComponent
+    PostsSectionComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,
