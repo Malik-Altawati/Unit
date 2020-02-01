@@ -28,6 +28,7 @@ import { MatCardModule } from "@angular/material/card";
 import { PostCardComponentComponent } from "./pages/home/components/post-card-component/post-card-component.component";
 import { HttpRequestInterceptor } from "./HttpRequestInterceptor";
 import { SweetAlert2Module } from "@sweetalert2/ngx-sweetalert2";
+import { SafePipe } from "./pipes/safe.pipe";
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { SweetAlert2Module } from "@sweetalert2/ngx-sweetalert2";
     EditComponent,
     InfoSectionComponent,
     PostsSectionComponent,
-    PostCardComponentComponent
+    PostCardComponentComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,
