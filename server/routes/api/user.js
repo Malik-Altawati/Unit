@@ -48,7 +48,7 @@ function signUp(req, res) {
                 jwt.sign(
                   payload,
                   process.env.secretOrkey,
-                  { expiresIn: 60 },
+                  { expiresIn: 10 },
                   (err, token) => {
                     var refreshToken = randToken.uid(250);
                     var date = new Date();
@@ -89,6 +89,7 @@ function signUp(req, res) {
 }
 ///////////////////////////////////////////////////////////////////////////////////// LOGIN SECTION
 function logIn(req, res) {
+  console.log(req.body);
   let { errors, isValid } = loginValidation(req.body);
   if (isValid) {
     var { email, password } = req.body;
@@ -110,7 +111,7 @@ function logIn(req, res) {
               jwt.sign(
                 payload,
                 process.env.secretOrkey,
-                { expiresIn: 60 },
+                { expiresIn: 10 },
                 (err, token) => {
                   var refreshToken = randToken.uid(250);
                   var date = new Date();
@@ -125,9 +126,10 @@ function logIn(req, res) {
                     data.rows[0].id
                   );
                   res.cookie("refreshtoken", refreshToken, {
-                    maxAge: 900000,
-                    httpOnly: true
+                    maxAge: 30 * 24 * 60 * 60 * 1000,
+                    httpOnly: false
                   });
+
                   return res.json({
                     payload,
                     success: true,
@@ -182,12 +184,12 @@ function logOut(req, res) {
 }
 //////////////////////////////////////////////////////////////////////// refresh token request
 function refreshToken(req, res) {
-  var refreshTokenFormCookies = req.body.refreshtoken;
-  console.log(refreshTokenFormCookies, "ayy");
+  // console.log(req.cookies);
+  var refreshTokenFormCookies = req.cookies.refreshtoken;
 
   Token.findRefreshToken(refreshTokenFormCookies)
     .then(result => {
-      console.log("results", result);
+      console.log("results *******************", result);
       var expirydate = result.refresh_token_expires_at;
       // console.log("user_id", result.user_id);
       var newDate = new Date();
@@ -208,7 +210,7 @@ function refreshToken(req, res) {
               jwt.sign(
                 payload,
                 process.env.secretOrkey,
-                { expiresIn: 60 },
+                { expiresIn: 10 },
                 (err, token) => {
                   var refreshToken = randToken.uid(250);
                   var date = new Date();
@@ -222,7 +224,7 @@ function refreshToken(req, res) {
                     data.rows[0].id
                   );
                   res.cookie("refreshtoken", refreshToken, {
-                    maxAge: 900000,
+                    maxAge: 30 * 24 * 60 * 60 * 1000,
                     httpOnly: true
                   });
                   return res.json({

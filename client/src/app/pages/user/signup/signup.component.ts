@@ -52,12 +52,12 @@ export class SignupComponent implements OnInit {
     this.http
       .post("http://localhost:5000/signup", this.signupForm.value)
       .subscribe(data => {
-        localStorage.setItem("user_id", data["payload"]["id"]);
-        localStorage.setItem("email", data["payload"]["email"]);
-        localStorage.setItem("token", data["token"]);
-        localStorage.setItem("refreshtoken", data["refreshtoken"]);
         console.log(data);
         if (data["success"]) {
+          localStorage.setItem("user_id", data["payload"]["id"]);
+          localStorage.setItem("email", data["payload"]["email"]);
+          localStorage.setItem("token", data["token"]);
+          localStorage.setItem("refreshtoken", data["refreshtoken"]);
           this._router.navigate(["home"]);
         } else {
           alert(data["message"]);

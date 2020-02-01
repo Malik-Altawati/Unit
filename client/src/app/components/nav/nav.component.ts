@@ -1,5 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { HttpService } from "src/app/http.service";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Router } from "@angular/router";
+import Swal from "sweetalert2";
 
 @Component({
   selector: "app-nav",
@@ -8,7 +11,7 @@ import { HttpService } from "src/app/http.service";
 })
 export class NavComponent implements OnInit {
   token;
-  constructor(private http: HttpService) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit() {
     var check = setInterval(() => {
@@ -21,8 +24,53 @@ export class NavComponent implements OnInit {
 
   logout() {
     localStorage.removeItem("token");
-    localStorage.removeItem("refreshtoken");
-    localStorage.removeItem("email");
-    localStorage.removeItem("user_id");
+
+    this.http
+      .post("http://localhost:5000/logout", localStorage.getItem("user_id"))
+      .subscribe(data => {
+        console.log(data);
+        localStorage.clear();
+      });
+  }
+
+  routing() {
+    if (localStorage.token) {
+      this.router.navigate(["/home"]);
+    } else {
+      this.router.navigate(["/"]);
+    }
+  }
+
+  lookUp() {
+    Swal.fire({
+      title: "Search by Username",
+      input: "text",
+      inputAttributes: {
+        autocapitalize: "off"
+      },
+      showCancelButton: true,
+      confirmButtonText: "Search",
+      showLoaderOnConfirm: true,
+      preConfirm: login => {
+        return fetch(`//api.github.com/users/${login}`)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error(response.statusText);
+            }
+            return response.json();
+          })
+          .catch(error => {
+            Swal.showValidationMessage(`Request failed: ${error}`);
+          });
+      },
+      allowOutsideClick: () => !Swal.isLoading()
+    }).then(result => {
+      if (result.value) {
+        Swal.fire({
+          title: `${result.value.login}'s avatar`,
+          imageUrl: result.value.avatar_url
+        });
+      }
+    });
   }
 }

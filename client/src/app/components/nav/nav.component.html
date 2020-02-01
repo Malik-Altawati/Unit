@@ -4,15 +4,19 @@
     <label for="check" class="checkbtn">
       <mat-icon>reorder</mat-icon>
     </label>
+
+    <!-- ////// IN CASE NOT LOGGED IN ////// -->
+
     <a
-      href="#"
+      *ngIf="!token"
+      href=""
       class="logo brand-logo center"
-      [routerLink]="['/']"
+      (click)="routing()"
       routerLinkActive="router-link-active"
       >UNIT</a
     >
     <ul id="ul">
-      <ul id="nav-left" class="left hide-on-med-and-down">
+      <ul *ngIf="!token" id="nav-left" class="left hide-on-med-and-down">
         <li><a href="#team">Team</a></li>
         <li><a href="#about">About</a></li>
       </ul>
@@ -20,7 +24,7 @@
       <ul *ngIf="!token" id="nav-right" class="right hide-on-med-and-down">
         <li>
           <a
-            href="#"
+            href=""
             [routerLink]="['/login']"
             routerLinkActive="router-link-active"
             >Login</a
@@ -28,7 +32,7 @@
         </li>
         <li>
           <a
-            href="#"
+            href=""
             [routerLink]="['/signUp']"
             routerLinkActive="router-link-active"
             >SignUp</a
@@ -36,32 +40,67 @@
         </li>
       </ul>
 
+      <!-- ////// IN CASE NOT LOGGED IN ////// -->
+
+      <!-- ////// IN CASE LOGGED IN ////// -->
+
+      <a
+        *ngIf="token"
+        href=""
+        id="logo"
+        class="logo brand-logo left"
+        (click)="routing()"
+        routerLinkActive="router-link-active"
+        >UNIT</a
+      >
+
+      <div id="searchBar">
+        <!-- <form class="form-inline">
+          <input
+            class="form-control mr-sm-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+          <button class="btn btn-success" type="submit">
+            search
+          </button>
+        </form> -->
+        <a
+          style="width: 65%; text-decoration: underline;"
+          *ngIf="token"
+          (click)="lookUp()"
+        >
+          <mat-icon>search</mat-icon>
+          search for a user
+        </a>
+        <!-- <button *ngIf="token" (click)="lookUp()">
+          Do it!
+        </button> -->
+      </div>
+
       <div id="profile" *ngIf="token" ngbDropdown class="d-inline-block">
         <a ngbDropdownToggle><mat-icon>account_circle</mat-icon></a>
         <div id="list" ngbDropdownMenu aria-labelledby="dropdownBasic1">
-          <a class="logout" href="#" ngbDropdownItem>profile</a>
-          <a class="logout" href="#" ngbDropdownItem (click)="logout()"
+          <a class="logout" href="" ngbDropdownItem>profile</a>
+          <a class="logout" href="" ngbDropdownItem (click)="logout()"
             >logout</a
           >
         </div>
       </div>
 
-      <!-- <ul *ngIf="token" id="nav-right" class="right hide-on-med-and-down">
-        <li id="profile">
-          <a href="#" (click)="logout()"><mat-icon>account_circle</mat-icon></a>
-        </li>
-      </ul> -->
+      <!-- ////// IN CASE LOGGED IN ////// -->
     </ul>
   </div>
 </nav>
 
 <!-- <mat-toolbar>
-  <a href="#" style="position: absolute; left: 0;">UNIT</a>
+  <a href="" style="position: absolute; left: 0;">UNIT</a>
 
   <div style="position: absolute; right: 0;">
-    <a href="#" style="padding-right: 30px;">My Application</a>
-    <a href="#" style="padding-right: 30px;">My Application</a>
-    <a href="#">My Application</a>
+    <a href="" style="padding-right: 30px;">My Application</a>
+    <a href="" style="padding-right: 30px;">My Application</a>
+    <a href="">My Application</a>
   </div>
 </mat-toolbar> -->
 

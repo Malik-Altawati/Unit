@@ -17,10 +17,7 @@ export class AppComponent {
         this.refreshValue = localStorage.getItem("refreshtoken");
       }
       return this.http
-        .post("http://localhost:5000/refreshtoken", {
-          refreshtoken:
-            "neTV0Lpq4AgNVYzYuFZxtPQXiozQ5he6TUSxv2kypok8NC5gZW…q1ysv0Pz4fsg3DT1pTWnHe6gdkKibFdVLWqewR5QFE31ahQwb"
-        })
+        .get("http://localhost:5000/refreshtoken")
         .subscribe(data => {
           console.log(data);
           console.log("localSrtorage");
