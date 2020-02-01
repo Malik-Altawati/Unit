@@ -183,12 +183,18 @@ function enter(req, res) {
 
 ////////////////////////////////////////////////////////////////////////////logout request
 function logOut(req, res) {
+  console.log("***********************************************************************************************************************")
   var user_id = req.body.id;
-  Token.delete(user_id)
+  console.log("idddd", user_id)
+  Token.deleteIT(user_id)
     .then(result => {
+      res.clearCookie("refreshtoken");
+      res.clearCookie("token");
       res.status(200).json(result);
+
     })
     .catch(err => console.log(err));
+
 }
 //////////////////////////////////////////////////////////////////////// refresh token request
 function refreshToken(req, res) {
@@ -197,7 +203,7 @@ function refreshToken(req, res) {
 
   Token.findRefreshToken(refreshTokenFormCookies)
     .then(result => {
-      console.log("results *******************", result);
+      // console.log("results *******************", result);
       var expirydate = result.refresh_token_expires_at;
       // console.log("user_id", result.user_id);
       var newDate = new Date();

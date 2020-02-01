@@ -9,7 +9,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 })
 export class NavComponent implements OnInit {
   token;
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
     var check = setInterval(() => {
@@ -22,12 +22,16 @@ export class NavComponent implements OnInit {
 
   logout() {
     localStorage.removeItem("token");
-
+    const id = Number(localStorage.getItem("user_id"))
+    console.log("idddd", id)
     this.http
-      .post("http://localhost:5000/logout", localStorage.getItem("user_id"))
+      .post("http://localhost:5000/logout", { id })
       .subscribe(data => {
         console.log(data);
         localStorage.clear();
       });
+  }
+  id(arg0: string, id: any) {
+    throw new Error("Method not implemented.");
   }
 }
