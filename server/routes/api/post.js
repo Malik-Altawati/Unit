@@ -23,13 +23,13 @@ function createPost(req, res) {
   form.on("fileBegin", function (name, file) {
     var id = uniqueId();
     file.path = "folders/uploaded/" + id + "." + file.name.split(".")[1];
-    console.log(
-      path.join(
-        __dirname,
-        "/../../../../Unit/folders/uploaded/",
-        id + "." + file.name.split(".")[1]
-      )
-    );
+    // console.log(
+    //   path.join(
+    //     __dirname,
+    //     "/../../../../Unit/folders/uploaded/",
+    //     id + "." + file.name.split(".")[1]
+    //   )
+    // );
     link = id + "." + file.name.split(".")[1]
   });
 
