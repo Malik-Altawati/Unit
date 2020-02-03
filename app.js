@@ -37,6 +37,8 @@ app.post("/auth", isAuth, (req, res) => {
     message: "all good"
   });
 });
+
+// app.post("/getuser", User.find);
 app.post("/signup", User.signUp);
 app.post("/login", User.logIn);
 //app.get("/", User.enter);

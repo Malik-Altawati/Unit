@@ -4,48 +4,96 @@
     <label for="check" class="checkbtn">
       <mat-icon>reorder</mat-icon>
     </label>
-    <a href="#" class="logo brand-logo center" [routerLink]="['/']" routerLinkActive="router-link-active">UNIT</a>
+
+    <!-- ////// IN CASE NOT LOGGED IN ////// -->
+
+    <a
+      *ngIf="!token"
+      href=""
+      class="logo brand-logo center"
+      (click)="routing()"
+      routerLinkActive="router-link-active"
+      >UNIT</a
+    >
     <ul id="ul">
-      <ul id="nav-left" class="left hide-on-med-and-down">
-        <li><a href="#">Team</a></li>
-        <li><a href="#">About</a></li>
+      <ul *ngIf="!token" id="nav-left" class="left hide-on-med-and-down">
+        <li><a href="#team">Team</a></li>
+        <li><a href="#about">About</a></li>
       </ul>
 
       <ul *ngIf="!token" id="nav-right" class="right hide-on-med-and-down">
         <li>
-          <a href="#" [routerLink]="['/login']" routerLinkActive="router-link-active">Login</a>
+          <a
+            href=""
+            [routerLink]="['/login']"
+            routerLinkActive="router-link-active"
+            >Login</a
+          >
         </li>
         <li>
-          <a href="#" [routerLink]="['/signUp']" routerLinkActive="router-link-active">SignUp</a>
+          <a
+            href=""
+            [routerLink]="['/signUp']"
+            routerLinkActive="router-link-active"
+            >SignUp</a
+          >
         </li>
       </ul>
+
+      <!-- ////// IN CASE NOT LOGGED IN ////// -->
+
+      <!-- ////// IN CASE LOGGED IN ////// -->
+
+      <a
+        *ngIf="token"
+        href=""
+        id="logo"
+        class="logo brand-logo left"
+        (click)="routing()"
+        routerLinkActive="router-link-active"
+        >UNIT</a
+      >
+
+      <div id="searchBar">
+        <a
+          style="width: 65%; text-decoration: underline;"
+          *ngIf="token"
+          (click)="lookUp()"
+        >
+          <mat-icon>search</mat-icon>
+          search for a user
+        </a>
+      </div>
 
       <div id="profile" *ngIf="token" ngbDropdown class="d-inline-block">
         <a ngbDropdownToggle>
           <mat-icon>account_circle</mat-icon>
         </a>
         <div id="list" ngbDropdownMenu aria-labelledby="dropdownBasic1">
-          <a class="logout" href="#" [routerLink]="['/profile']" ngbDropdownItem>profile</a>
-          <a class="logout" href="#" ngbDropdownItem (click)="logout()">logout</a>
+          <a
+            class="pro"
+            href=""
+            ngbDropdownItem
+            [routerLink]="['/profile']"
+            routerLinkActive="router-link-active"
+            >profile</a
+          >
+          <a class="pro" href="" ngbDropdownItem (click)="logout()">logout</a>
         </div>
       </div>
 
-      <!-- <ul *ngIf="token" id="nav-right" class="right hide-on-med-and-down">
-        <li id="profile">
-          <a href="#" (click)="logout()"><mat-icon>account_circle</mat-icon></a>
-        </li>
-      </ul> -->
+      <!-- ////// IN CASE LOGGED IN ////// -->
     </ul>
   </div>
 </nav>
 
 <!-- <mat-toolbar>
-  <a href="#" style="position: absolute; left: 0;">UNIT</a>
+  <a href="" style="position: absolute; left: 0;">UNIT</a>
 
   <div style="position: absolute; right: 0;">
-    <a href="#" style="padding-right: 30px;">My Application</a>
-    <a href="#" style="padding-right: 30px;">My Application</a>
-    <a href="#">My Application</a>
+    <a href="" style="padding-right: 30px;">My Application</a>
+    <a href="" style="padding-right: 30px;">My Application</a>
+    <a href="">My Application</a>
   </div>
 </mat-toolbar> -->
 

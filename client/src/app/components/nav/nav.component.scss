@@ -14,6 +14,12 @@
 
   background: linear-gradient(to right, #00b4db, #0083b0);
   .nav-wrapper {
+    #logo {
+      margin-left: 150px;
+      &:hover {
+        background: transparent;
+      }
+    }
     #nav-left {
       margin-left: 150px;
       li:hover {
@@ -26,13 +32,25 @@
       }
     }
 
+    #searchBar {
+      position: absolute;
+      top: 0;
+      margin-left: 45%;
+      text-align: center;
+      width: 15%;
+
+      form {
+        color: white;
+      }
+    }
+
     #nav-right {
       margin-right: 150px;
       li:hover {
         border-top-right-radius: 20%;
         border-top-left-radius: 20%;
         // background: linear-gradient(to bottom, #ff0099, #493240);
-        background-image: linear-gradient(to top, #a6c0fe 0%, #f68084 100%);
+        background-image: linear-gradient(to top, #ff5858 0%, #f09819 100%);
       }
       li {
         margin-right: 50px;
@@ -84,12 +102,13 @@
   &:hover {
     border-top-right-radius: 20%;
     border-top-left-radius: 20%;
-    background-image: linear-gradient(to top, #a6c0fe 0%, #f68084 100%);
+    background-image: linear-gradient(to top, #ff5858 0%, #f09819 100%);
   }
 
   #list {
-    background-image: linear-gradient(to bottom, #a6c0fe 0%, #f68084 100%);
-    .logout {
+    background-image: linear-gradient(to top, #ff5858 0%, #f09819 100%);
+
+    .pro {
       // padding-bottom: 70px;
       // top: 0;
       // height: 30px;
