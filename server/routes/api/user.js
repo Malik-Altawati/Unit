@@ -6,6 +6,10 @@ const User = require("./../../../controllers/users");
 const Token = require("./../../../controllers/tokens");
 const regiteryValidation = require("./../../validation/registryValidation");
 const loginValidation = require("./../../validation/loginValidation");
+//
+const IncomingForm = require("formidable").IncomingForm;
+const path = require("path");
+const uniqueId = require("uuid");
 
 ///////////////////////////////////////////////////////////////////////////////////// SIGN UP SECTION
 var refreshTokenYolo;
@@ -301,6 +305,46 @@ function findById(req, res) {
       res.send(err);
     });
 }
+
+//
+
+function UpdateProfilePhoto(req, res) {
+  const form = new IncomingForm();
+  var user_id;
+  var link;
+  form.parse(req, function(err, fields, files) {
+    user_id = fields.user_id;
+    if (err) {
+      res.send(err);
+    }
+    res.end();
+  });
+
+  form.on("fileBegin", function(name, file) {
+    var id = uniqueId();
+    file.path = "folders/uploaded/" + id + "." + file.name.split(".")[1];
+
+    link = id + "." + file.name.split(".")[1];
+  });
+
+  form.on("end", (err, data) => {
+    var userObj = { photo: link, user_id: user_id };
+
+    User.updatePhoto(userObj)
+      .then(data => {
+        if (data) {
+        }
+      })
+      .catch(err => {
+        if (err) {
+          console.error(err);
+        }
+      });
+  });
+}
+
+//
+
 //
 
 module.exports.signUp = signUp;
@@ -312,3 +356,4 @@ module.exports.refreshToken = refreshToken;
 module.exports.getUserByName = getUserByName;
 module.exports.getAll = getAll;
 module.exports.findById = findById;
+module.exports.UpdateProfilePhoto = UpdateProfilePhoto;

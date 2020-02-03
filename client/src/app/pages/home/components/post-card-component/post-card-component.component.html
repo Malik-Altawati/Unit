@@ -3,7 +3,7 @@
     <img
       mat-card-avatar
       class="example-header-image"
-      src="https://instagram.ftun4-1.fna.fbcdn.net/v/t51.2885-19/s320x320/75256809_504612386913957_4919406157304430592_n.jpg?_nc_ht=instagram.ftun4-1.fna.fbcdn.net&_nc_ohc=wkVRYXZHhKsAX_GDBLA&oh=80a90acd92552b865213edcc3878f745&oe=5EDBC69A"
+      [src]="'http://127.0.0.1:5000/uploads/' + post.photo"
     />
     <mat-card-title>{{ post.name }}</mat-card-title>
     <mat-card-subtitle style="color: white;"
