@@ -284,6 +284,16 @@ function getUserByName(req, res) {
     res.send(err)
   })
 }
+
+function findById(req, res) {
+  var user_id = req.body.user_id
+  User.findById(user_id).then(result => {
+    delete result.rows[0]["password"]
+    res.send(result.rows)
+  }).catch(err => {
+    res.send(err)
+  })
+}
 //
 
 module.exports.signUp = signUp;
@@ -294,3 +304,4 @@ module.exports.refreshToken = refreshToken;
 //
 module.exports.getUserByName = getUserByName;
 module.exports.getAll = getAll;
+module.exports.findById = findById

@@ -60,5 +60,6 @@ app.post("/follow/getfollowers", isAuth, Follow.getfollowers);
 //
 app.get("/getAllUsers", User.getAll);
 app.post("/findUser", User.getUserByName);
+app.post("/findById", User.findById);
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
