@@ -1,0 +1,48 @@
+#uploadContainer {
+  // #users {
+  //   background-color: red;
+  //   width: 50%;
+  //   text-align: center;
+  // }
+  width: 100%;
+  // margin-top: 15px;
+  .example-container {
+    width: 400px;
+    height: 200px;
+    margin: 10px;
+    border: 1px solid #555;
+  }
+  #text {
+    padding: 2%;
+    // text-align: center;
+    width: 100%;
+  }
+  border-radius: 20px;
+  padding: 2% 3%;
+  background-color: white;
+  textarea {
+    width: 60%;
+    text-decoration: none;
+  }
+  .image-upload {
+    #upload {
+      padding: 0;
+      margin: 0;
+      cursor: pointer;
+      color: black;
+      &:hover {
+        // color: rgb(231, 231, 231);
+        color: rgba(190, 124, 2, 0.808);
+      }
+    }
+    width: 25px;
+    height: 25px;
+
+    input {
+      display: none;
+    }
+    img {
+      width: 80px;
+    }
+  }
+}
