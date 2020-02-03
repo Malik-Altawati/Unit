@@ -3,6 +3,7 @@ import { HttpService } from "src/app/http.service";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Router } from "@angular/router";
 import Swal from "sweetalert2";
+import { AbsoluteSourceSpan } from "@angular/compiler";
 
 @Component({
   selector: "app-nav",
@@ -56,26 +57,38 @@ export class NavComponent implements OnInit {
       showCancelButton: true,
       confirmButtonText: "Search",
       showLoaderOnConfirm: true,
-      preConfirm: login => {
-        return fetch(`//api.github.com/users/${login}`)
-          .then(response => {
-            if (!response.ok) {
-              throw new Error(response.statusText);
+      preConfirm: username => {
+        return this.http
+          .post("http://localhost:5000/findUser", { username: username })
+          .subscribe(response => {
+            // console.log(response, "ressssponnnnnse");
+            if (response["length"] < 1) {
+              return Swal.fire({
+                icon: "info",
+                text: "This user is not there !!"
+              });
+            } else {
+              console.log(response);
+              Swal.fire({
+                title: `${response[0].username}`,
+                imageUrl: `${response[0].photo}`,
+                showCancelButton: true,
+                cancelButtonText: "close",
+                confirmButtonText: "view profile"
+              });
             }
-            return response.json();
-          })
-          .catch(error => {
-            Swal.showValidationMessage(`Request failed: ${error}`);
+            // else {
+            //   Swal.fire({
+            //     icon: "info",
+            //     text: "This user is not there !!"
+            //   });
+            // }
           });
+        // .catch(error => {
+        //   Swal.showValidationMessage(`Request failed: ${error}`);
+        // });
       },
       allowOutsideClick: () => !Swal.isLoading()
-    }).then(result => {
-      if (result.value) {
-        Swal.fire({
-          title: `${result.value.login}'s avatar`,
-          imageUrl: result.value.avatar_url
-        });
-      }
     });
   }
 }

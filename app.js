@@ -14,7 +14,7 @@ app.use(
 app.use(cookieParser());
 app.use(express.json());
 
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "http://localhost:4200");
   res.header(
     "Access-Control-Allow-Headers",
@@ -28,7 +28,7 @@ const port = process.env.PORT || 5000;
 const User = require("./server/routes/api/user");
 const Post = require("./server/routes/api/post.js");
 const Follow = require("./server/routes/api/follow.js");
-const path = require('path');
+const path = require("path");
 const isAuth = require("./server/validation/tokenValidation");
 
 //////////////////// routes
@@ -44,22 +44,22 @@ app.post("/login", User.logIn);
 //app.get("/", User.enter);
 app.post("/logout", User.logOut);
 app.get("/refreshtoken", User.refreshToken);
-app.get('/uploads/:name', (req, res) => {
-  res.sendFile(path.resolve('folders/uploaded', req.params.name))
-})
+app.get("/uploads/:name", (req, res) => {
+  res.sendFile(path.resolve("folders/uploaded", req.params.name));
+});
 app.post("/posts/post", isAuth, Post.create);
 app.post("/posts/get", Post.find);
 app.patch("/posts/update/:id", isAuth, Post.update);
 app.delete("/posts/delete/:id", isAuth, Post.delete);
+app.get("/getAllPosts", Post.getAllPosts);
 //
 app.post("/follow/create", isAuth, Follow.create);
 app.post("/follow/delete", isAuth, Follow.delete);
 app.post("/follow/getfollowers", isAuth, Follow.getfollowers);
 
 //
-app.get("/getAll", User.getAll);
-app.post("/findUser", User.getUserByName)
-app.post("/findById", User.findById)
-
+app.get("/getAllUsers", User.getAll);
+app.post("/findUser", User.getUserByName);
+app.post("/findById", User.findById);
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

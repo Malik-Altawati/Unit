@@ -8,6 +8,9 @@ export class HttpService {
   constructor(private _http: HttpClient) {}
 
   getPosts() {
-    return this._http.post("http://localhost:5000/posts/get", { user_id: "4" });
+    return this._http.get("http://localhost:5000/getAllPosts");
+  }
+  getAllUsers() {
+    return this._http.get("http://localhost:5000/getAllUsers");
   }
 }

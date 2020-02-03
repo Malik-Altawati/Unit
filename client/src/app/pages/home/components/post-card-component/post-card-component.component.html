@@ -1,12 +1,12 @@
-<mat-card class="example-card">
+<mat-card class="example-card" *ngFor="let user of users">
   <mat-card-header>
     <img
       mat-card-avatar
       class="example-header-image"
       src="https://instagram.ftun4-1.fna.fbcdn.net/v/t51.2885-19/s320x320/75256809_504612386913957_4919406157304430592_n.jpg?_nc_ht=instagram.ftun4-1.fna.fbcdn.net&_nc_ohc=wkVRYXZHhKsAX_GDBLA&oh=80a90acd92552b865213edcc3878f745&oe=5EDBC69A"
     />
-    <mat-card-title>Davina Geiss</mat-card-title>
-    <mat-card-subtitle>the_real_davina_geiss</mat-card-subtitle>
+    <mat-card-title>{{ user.username }}</mat-card-title>
+    <mat-card-subtitle>{{ user.email }}</mat-card-subtitle>
   </mat-card-header>
   <img
     mat-card-image
@@ -21,3 +21,4 @@
     </p>
   </mat-card-content>
 </mat-card>
+<!-- https://instagram.ftun4-1.fna.fbcdn.net/v/t51.2885-15/e35/s1080x1080/81079470_180885033032053_8283358069387268417_n.jpg?_nc_ht=instagram.ftun4-1.fna.fbcdn.net&_nc_cat=101&_nc_ohc=O9wM-DGEdbAAX-ZYvmP&oh=041a0636bb14ceee374061fda31ba877&oe=5EC8D020 -->
