@@ -21,7 +21,8 @@ function getposts(user_id) {
   return conn.query(`SELECT * FROM posts WHERE user_id = $1`, [user_id]);
 }
 function getAllPosts() {
-  return conn.query(`SELECT * FROM posts`);
+  return conn.query(`select u.id , u.username, u.photo, p.post, p.link , p.type , p.created_at
+  from users As u JOIN posts AS p ON u.id = p.user_id;`);
 }
 
 function createpost(post, link, user_id, type) {
