@@ -30,8 +30,8 @@ function findById(id) {
 }
 function createUser(username, email, password) {
   return conn.query(
-    `INSERT into users(username, email, password) VALUES($1, $2 , $3)`,
-    [username, email, password]
+    `INSERT into users(username, email, password , photo) VALUES($1, $2 , $3, $4)`,
+    [username, email, password, "newUser.jpg"]
   );
 }
 

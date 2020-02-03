@@ -35,7 +35,6 @@ export class InfoSectionComponent implements OnInit {
 
   onUploadPhoto(fileInput: any) {
     this.fileData = <File>fileInput.target.files[0];
-    console.log("YO", this.fileData);
 
     const formData = new FormData();
     const user_id = localStorage.getItem("user_id")
@@ -56,6 +55,8 @@ export class InfoSectionComponent implements OnInit {
           .post("http://localhost:5000/findById", { user_id }).subscribe(data => {
             console.log(data)
             this.photo = data[0]["photo"]
+            // document.getElementById("file-input").innerHTML = ""
+
           })
       })
     //
