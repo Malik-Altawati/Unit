@@ -29,6 +29,8 @@ import { PostCardComponentComponent } from "./pages/home/components/post-card-co
 import { HttpRequestInterceptor } from "./HttpRequestInterceptor";
 import { SweetAlert2Module } from "@sweetalert2/ngx-sweetalert2";
 import { SafePipe } from "./pipes/safe.pipe";
+import { ReversePipe } from './pipes/reverse.pipe';
+import { DateAgoPipe } from './pipes/date-ago.pipe';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { SafePipe } from "./pipes/safe.pipe";
     InfoSectionComponent,
     PostsSectionComponent,
     PostCardComponentComponent,
-    SafePipe
+    SafePipe,
+    ReversePipe,
+    DateAgoPipe
   ],
   imports: [
     BrowserModule,

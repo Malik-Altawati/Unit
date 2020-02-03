@@ -2,11 +2,12 @@ const User = require("../models/users");
 //const tokens = require("../models/token");
 
 function createUser(userObj) {
-  var email = userObj.email;
+  var name = userObj.name;
   var username = userObj.username;
+  var email = userObj.email;
   var password = userObj.password;
   var confirmPassword = userObj.confirmPassword;
-  return User.create(username, email, password)
+  return User.create(name, username, email, password)
     .then(data => {
       return User.find(email)
         .then(data => {
@@ -59,7 +60,6 @@ function deleteUser(user) {
       throw "USER NOT FOUND";
     });
 }
-
 
 // malik's
 function getByUsername(username) {

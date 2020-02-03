@@ -10,7 +10,7 @@
         />
 
         <div class="card-body">
-          <h5 class="card-title">{{ item.created_at | date: "fullDate" }}</h5>
+          <h5 class="card-title">{{ item.created_at | dateAgo }}</h5>
           <p class="card-text">{{ item.post }}</p>
           <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
@@ -25,7 +25,7 @@
         >
         </iframe>
         <div class="card-body">
-          <h5 class="card-title">{{ item.created_at | date: "fullDate" }}</h5>
+          <h5 class="card-title">{{ item.created_at | dateAgo }}</h5>
           <p class="card-text">{{ item.post }}</p>
           <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
@@ -42,7 +42,7 @@
           controls
         ></audio>
         <div class="card-body">
-          <h5 class="card-title">{{ item.created_at | date: "fullDate" }}</h5>
+          <h5 class="card-title">{{ item.created_at | dateAgo }}</h5>
           <p class="card-text">{{ item.post }}</p>
           <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
