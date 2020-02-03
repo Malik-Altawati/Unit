@@ -52,6 +52,13 @@ function getUserByUsername(username) {
 function getAllUsers() {
   return conn.query(`SELECT * FROM users`);
 }
+
+function updatePhoto(user_id, photo) {
+  console.log(user_id, photo)
+  return conn.query(
+    `UPDATE users SET photo ='${photo}' WHERE id = '${user_id}'`
+  );
+}
 //
 
 
@@ -64,5 +71,7 @@ module.exports.update = updateUser;
 
 module.exports.getByUsername = getUserByUsername;
 module.exports.getUsers = getAllUsers;
+module.exports.updatePhoto = updatePhoto;
+
 
 

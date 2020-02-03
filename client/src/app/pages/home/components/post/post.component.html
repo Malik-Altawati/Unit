@@ -11,12 +11,7 @@
     <div class="col-8">
       <div id="text" class="form-group">
         <h5>what would you like to say !!</h5>
-        <textarea
-          #pRef
-          type="text"
-          name="text"
-          (change)="postText($event)"
-        ></textarea>
+        <textarea #pRef type="text" name="text" (change)="postText($event)"></textarea>
         <br />
 
         <div class="image-upload">
@@ -31,12 +26,7 @@
             </div>
           </label>
           <!-- <input id="file-input" type="file" /> -->
-          <input
-            id="file-input"
-            type="file"
-            name="image"
-            (change)="fileProgress($event)"
-          />
+          <input id="file-input" type="file" name="image" (change)="fileProgress($event)" />
         </div>
 
         <!-- <div class="image-preview mb-3" *ngIf="previewUrl">

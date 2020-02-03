@@ -81,6 +81,18 @@ function getUsers() {
     });
 }
 
+function updatePhoto(obj) {
+  var user_id = obj.user_id
+  var photo = obj.photo
+  return User.updatePhoto(user_id, photo)
+    .then(data => {
+      return data;
+    })
+    .catch(err => {
+      throw "SOMETHING WENT WRONG";
+    });
+}
+
 //
 module.exports.findById = findById;
 module.exports.create = createUser;
@@ -90,3 +102,4 @@ module.exports.update = updateUser;
 
 module.exports.getUserByName = getByUsername;
 module.exports.getAll = getUsers;
+module.exports.updatePhoto = updatePhoto;

@@ -50,7 +50,6 @@ export class PostComponent implements OnInit {
   }
   onSubmit() {
     const formData = new FormData();
-    console.log(this.post);
     console.log(this.fileData);
 
     if (!this.fileData) {
