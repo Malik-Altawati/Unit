@@ -13,9 +13,9 @@ export class PostComponent implements OnInit {
   fileUploadProgress: string = null;
   uploadedFilePath: string = null;
   post: string = null;
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   fileProgress(fileInput: any) {
     this.fileData = <File>fileInput.target.files[0];
@@ -72,9 +72,9 @@ export class PostComponent implements OnInit {
       );
       // alert(` your ${type} cant be bigger than 10MB`);
     }
-    if (size > 3000000 && type === "audio") {
+    if (size > 30000000 && type === "audio") {
       return Swal.fire(
-        "So Large For an Image..",
+        "So Large For an audio..",
         ` Your ${type} Can't be larger than 3MB`,
         "warning"
       );

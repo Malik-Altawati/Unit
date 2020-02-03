@@ -26,7 +26,7 @@ function getUser(email) {
   return conn.query(`SELECT * FROM users WHERE email = $1`, [email]);
 }
 function findById(id) {
-  return conn.query(`SELECT * FROM users WHERE id = $1`, [id]);
+  return conn.query(`SELECT * FROM users WHERE id = $1 `, [id]);
 }
 function createUser(username, email, password) {
   return conn.query(

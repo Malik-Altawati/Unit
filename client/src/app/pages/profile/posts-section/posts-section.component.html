@@ -1,13 +1,10 @@
 <div class="container">
-  <div class="row">
+  <div class="row" class="d-flex justify-content-center">
     <div class="col" *ngFor="let item of Data">
       <!--[ngIf]="(item.type =='image')" -->
-      <div *ngIf="item.type == 'image'" class="card" style="width: 18rem;">
-        <img
-          class="card-img-top"
-          [src]="'http://127.0.0.1:5000/uploads/' + item.link"
-          alt="Card image cap"
-        />
+      <div *ngIf="item.type == 'image'" class="card" style="width: 400px;">
+        <img class="card-img-top" [src]="'http://127.0.0.1:5000/uploads/' + item.link" alt="Card image cap" />
+
         <div class="card-body">
           <h5 class="card-title">{{ item.created_at | date: "fullDate" }}</h5>
           <p class="card-text">{{ item.post }}</p>
@@ -15,13 +12,9 @@
         </div>
       </div>
 
-      <div *ngIf="item.type == 'video'" class="card" style="width: 18rem;">
-        <iframe
-          class="card-img-top"
-          [src]="'http://127.0.0.1:5000/uploads/' + item.link | safe"
-          alt="Card image cap"
-          allowfullscreen
-        >
+      <div *ngIf="item.type == 'video'" class="card" style="width: 400px;">
+        <iframe class="card-img-top" [src]="'http://127.0.0.1:5000/uploads/' + item.link | safe" alt="Card image cap"
+          allowfullscreen>
         </iframe>
         <div class="card-body">
           <h5 class="card-title">{{ item.created_at | date: "fullDate" }}</h5>
@@ -34,17 +27,14 @@
         <!-- <iframe class="card-img-top" [src]="'http://127.0.0.1:5000/uploads/' + item.link | safe"
                     alt="Card image cap">
                 </iframe> -->
-        <audio
-          class="card-img-top"
-          [src]="'http://127.0.0.1:5000/uploads/' + item.link | safe"
-          alt="Card image cap"
-          controls
-        ></audio>
+        <audio class="card-img-top" [src]="'http://127.0.0.1:5000/uploads/' + item.link | safe" alt="Card image cap"
+          controls></audio>
         <div class="card-body">
           <h5 class="card-title">{{ item.created_at | date: "fullDate" }}</h5>
           <p class="card-text">{{ item.post }}</p>
           <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
+
       </div>
     </div>
   </div>
