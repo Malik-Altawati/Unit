@@ -55,5 +55,8 @@ app.post("/follow/delete", isAuth, Follow.delete);
 app.post("/follow/getfollowers", isAuth, Follow.getfollowers);
 
 //
+app.get("/getAll", User.getAll);
+app.post("/findUser", User.getUserByName)
+
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
