@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { HttpService } from "src/app/http.service";
 
 @Component({
   selector: "app-home",
@@ -7,7 +8,9 @@ import { Router } from "@angular/router";
   styleUrls: ["./home.component.scss"]
 })
 export class HomeComponent implements OnInit {
-  constructor(private router: Router) {}
+  posts: any;
+
+  constructor(private router: Router, private _http: HttpService) {}
 
   ngOnInit() {
     setInterval(() => {
@@ -16,5 +19,10 @@ export class HomeComponent implements OnInit {
         this.router.navigate(["/"]);
       }
     }, 60000); //about 4 minsS
+
+    this._http.getPosts().subscribe((data: Array<any>) => {
+      this.posts = data;
+      console.log(this.posts, "heeeeey these are the posts");
+    });
   }
 }

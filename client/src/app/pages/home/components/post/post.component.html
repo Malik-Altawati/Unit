@@ -1,0 +1,96 @@
+<!-- <div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <h2>Write Something</h2>
+      <div class="form-group">
+        <input #pRef type="text" name="text" (change)="postText($event)" />
+      </div>
+      <h3>Choose File</h3>
+      <div class="form-group">
+        <input type="file" name="image" (change)="fileProgress($event)" />
+      </div>
+      <div *ngIf="fileUploadProgress">
+        Upload progress: {{ fileUploadProgress }}
+      </div>
+      <div class="image-preview mb-3" *ngIf="previewUrl">
+        <img [src]="previewUrl" height="300" />
+      </div>
+      <div class="mb-3" *ngIf="uploadedFilePath">
+        {{ uploadedFilePath }}
+      </div>
+
+      <div class="form-group">
+        <button class="btn btn-primary" (click)="onSubmit()">Submit</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div id="mainContainer" class="container">
+  <div id="users" class="container">
+    <ul class="list-group list-group-horizontal-xl">
+      <li class="list-group-item">USER 1</li>
+      <li class="list-group-item">USER 2</li>
+      <li class="list-group-item">USER 3</li>
+    </ul>
+  </div>
+
+  <div id="uploadSection">
+    <div class="row">
+      <div class="col-8">
+        <div id="text" class="form-group">
+          <h5>what would you like to say !!</h5>
+          <textarea
+            #pRef
+            type="text"
+            name="text"
+            (change)="postText($event)"
+          ></textarea>
+          <br />
+
+          <div class="image-upload">
+            <label for="file-input">
+              <div class="row">
+                <div class="col-6">
+                  <mat-icon id="upload">add_photo_alternate</mat-icon>
+                </div>
+                <div class="col-6">
+                  <p>Photo/Video</p>
+                </div>
+              </div>
+            </label>
+            <!-- <input id="file-input" type="file" /> -->
+            <input
+              id="file-input"
+              type="file"
+              name="image"
+              (change)="fileProgress($event)"
+            />
+          </div>
+
+          <!-- <div class="image-preview mb-3" *ngIf="previewUrl">
+        <img
+          [src]="previewUrl"
+          height="200"
+          width="200"
+          style="border-radius: 100%;"
+        />
+      </div> -->
+          <br />
+          <div class="form-group">
+            <button class="btn btn-primary" (click)="onSubmit()">Submit</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div id="image-preview" class="image-preview mb-3" *ngIf="previewUrl">
+          <img [src]="previewUrl" max-height="500" width="300" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div id="posts">
+    <app-post-card-component></app-post-card-component>
+  </div> -->
+</div>
