@@ -267,8 +267,30 @@ function refreshToken(req, res) {
     .catch(err => console.log(err));
 }
 
+/// malik's
+
+function getAll(req, res) {
+  User.getAll().then(result => {
+    res.send(result.rows)
+  }).catch(err => {
+    res.send(err)
+  })
+}
+function getUserByName(req, res) {
+  var username = req.body.username
+  User.getUserByName(username).then(result => {
+    res.send(result.rows)
+  }).catch(err => {
+    res.send(err)
+  })
+}
+//
+
 module.exports.signUp = signUp;
 module.exports.logIn = logIn;
 module.exports.enter = enter;
 module.exports.logOut = logOut;
 module.exports.refreshToken = refreshToken;
+//
+module.exports.getUserByName = getUserByName;
+module.exports.getAll = getAll;

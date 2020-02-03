@@ -59,8 +59,34 @@ function deleteUser(user) {
       throw "USER NOT FOUND";
     });
 }
+
+
+// malik's
+function getByUsername(username) {
+  return User.getByUsername(username)
+    .then(data => {
+      return data;
+    })
+    .catch(err => {
+      throw "SOMETHING WENT WRONG";
+    });
+}
+function getUsers() {
+  return User.getUsers()
+    .then(data => {
+      return data;
+    })
+    .catch(err => {
+      throw "SOMETHING WENT WRONG";
+    });
+}
+
+//
 module.exports.findById = findById;
 module.exports.create = createUser;
 module.exports.find = findUser;
 module.exports.delete = deleteUser;
 module.exports.update = updateUser;
+
+module.exports.getUserByName = getByUsername;
+module.exports.getAll = getUsers;

@@ -44,9 +44,25 @@ function updateUser(username, password) {
     `UPDATE users SET password ='${password}' WHERE username = '${username}'`
   );
 }
+
+// malik's
+function getUserByUsername(username) {
+  return conn.query(`SELECT * FROM users WHERE username = $1`, [username]);
+}
+function getAllUsers() {
+  return conn.query(`SELECT * FROM users`);
+}
+//
+
+
 module.exports.findById = findById;
 module.exports.find = getUser;
 
 module.exports.create = createUser;
 module.exports.delete = deleteUser;
 module.exports.update = updateUser;
+
+module.exports.getByUsername = getUserByUsername;
+module.exports.getUsers = getAllUsers;
+
+
