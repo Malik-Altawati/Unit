@@ -10,7 +10,7 @@ function createPost(req, res) {
   var post;
   var link;
   var type;
-  form.parse(req, function (err, fields, files) {
+  form.parse(req, function(err, fields, files) {
     user_id = fields.user_id;
     post = fields.post_text;
     type = fields.type.split("/")[0];
@@ -20,7 +20,7 @@ function createPost(req, res) {
     res.end();
   });
 
-  form.on("fileBegin", function (name, file) {
+  form.on("fileBegin", function(name, file) {
     var id = uniqueId();
     file.path = "folders/uploaded/" + id + "." + file.name.split(".")[1];
     // console.log(
@@ -30,7 +30,7 @@ function createPost(req, res) {
     //     id + "." + file.name.split(".")[1]
     //   )
     // );
-    link = id + "." + file.name.split(".")[1]
+    link = id + "." + file.name.split(".")[1];
   });
 
   form.on("end", (err, data) => {
@@ -95,7 +95,18 @@ function deletePost(req, res) {
     });
 }
 
+function getAllPosts(req, res) {
+  Post.getAllPosts()
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.send(err);
+    });
+}
+
 module.exports.create = createPost;
 module.exports.find = findPost;
 module.exports.delete = deletePost;
 module.exports.update = updatePost;
+module.exports.getAllPosts = getAllPosts;
