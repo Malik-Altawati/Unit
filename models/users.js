@@ -3,12 +3,11 @@ const conn = require("../db/db");
 //User Schema
 const userSchema = `CREATE TABLE IF NOT EXISTS users (
     id serial primary key,
+    name VARCHAR(255) NOT NULL,
     username VARCHAR(255) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
     photo varchar(255),
     password VARCHAR(255) not null ,
-    
-    
     age VARCHAR(255) ,
     gender VARCHAR(7),
     bio VARCHAR(255)
@@ -28,10 +27,10 @@ function getUser(email) {
 function findById(id) {
   return conn.query(`SELECT * FROM users WHERE id = $1 `, [id]);
 }
-function createUser(username, email, password) {
+function createUser(name, username, email, password) {
   return conn.query(
-    `INSERT into users(username, email, password , photo) VALUES($1, $2 , $3, $4)`,
-    [username, email, password, "newUser.jpg"]
+    `INSERT into users(name, username, email, password , photo) VALUES($1, $2 , $3, $4, $5)`,
+    [name, username, email, password, "newUser.jpg"]
   );
 }
 
@@ -54,13 +53,12 @@ function getAllUsers() {
 }
 
 function updatePhoto(user_id, photo) {
-  console.log(user_id, photo)
+  console.log(user_id, photo);
   return conn.query(
     `UPDATE users SET photo ='${photo}' WHERE id = '${user_id}'`
   );
 }
 //
-
 
 module.exports.findById = findById;
 module.exports.find = getUser;
@@ -72,6 +70,3 @@ module.exports.update = updateUser;
 module.exports.getByUsername = getUserByUsername;
 module.exports.getUsers = getAllUsers;
 module.exports.updatePhoto = updatePhoto;
-
-
-

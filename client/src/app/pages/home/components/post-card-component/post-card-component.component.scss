@@ -1,10 +1,13 @@
 .example-card {
-  img {
-    max-width: 700px;
-    max-height: 1000px;
+  border: 1px solid grey;
+  color: white;
+  background-color: #2a263d;
+  margin-top: 2%;
+  max-width: 600px;
+  max-height: 1500px;
+  #content {
+    padding-top: 2%;
   }
-  max-width: 700px;
-  max-height: 2000px;
 }
 
 .example-header-image {

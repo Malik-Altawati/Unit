@@ -1,12 +1,15 @@
-#mainContainer {
-  border-radius: 20px;
-  width: 100%;
-  background-color: rgb(241, 241, 241);
-  padding: 1%;
-  margin-top: 1%;
-  margin-bottom: 1%;
-  #posts {
+#body {
+  top: 0;
+  background-color: #201d2f;
+  #mainContainer {
+    border-radius: 20px;
+    width: 100%;
     padding: 1%;
-    margin-left: 20%;
+    // margin-top: 1%;
+    margin-bottom: 1%;
+    #posts {
+      padding: 1%;
+      margin-left: 23%;
+    }
   }
 }

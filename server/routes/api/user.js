@@ -21,7 +21,7 @@ function signUp(req, res) {
     res.status(200).json(errors);
   } else {
     // console.log("is valid");
-    var { username, email, password, ConfirmPassword } = req.body;
+    var { name, username, email, password, ConfirmPassword } = req.body;
     User.find(email)
       .then(data => {
         //console.log(data);
@@ -36,6 +36,7 @@ function signUp(req, res) {
           let hash = bcrypt.hashSync(password, 12);
           var password = hash;
           User.create({
+            name: req.body.name,
             username: req.body.username,
             email: req.body.email,
             password: hash
@@ -187,18 +188,18 @@ function enter(req, res) {
 
 ////////////////////////////////////////////////////////////////////////////logout request
 function logOut(req, res) {
-  console.log("***********************************************************************************************************************")
+  console.log(
+    "***********************************************************************************************************************"
+  );
   var user_id = req.body.id;
-  console.log("idddd", user_id)
+  console.log("idddd", user_id);
   Token.deleteIT(user_id)
     .then(result => {
       res.clearCookie("refreshtoken");
       res.clearCookie("token");
       res.status(200).json(result);
-
     })
     .catch(err => console.log(err));
-
 }
 //////////////////////////////////////////////////////////////////////// refresh token request
 function refreshToken(req, res) {
@@ -274,40 +275,44 @@ function refreshToken(req, res) {
 /// malik's
 
 function getAll(req, res) {
-  User.getAll().then(result => {
-    res.send(result.rows)
-  }).catch(err => {
-    res.send(err)
-  })
+  User.getAll()
+    .then(result => {
+      res.send(result.rows);
+    })
+    .catch(err => {
+      res.send(err);
+    });
 }
 function getUserByName(req, res) {
-  var username = req.body.username
-  User.getUserByName(username).then(result => {
-    res.send(result.rows)
-  }).catch(err => {
-    res.send(err)
-  })
+  var username = req.body.username;
+  User.getUserByName(username)
+    .then(result => {
+      res.send(result.rows);
+    })
+    .catch(err => {
+      res.send(err);
+    });
 }
 
 function findById(req, res) {
-  var user_id = req.body.user_id
-  User.findById(user_id).then(result => {
-    delete result.rows[0]["password"]
-    res.send(result.rows)
-  }).catch(err => {
-    res.send(err)
-  })
+  var user_id = req.body.user_id;
+  User.findById(user_id)
+    .then(result => {
+      delete result.rows[0]["password"];
+      res.send(result.rows);
+    })
+    .catch(err => {
+      res.send(err);
+    });
 }
 
-
 //
-
 
 function UpdateProfilePhoto(req, res) {
   const form = new IncomingForm();
   var user_id;
   var link;
-  form.parse(req, function (err, fields, files) {
+  form.parse(req, function(err, fields, files) {
     user_id = fields.user_id;
     if (err) {
       res.send(err);
@@ -315,7 +320,7 @@ function UpdateProfilePhoto(req, res) {
     res.end();
   });
 
-  form.on("fileBegin", function (name, file) {
+  form.on("fileBegin", function(name, file) {
     var id = uniqueId();
     file.path = "folders/uploaded/" + id + "." + file.name.split(".")[1];
 
@@ -338,8 +343,6 @@ function UpdateProfilePhoto(req, res) {
   });
 }
 
-
-
 //
 
 //
@@ -352,5 +355,5 @@ module.exports.refreshToken = refreshToken;
 //
 module.exports.getUserByName = getUserByName;
 module.exports.getAll = getAll;
-module.exports.findById = findById
-module.exports.UpdateProfilePhoto = UpdateProfilePhoto
+module.exports.findById = findById;
+module.exports.UpdateProfilePhoto = UpdateProfilePhoto;
