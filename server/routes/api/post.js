@@ -88,12 +88,11 @@ function updatePost(req, res) {
 }
 
 function deletePost(req, res) {
-  let { user_id } = req.body;
-  let id = req.params.id;
+  var { user_id, id } = req.body;
   Post.delete(id, user_id)
     .then(data => {
       if (data) {
-        return res.send("Deleted");
+        return res.json("Deleted");
       }
     })
     .catch(err => {

@@ -37,25 +37,28 @@ function createUser(name, username, email, password) {
 function deleteUser(id) {
   return conn.query(`DELETE FROM users WHERE id =  '${id}'`);
 }
-
-function updateUser(username, password) {
+// malik's
+function updateUser(user_id, password) {
   return conn.query(
-    `UPDATE users SET password ='${password}' WHERE username = '${username}'`
+    `UPDATE users SET password ='${password}' WHERE id = '${user_id}'`
   );
 }
-
-// malik's
 function getUserByUsername(username) {
   return conn.query(`SELECT * FROM users WHERE username = $1`, [username]);
 }
 function getAllUsers() {
   return conn.query(`SELECT * FROM users`);
 }
-
 function updatePhoto(user_id, photo) {
   console.log(user_id, photo);
   return conn.query(
     `UPDATE users SET photo ='${photo}' WHERE id = '${user_id}'`
+  );
+}
+
+function updateProfile(user_id, name, username, age, gender, bio) {
+  return conn.query(
+    `UPDATE users SET name ='${name}', username = '${username}', age = '${age}', gender = '${gender}', bio = '${bio}' WHERE id = '${user_id}'`
   );
 }
 //
@@ -70,3 +73,4 @@ module.exports.update = updateUser;
 module.exports.getByUsername = getUserByUsername;
 module.exports.getUsers = getAllUsers;
 module.exports.updatePhoto = updatePhoto;
+module.exports.updateProfile = updateProfile;

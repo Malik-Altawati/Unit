@@ -189,10 +189,9 @@ function enter(req, res) {
 ////////////////////////////////////////////////////////////////////////////logout request
 function logOut(req, res) {
   console.log(
-    "***********************************************************************************************************************"
+    "*******************************************logged out*****************************"
   );
   var user_id = req.body.id;
-  console.log("idddd", user_id);
   Token.deleteIT(user_id)
     .then(result => {
       res.clearCookie("refreshtoken");
@@ -306,13 +305,24 @@ function findById(req, res) {
     });
 }
 
+// function findByIdandUpdateUser(req, res) {
+//   var user_id = req.body.user_id;
+//   User.findById(user_id)
+//     .then(result => {
+//       res.send(result.rows);
+//     })
+//     .catch(err => {
+//       res.send(err);
+//     });
+// }
+
 //
 
 function UpdateProfilePhoto(req, res) {
   const form = new IncomingForm();
   var user_id;
   var link;
-  form.parse(req, function(err, fields, files) {
+  form.parse(req, function (err, fields, files) {
     user_id = fields.user_id;
     if (err) {
       res.send(err);
@@ -320,7 +330,7 @@ function UpdateProfilePhoto(req, res) {
     res.end();
   });
 
-  form.on("fileBegin", function(name, file) {
+  form.on("fileBegin", function (name, file) {
     var id = uniqueId();
     file.path = "folders/uploaded/" + id + "." + file.name.split(".")[1];
 
@@ -344,6 +354,25 @@ function UpdateProfilePhoto(req, res) {
 }
 
 //
+function updatePass(req, res) {
+  var user_id = req.body.user_id
+  var password = req.body.password
+  let hash = bcrypt.hashSync(password, 12);
+  var obj = { user_id, password: hash }
+  User.update(obj).then(data => {
+    res.json(data)
+  }).catch(err => {
+    res.send(" something wrong happened")
+  })
+}
+
+function updateProfile(req, res) {
+  User.updateProfile(req).then(data => {
+    res.json("Profile Updated !!")
+  }).catch(err => {
+    res.send("err")
+  })
+}
 
 //
 
@@ -357,3 +386,6 @@ module.exports.getUserByName = getUserByName;
 module.exports.getAll = getAll;
 module.exports.findById = findById;
 module.exports.UpdateProfilePhoto = UpdateProfilePhoto;
+module.exports.updatePass = updatePass
+module.exports.updateProfile = updateProfile
+// module.exports.findByIdandUpdateUser = findByIdandUpdateUser;

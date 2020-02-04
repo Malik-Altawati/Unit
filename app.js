@@ -47,10 +47,10 @@ app.get("/refreshtoken", User.refreshToken);
 app.get("/uploads/:name", (req, res) => {
   res.sendFile(path.resolve("folders/uploaded", req.params.name));
 });
-app.post("/posts/post", isAuth, Post.create);
+app.post("/posts/post", Post.create);
 app.post("/posts/get", Post.find);
 app.patch("/posts/update/:id", isAuth, Post.update);
-app.delete("/posts/delete/:id", isAuth, Post.delete);
+app.post("/posts/delete", isAuth, Post.delete);
 app.get("/getAllPosts", Post.getAllPosts);
 //
 app.post("/follow/create", isAuth, Follow.create);
@@ -60,7 +60,10 @@ app.post("/follow/getfollowers", isAuth, Follow.getfollowers);
 //
 app.get("/getAllUsers", User.getAll);
 app.post("/findUser", User.getUserByName);
-app.post("/findById", User.findById);
+app.post("/findById", User.findById); // doesnt return password
+// app.post("/findByIdandUpdateUser", User.findByIdandUpdateUser); // returns password too
 app.post("/updatePhoto", User.UpdateProfilePhoto)
+app.post("/updatepassword", User.updatePass)
+app.post("/updateprofile", User.updateProfile)
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+app.listen(port, () => console.log(`Unit :) app listening on port ${port}!`));
