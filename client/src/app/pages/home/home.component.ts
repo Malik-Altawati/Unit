@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Output, ViewChild } from "@angular/core";
 import { Router } from "@angular/router";
 import { HttpService } from "src/app/http.service";
 
@@ -9,6 +9,7 @@ import { HttpService } from "src/app/http.service";
 })
 export class HomeComponent implements OnInit {
   posts: any;
+  users: any;
 
   constructor(private router: Router, private _http: HttpService) {}
 
@@ -20,9 +21,14 @@ export class HomeComponent implements OnInit {
       }
     }, 60000); //about 4 minsS
 
-    this._http.getPosts().subscribe((data: Array<any>) => {
+    this._http.getAllPosts().subscribe((data: Array<any>) => {
       this.posts = data;
-      console.log(this.posts, "heeeeey these are the posts");
+      console.log(this.posts, "heeeeey these are the posts from home");
     });
+
+    // this._http.getAllUsers().subscribe((data: Array<any>) => {
+    //   this.users = data;
+    //   // console.log(this.users, "heeeeey these are all users from post card");
+    // });
   }
 }

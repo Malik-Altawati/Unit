@@ -17,7 +17,7 @@ function createPost(req, res) {
     if (err) {
       res.send(err);
     }
-    res.end();
+    // res.end();
   });
 
   form.on("fileBegin", function(name, file) {
@@ -38,6 +38,14 @@ function createPost(req, res) {
     Post.create(postObj)
       .then(data => {
         if (data) {
+          // res.send(postObj);
+          Post.getAllPosts()
+            .then(data => {
+              res.send(data);
+            })
+            .catch(err => {
+              res.send(err);
+            });
         }
       })
       .catch(err => {

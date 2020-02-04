@@ -1,6 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { HttpClient, HttpEventType, HttpHeaders } from "@angular/common/http";
+
 import Swal from "sweetalert2";
+import { HttpService } from "src/app/http.service";
 
 @Component({
   selector: "app-post",
@@ -8,14 +10,21 @@ import Swal from "sweetalert2";
   styleUrls: ["./post.component.scss"]
 })
 export class PostComponent implements OnInit {
+  // @Output() renderPosts: any = new EventEmitter();
+
+  // childPost() {
+  //   console.log("i am the useless method");
+  //   this.renderPosts.emit(this.renderPosts);
+  // }
+
   fileData: File = null;
+  post: string = "";
   previewUrl: any = null;
   fileUploadProgress: string = null;
   uploadedFilePath: string = null;
-  post: string = null;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private _http: HttpService) {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   fileProgress(fileInput: any) {
     this.fileData = <File>fileInput.target.files[0];
@@ -52,14 +61,18 @@ export class PostComponent implements OnInit {
     const formData = new FormData();
     console.log(this.fileData);
 
-    if (!this.fileData) {
-      return Swal.fire("Empty?", "You Have To Upload Something", "error");
+    if (!this.fileData && !this.post) {
+      return Swal.fire(
+        "Empty?",
+        "You have to write or upload something",
+        "error"
+      );
       // alert("you have to upload something");
     }
-    if (!this.post) {
-      return Swal.fire("No Post ??", "You have to write something", "info");
-      // alert("you have to write something");
-    }
+    // if (!this.post) {
+    //   return Swal.fire("No Post ??", "You have to write something", "info");
+    //   // alert("you have to write something");
+    // }
     var type = this.fileData.type.split("/")[0];
     var size = this.fileData.size;
 
@@ -89,7 +102,6 @@ export class PostComponent implements OnInit {
     }
     if (type !== "image" && type !== "video" && type !== "audio") {
       return Swal.fire(
-        "So Large For an Image..",
         "You only can post Images / Videos and Audios",
         "warning"
       );
@@ -106,30 +118,44 @@ export class PostComponent implements OnInit {
     //   authentication: localStorage.getItem("token")
     // });
 
-    this.fileUploadProgress = "0%";
     this.http
-      .post("http://localhost:5000/posts/post", formData, {
-        reportProgress: true,
-        observe: "events"
-      })
-      .subscribe(events => {
+      .post("http://localhost:5000/posts/post", formData)
+      .subscribe(data => {
         this.post = "";
-        if (events.type === HttpEventType.UploadProgress) {
-          this.fileUploadProgress =
-            Math.round((events.loaded / events.total) * 100) + "%";
-          console.log(this.fileUploadProgress);
-        } else if (events.type === HttpEventType.Response) {
-          this.fileUploadProgress = "";
-          console.log(events.body);
-          // alert("SUCCESS !!");
-          Swal.fire({
-            position: "top",
-            icon: "success",
-            title: "Posted !!",
-            showConfirmButton: false,
-            timer: 1500
+
+        let timerInterval;
+        Swal.fire({
+          position: "top",
+          title: `Posting your ${type}`,
+          html: "Uploading..",
+          timer: 2000,
+          timerProgressBar: true,
+          onBeforeOpen: () => {
+            Swal.showLoading();
+          },
+          onClose: () => {
+            clearInterval(timerInterval);
+          }
+        })
+          .then(result => {
+            /* Read more about handling dismissals below */
+            if (result.dismiss === Swal.DismissReason.timer) {
+              console.log("I was closed by the timer");
+            }
+          })
+          .then(() => {
+            Swal.fire({
+              position: "top",
+              icon: "success",
+              title: "Posted !!",
+              showConfirmButton: false,
+              timer: 1500
+            });
+          })
+          .then(() => {
+            console.log(data, "from post component");
+            this._http.newPost.next(data);
           });
-        }
       });
   }
 }
