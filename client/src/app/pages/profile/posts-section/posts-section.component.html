@@ -8,7 +8,7 @@
         <div class="card-body">
           <h5 class="card-title">{{ item.created_at | dateAgo }}</h5>
           <p class="card-text">{{ item.post }}</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <a (click)="delete(item.id)" class="btn btn-primary">Delete</a>
         </div>
       </div>
 
@@ -19,7 +19,7 @@
         <div class="card-body">
           <h5 class="card-title">{{ item.created_at | dateAgo }}</h5>
           <p class="card-text">{{ item.post }}</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <a (click)="delete(item.id)" class="btn btn-primary">Delete</a>
         </div>
       </div>
 
@@ -32,7 +32,7 @@
         <div class="card-body">
           <h5 class="card-title">{{ item.created_at | dateAgo }}</h5>
           <p class="card-text">{{ item.post }}</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <a (click)="delete(item.id)" class="btn btn-primary">Delete</a>
         </div>
       </div>
     </div>

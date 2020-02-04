@@ -50,7 +50,7 @@ app.get("/uploads/:name", (req, res) => {
 app.post("/posts/post", isAuth, Post.create);
 app.post("/posts/get", Post.find);
 app.patch("/posts/update/:id", isAuth, Post.update);
-app.delete("/posts/delete/:id", isAuth, Post.delete);
+app.post("/posts/delete", isAuth, Post.delete);
 app.get("/getAllPosts", Post.getAllPosts);
 //
 app.post("/follow/create", isAuth, Follow.create);
