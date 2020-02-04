@@ -60,7 +60,10 @@ app.post("/follow/getfollowers", isAuth, Follow.getfollowers);
 //
 app.get("/getAllUsers", User.getAll);
 app.post("/findUser", User.getUserByName);
-app.post("/findById", User.findById);
+app.post("/findById", User.findById); // doesnt return password
+// app.post("/findByIdandUpdateUser", User.findByIdandUpdateUser); // returns password too
 app.post("/updatePhoto", User.UpdateProfilePhoto)
+app.post("/updatepassword", User.updatePass)
+app.post("/updateprofile", User.updateProfile)
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+app.listen(port, () => console.log(`Unit :) app listening on port ${port}!`));

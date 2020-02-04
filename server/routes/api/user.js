@@ -305,6 +305,17 @@ function findById(req, res) {
     });
 }
 
+// function findByIdandUpdateUser(req, res) {
+//   var user_id = req.body.user_id;
+//   User.findById(user_id)
+//     .then(result => {
+//       res.send(result.rows);
+//     })
+//     .catch(err => {
+//       res.send(err);
+//     });
+// }
+
 //
 
 function UpdateProfilePhoto(req, res) {
@@ -343,6 +354,25 @@ function UpdateProfilePhoto(req, res) {
 }
 
 //
+function updatePass(req, res) {
+  var user_id = req.body.user_id
+  var password = req.body.password
+  let hash = bcrypt.hashSync(password, 12);
+  var obj = { user_id, password: hash }
+  User.update(obj).then(data => {
+    res.json(data)
+  }).catch(err => {
+    res.send(" something wrong happened")
+  })
+}
+
+function updateProfile(req, res) {
+  User.updateProfile(req).then(data => {
+    res.json("Profile Updated !!")
+  }).catch(err => {
+    res.send("err")
+  })
+}
 
 //
 
@@ -356,3 +386,6 @@ module.exports.getUserByName = getUserByName;
 module.exports.getAll = getAll;
 module.exports.findById = findById;
 module.exports.UpdateProfilePhoto = UpdateProfilePhoto;
+module.exports.updatePass = updatePass
+module.exports.updateProfile = updateProfile
+// module.exports.findByIdandUpdateUser = findByIdandUpdateUser;

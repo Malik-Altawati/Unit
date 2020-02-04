@@ -41,13 +41,15 @@ function findById(id) {
     });
 }
 
-function updateUser(user, pass) {
-  return User.update(user, pass)
+function updateUser(obj) {
+  var user_id = obj.user_id
+  var password = obj.password
+  return User.update(user_id, password)
     .then(data => {
-      return "user was updates";
+      return "Password Was Updated";
     })
     .catch(err => {
-      throw "USER NOT FOUND";
+      throw "Something went wrong";
     });
 }
 
@@ -93,6 +95,15 @@ function updatePhoto(obj) {
     });
 }
 
+function updateProfile(obj) {
+  var { user_id, name, username, age, gender, bio } = obj.body
+  return User.updateProfile(user_id, name, username, age, gender, bio).then(data => {
+    return data;
+  }).catch(err => {
+    throw "SOMETHING WENT WRONG";
+  })
+}
+
 //
 module.exports.findById = findById;
 module.exports.create = createUser;
@@ -103,3 +114,4 @@ module.exports.update = updateUser;
 module.exports.getUserByName = getByUsername;
 module.exports.getAll = getUsers;
 module.exports.updatePhoto = updatePhoto;
+module.exports.updateProfile = updateProfile;
