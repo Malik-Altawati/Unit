@@ -47,7 +47,7 @@ app.get("/refreshtoken", User.refreshToken);
 app.get("/uploads/:name", (req, res) => {
   res.sendFile(path.resolve("folders/uploaded", req.params.name));
 });
-app.post("/posts/post", isAuth, Post.create);
+app.post("/posts/post", Post.create);
 app.post("/posts/get", Post.find);
 app.patch("/posts/update/:id", isAuth, Post.update);
 app.post("/posts/delete", isAuth, Post.delete);

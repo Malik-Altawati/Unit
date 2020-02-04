@@ -17,7 +17,7 @@ function createPost(req, res) {
     if (err) {
       res.send(err);
     }
-    res.end();
+    // res.end();
   });
 
   form.on("fileBegin", function (name, file) {
@@ -37,8 +37,7 @@ function createPost(req, res) {
     var postObj = { post: post, link: link, user_id: user_id, type: type };
     Post.create(postObj)
       .then(data => {
-        if (data) {
-        }
+        res.send(postObj);
       })
       .catch(err => {
         if (err) {
