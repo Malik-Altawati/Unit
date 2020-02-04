@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { stringify } from 'querystring';
+import Swal from "sweetalert2";
 
 
 @Component({
@@ -70,11 +70,23 @@ export class EditComponent implements OnInit {
       this.http
         .post("http://localhost:5000/updatepassword", { user_id, password: this.Pass }).subscribe(data => {
           if (data === "Password Was Updated") {
-            alert("password was updated")
+            Swal.fire({
+              position: "top",
+              icon: "success",
+              title: "password was updated !!",
+              showConfirmButton: false,
+              timer: 1500
+            });
           }
         })
     } else {
-      alert("passwords mismatch or less than 6 characters")
+      Swal.fire({
+        position: "top",
+        icon: "error",
+        title: "passwords mismatch or less than 6 characters !!",
+        showConfirmButton: false,
+        timer: 1500
+      });
     }
   }
 
@@ -84,7 +96,21 @@ export class EditComponent implements OnInit {
     this.http
       .post("http://localhost:5000/updateprofile", obj).subscribe(data => {
         if (data = "Profile Updated !!") {
-          alert(" Info updated !")
+          Swal.fire({
+            position: "top",
+            icon: "success",
+            title: "Profile Info updated !!",
+            showConfirmButton: false,
+            timer: 1500
+          });
+        } else {
+          Swal.fire({
+            position: "top",
+            icon: "error",
+            title: "Server Error !!",
+            showConfirmButton: false,
+            timer: 1500
+          });
         }
       })
   }
