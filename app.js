@@ -14,7 +14,7 @@ app.use(
 app.use(cookieParser());
 app.use(express.json());
 
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "http://localhost:4200");
   res.header(
     "Access-Control-Allow-Headers",
@@ -60,10 +60,10 @@ app.post("/follow/getfollowers", isAuth, Follow.getfollowers);
 //
 app.get("/getAllUsers", User.getAll);
 app.post("/findUser", User.getUserByName);
-app.post("/findById", User.findById); // doesnt return password
+app.post("/findById/", User.findById); // doesnt return password
 // app.post("/findByIdandUpdateUser", User.findByIdandUpdateUser); // returns password too
-app.post("/updatePhoto", User.UpdateProfilePhoto)
-app.post("/updatepassword", User.updatePass)
-app.post("/updateprofile", User.updateProfile)
+app.post("/updatePhoto", User.UpdateProfilePhoto);
+app.post("/updatepassword", User.updatePass);
+app.post("/updateprofile", User.updateProfile);
 
 app.listen(port, () => console.log(`Unit :) app listening on port ${port}!`));

@@ -11,7 +11,6 @@ const userSchema = `CREATE TABLE IF NOT EXISTS users (
     age VARCHAR(255) ,
     gender VARCHAR(7),
     bio VARCHAR(255)
-    
     );`;
 
 conn.query(userSchema, (err, data) => {
@@ -29,8 +28,8 @@ function findById(id) {
 }
 function createUser(name, username, email, password) {
   return conn.query(
-    `INSERT into users(name, username, email, password , photo) VALUES($1, $2 , $3, $4, $5)`,
-    [name, username, email, password, "newUser.jpg"]
+    `INSERT into users(name, username, email, password , photo, gender) VALUES($1, $2 , $3, $4, $5, $6)`,
+    [name, username, email, password, "newUser.jpg", "-"]
   );
 }
 

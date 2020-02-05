@@ -1,12 +1,20 @@
+#cardHeader {
+  // background-color: red;
+  width: 50%;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 .example-card {
-  border: 1px solid grey;
+  border: 1px solid rgba(128, 128, 128, 0.911);
   color: white;
   background-color: #2a263d;
   margin-top: 2%;
   max-width: 600px;
   max-height: 1500px;
   #content {
-    padding-top: 2%;
+    padding-top: 3%;
   }
 }
 

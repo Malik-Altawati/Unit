@@ -61,7 +61,7 @@ export class NavComponent implements OnInit {
         return this.http
           .post("http://localhost:5000/findUser", { username: username })
           .subscribe(response => {
-            // console.log(response, "ressssponnnnnse");
+            console.log(response, "ressssponnnnnse");
             if (response["length"] < 1) {
               return Swal.fire({
                 icon: "info",
@@ -71,22 +71,17 @@ export class NavComponent implements OnInit {
               console.log(response);
               Swal.fire({
                 title: `${response[0].username}`,
-                imageUrl: `${response[0].photo}`,
+                imageUrl: `http://127.0.0.1:5000/uploads/${response[0].photo}`,
                 showCancelButton: true,
                 cancelButtonText: "close",
                 confirmButtonText: "view profile"
+              }).then(result => {
+                // console.log();
+                if (result.value)
+                  this.router.navigate([`users/${response[0].id}`]);
               });
             }
-            // else {
-            //   Swal.fire({
-            //     icon: "info",
-            //     text: "This user is not there !!"
-            //   });
-            // }
           });
-        // .catch(error => {
-        //   Swal.showValidationMessage(`Request failed: ${error}`);
-        // });
       },
       allowOutsideClick: () => !Swal.isLoading()
     });
