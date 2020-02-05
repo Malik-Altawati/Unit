@@ -8,18 +8,12 @@ import { HttpService } from "src/app/http.service";
 })
 export class PostCardComponentComponent implements OnInit {
   @Input() posts: any;
-  // @Output() renderPosts: any = new EventEmitter();
-  // posts: any;
-  // users: any;
 
   constructor(private _http: HttpService) {}
 
   ngOnInit() {
     this._http.newPost.subscribe(data => {
-      // console.log(this.posts);
       this.posts = data;
-      // console.log(this.posts);
-      // console.log(this.posts, "from post component");
     });
   }
 }

@@ -31,6 +31,8 @@ import { SweetAlert2Module } from "@sweetalert2/ngx-sweetalert2";
 import { SafePipe } from "./pipes/safe.pipe";
 import { ReversePipe } from './pipes/reverse.pipe';
 import { DateAgoPipe } from './pipes/date-ago.pipe';
+import { UsersListComponent } from './pages/home/components/users-list/users-list.component';
+import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,9 @@ import { DateAgoPipe } from './pipes/date-ago.pipe';
     PostCardComponentComponent,
     SafePipe,
     ReversePipe,
-    DateAgoPipe
+    DateAgoPipe,
+    UsersListComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

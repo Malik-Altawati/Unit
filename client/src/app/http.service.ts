@@ -7,6 +7,9 @@ import { Subject } from "rxjs";
 })
 export class HttpService {
   newPost: Subject<object> = new Subject();
+  newUser: Subject<object> = new Subject();
+  // profile: Subject<object> = new Subject();
+
   constructor(private _http: HttpClient) {}
 
   getAllPosts() {

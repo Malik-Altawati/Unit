@@ -26,9 +26,9 @@ export class HomeComponent implements OnInit {
       console.log(this.posts, "heeeeey these are the posts from home");
     });
 
-    // this._http.getAllUsers().subscribe((data: Array<any>) => {
-    //   this.users = data;
-    //   // console.log(this.users, "heeeeey these are all users from post card");
-    // });
+    this._http.getAllUsers().subscribe((data: Array<any>) => {
+      this.users = data;
+      console.log(this.users, "heeeeey these are all users from post card");
+    });
   }
 }
