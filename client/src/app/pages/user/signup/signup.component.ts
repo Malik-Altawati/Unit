@@ -59,7 +59,7 @@ export class SignupComponent implements OnInit {
           localStorage.setItem("email", data["payload"]["email"]);
           localStorage.setItem("token", data["token"]);
           localStorage.setItem("refreshtoken", data["refreshtoken"]);
-          this._router.navigate(["home"]);
+          this._router.navigate(["edit"]);
         } else {
           alert(data["message"]);
         }
