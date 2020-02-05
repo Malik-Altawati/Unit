@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input, Output } from "@angular/core";
 import { HttpService } from "src/app/http.service";
 
 @Component({
@@ -7,20 +7,19 @@ import { HttpService } from "src/app/http.service";
   styleUrls: ["./post-card-component.component.scss"]
 })
 export class PostCardComponentComponent implements OnInit {
-  posts: any;
-  users: any;
+  @Input() posts: any;
+  // @Output() renderPosts: any = new EventEmitter();
+  // posts: any;
+  // users: any;
 
   constructor(private _http: HttpService) {}
 
   ngOnInit() {
-    this._http.getPosts().subscribe((data: Array<any>) => {
+    this._http.newPost.subscribe(data => {
+      // console.log(this.posts);
       this.posts = data;
-      // console.log(this.posts, "heeeeey these are the posts from post card");
-    });
-
-    this._http.getAllUsers().subscribe((data: Array<any>) => {
-      this.users = data;
-      // console.log(this.users, "heeeeey these are all users from post card");
+      // console.log(this.posts);
+      // console.log(this.posts, "from post component");
     });
   }
 }

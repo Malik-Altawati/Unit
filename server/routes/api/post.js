@@ -10,7 +10,7 @@ function createPost(req, res) {
   var post;
   var link;
   var type;
-  form.parse(req, function (err, fields, files) {
+  form.parse(req, function(err, fields, files) {
     user_id = fields.user_id;
     post = fields.post_text;
     type = fields.type.split("/")[0];
@@ -20,7 +20,7 @@ function createPost(req, res) {
     // res.end();
   });
 
-  form.on("fileBegin", function (name, file) {
+  form.on("fileBegin", function(name, file) {
     var id = uniqueId();
     file.path = "folders/uploaded/" + id + "." + file.name.split(".")[1];
     // console.log(
@@ -37,7 +37,16 @@ function createPost(req, res) {
     var postObj = { post: post, link: link, user_id: user_id, type: type };
     Post.create(postObj)
       .then(data => {
-        res.send(postObj);
+        if (data) {
+          // res.send(postObj);
+          Post.getAllPosts()
+            .then(data => {
+              res.send(data);
+            })
+            .catch(err => {
+              res.send(err);
+            });
+        }
       })
       .catch(err => {
         if (err) {
