@@ -1,33 +1,21 @@
-<mat-card
-  class="animated fadeInDown example-card"
-  *ngFor="let post of posts | reverse"
->
+<mat-card class="animated fadeInDown example-card" *ngFor="let post of posts | reverse">
   <mat-card-header id="cardHeader" [routerLink]="['/users', post.id]">
-    <img
-      mat-card-avatar
-      class="example-header-image"
-      [src]="'http://127.0.0.1:5000/uploads/' + post.photo"
-    />
+    <img mat-card-avatar class="example-header-image" [src]="'http://127.0.0.1:5000/uploads/' + post.photo" />
     <mat-card-title>{{ post.name }}</mat-card-title>
-    <mat-card-subtitle style="color: white;"
-      >@{{ post.username }}</mat-card-subtitle
-    >
+    <mat-card-subtitle style="color: white;">@{{ post.username }}</mat-card-subtitle>
   </mat-card-header>
   <div id="content" *ngIf="post.type === 'image'">
-    <img
-      mat-card-image
-      [src]="'http://127.0.0.1:5000/uploads/' + post.link"
-      alt=""
-    />
+    <img mat-card-image [src]="'http://127.0.0.1:5000/uploads/' + post.link" alt="" />
   </div>
   <div id="content" *ngIf="post.type === 'video'">
-    <iframe
-      class="card-img-top"
-      [src]="'http://127.0.0.1:5000/uploads/' + post.link | safe"
-      alt="Card image cap"
-      allowfullscreen
-    >
+    <iframe class="card-img-top" [src]="'http://127.0.0.1:5000/uploads/' + post.link | safe" alt="Card image cap"
+      allowfullscreen>
     </iframe>
+  </div>
+  <div id="content" *ngIf="post.type === 'audio'">
+    <audio class="card-img-top" [src]="'http://127.0.0.1:5000/uploads/' + post.link | safe" alt="Card image cap"
+      controls>
+    </audio>
   </div>
 
   <mat-card-content>
