@@ -1,4 +1,4 @@
-<div class="container" *ngFor="let userDatum of userData">
+<!-- <div class="container" *ngFor="let userDatum of userData">
   <div id="info" class="container">
     <div class="row">
       <div class="col">
@@ -37,4 +37,29 @@
       <div class="col">Email : {{ userDatum.email }}</div>
     </div>
   </div>
+</div> -->
+<!-- <p>info-section works!</p> -->
+<!-- <p>info-section works!</p> -->
+<div id="body" *ngFor="let userDatum of userData">
+  <div id="pp" class="container">
+    <img [src]="'http://127.0.0.1:5000/uploads/' + userDatum.photo" alt="..." />
+  </div>
+
+  <div id="infos" class="container">
+    <div id="name">
+      <h5>{{ userDatum.name }}</h5>
+      <h6>@{{ userDatum.username }}</h6>
+    </div>
+    <div id="bio">
+      {{ userDatum.bio }}
+    </div>
+  </div>
+  <hr />
+  <button class="btn follow" (click)="follow(userDatum.id)" *ngIf="!followed">
+    follow
+  </button>
+  <button class="btn follow" (click)="unFollow(userDatum.id)" *ngIf="followed">
+    unfollow
+  </button>
+  <app-user-profile-posts-section></app-user-profile-posts-section>
 </div>

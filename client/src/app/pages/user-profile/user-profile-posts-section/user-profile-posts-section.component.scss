@@ -1,0 +1,33 @@
+.container {
+  margin-top: 5%;
+  padding-left: 17.5%;
+  .example-card {
+    border-radius: 20px;
+    color: white;
+    background-color: #2a263d;
+    margin-top: 2%;
+    max-width: 600px;
+    max-height: 1500px;
+    img {
+      border-radius: 20px;
+    }
+    #footer {
+      text-align: center;
+      padding-bottom: 3%;
+      button {
+        border-radius: 30px;
+        background-color: rgb(175, 1, 1);
+        width: 80%;
+        text-decoration: none;
+        &:hover {
+          color: white;
+        }
+      }
+    }
+  }
+
+  .example-header-image {
+    // background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
+    background-size: cover;
+  }
+}

@@ -1,0 +1,45 @@
+<div class="container">
+  <mat-card
+    id="card"
+    class="animated fadeInUp example-card"
+    *ngFor="let item of Data"
+  >
+    <div
+      id="content"
+      *ngIf="item.type === 'image'"
+      (click)="widePost(item.link)"
+    >
+      <img
+        mat-card-image
+        [src]="'http://127.0.0.1:5000/uploads/' + item.link"
+        alt=""
+      />
+    </div>
+    <div
+      id="content"
+      *ngIf="item.type === 'video'"
+      (click)="widePost(item.link)"
+    >
+      <iframe
+        class="card-img-top"
+        [src]="'http://127.0.0.1:5000/uploads/' + item.link | safe"
+        alt="Card image cap"
+        allowfullscreen
+      >
+      </iframe>
+    </div>
+    <div id="content" *ngIf="item.type === 'audio'">
+      <audio
+        class="card-img-top"
+        [src]="'http://127.0.0.1:5000/uploads/' + item.link | safe"
+        alt="Card image cap"
+        controls
+      ></audio>
+    </div>
+
+    <mat-card-footer class="footer" id="footer">
+      <h6>{{ item.post }}</h6>
+      <small>{{ item.created_at | dateAgo }}</small>
+    </mat-card-footer>
+  </mat-card>
+</div>

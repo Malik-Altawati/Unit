@@ -33,6 +33,7 @@ import { ReversePipe } from './pipes/reverse.pipe';
 import { DateAgoPipe } from './pipes/date-ago.pipe';
 import { UsersListComponent } from './pages/home/components/users-list/users-list.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
+import { UserProfilePostsSectionComponent } from './pages/user-profile/user-profile-posts-section/user-profile-posts-section.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
     ReversePipe,
     DateAgoPipe,
     UsersListComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    UserProfilePostsSectionComponent
   ],
   imports: [
     BrowserModule,

@@ -12,6 +12,7 @@ export class InfoSectionComponent implements OnInit {
 
   constructor(private _http: HttpClient) {}
   user_id: string = localStorage.getItem("user_id");
+  name: string;
   username: string;
   email: string;
   age: string;
@@ -24,6 +25,7 @@ export class InfoSectionComponent implements OnInit {
       .post("http://localhost:5000/findById", { user_id: this.user_id })
       .subscribe(data => {
         console.log(data);
+        this.name = data[0]["name"];
         this.username = data[0]["username"];
         this.age = data[0]["age"];
         this.email = data[0]["email"];
@@ -35,6 +37,17 @@ export class InfoSectionComponent implements OnInit {
 
   onUploadPhoto(fileInput: any) {
     this.fileData = <File>fileInput.target.files[0];
+    if (
+      this.fileData["type"].split("/")[0] === "video" ||
+      this.fileData["type"].split("/")[0] === "audio"
+    ) {
+      Swal.fire({
+        titleText: "You can't upload non image files",
+        icon: "error"
+      });
+      return false;
+    }
+    // console.log(this.fileData, "type");
 
     const formData = new FormData();
     const user_id = localStorage.getItem("user_id");

@@ -18,8 +18,8 @@ export class PostsSectionComponent implements OnInit {
     return this.http
       .post("http://localhost:5000/posts/get", { user_id: this.user_id })
       .subscribe(data => {
-        console.log(data);
         this.Data = data;
+        console.log(this.Data, "brrrrrrrrrrrrrrr");
       });
   }
 
@@ -67,5 +67,21 @@ export class PostsSectionComponent implements OnInit {
             });
         }
       });
+  }
+  widePost(link) {
+    console.log(link);
+    Swal.fire({
+      showClass: {
+        popup: "animated bounceIn"
+      },
+      hideClass: {
+        popup: "animated bounceOut"
+      },
+      background: "transparent",
+      heightAuto: true,
+      width: 700,
+      showConfirmButton: false,
+      imageUrl: `http://127.0.0.1:5000/uploads/${link}`
+    });
   }
 }

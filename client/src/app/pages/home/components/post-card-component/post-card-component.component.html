@@ -1,4 +1,4 @@
-<mat-card class="animated fadeInDown example-card" *ngFor="let post of posts">
+<mat-card class="animated fadeInUp example-card" *ngFor="let post of posts">
   <mat-card-header id="cardHeader" [routerLink]="['/users', post.id]">
     <img
       mat-card-avatar
@@ -35,9 +35,9 @@
     ></audio>
   </div>
 
-  <mat-card-content>
+  <mat-card-footer id="footer">
     <h6>{{ post.post }}</h6>
     <small>{{ post.created_at | dateAgo }}</small>
-  </mat-card-content>
+  </mat-card-footer>
 </mat-card>
 <!-- https://instagram.ftun4-1.fna.fbcdn.net/v/t51.2885-15/e35/s1080x1080/81079470_180885033032053_8283358069387268417_n.jpg?_nc_ht=instagram.ftun4-1.fna.fbcdn.net&_nc_cat=101&_nc_ohc=O9wM-DGEdbAAX-ZYvmP&oh=041a0636bb14ceee374061fda31ba877&oe=5EC8D020 -->
