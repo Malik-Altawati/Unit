@@ -38,6 +38,20 @@ function getfollowers(req, res) {
     });
 }
 
+function getInfoOfFollowers(req, res) {
+  FollowUp.getfollowersInfo()
+    .then(data => {
+      return res.send(data.rows);
+    })
+    .catch(err => {
+      if (err) {
+        console.error(err);
+      }
+    });
+}
+
+
 module.exports.create = follow;
 module.exports.delete = unfollow;
 module.exports.getfollowers = getfollowers;
+module.exports.getInfoOfFollowers = getInfoOfFollowers;
