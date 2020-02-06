@@ -61,7 +61,7 @@ function updateToken(
 }
 
 function deleteToken(id) {
-  console.log("zezooooo", id)
+  // console.log("zezooooo", id)
   return Tokens.deleteToken(id)
     .then(data => {
       return " token was deleted successfully";

@@ -16,7 +16,7 @@ export class AuthGuard implements CanActivate {
     // private _authService: LoginComponent,
     private _router: Router,
     private http: HttpClient
-  ) {}
+  ) { }
 
   canActivate(): any {
     if (localStorage.getItem("token")) {
@@ -33,9 +33,8 @@ export class AuthGuard implements CanActivate {
           if (data["message"] === "all good") {
             return true;
           }
-          // this._router.navigate(["/login"]);
-          // return false;
-          return true;
+          this._router.navigate(["/login"]);
+          return false;
         })
       );
   }
