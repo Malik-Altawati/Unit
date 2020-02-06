@@ -6,18 +6,18 @@ function isAuth(req, res, next) {
     req.query.token ||
     req.headers["authorization"] ||
     req.cookies.token;
-  console.log(req.cookies.token, "auth token");
+  // console.log(req.cookies.token, "auth token yo"); here
 
   if (token) {
-    jwt.verify(token, process.env.secretOrKey, function(err, decoded) {
-      console.log(decoded);
+    jwt.verify(token, process.env.secretOrKey, function (err, decoded) {
+      // console.log(decoded);
       if (err) {
         return res.status(200).json({
           message: "failed authentication: invalid token"
         });
       }
-      console.log(decoded);
-      console.log("success");
+      // console.log(decoded);
+      // console.log("success");
       next();
     });
   } else {

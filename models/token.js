@@ -65,7 +65,7 @@ function updateToken(
   );
 }
 function deleteToken(id) {
-  console.log("uoyoyoyoyo", id)
+  // console.log("uoyoyoyoyo", id)
   return db.query(`DELETE FROM tokens WHERE user_id =  '${id}'`);
 }
 module.exports.create = createToken;

@@ -27,6 +27,6 @@ export class AppComponent {
           localStorage.setItem("refreshtoken", data["refreshToken"]);
           console.log("localSrtorage", localStorage);
         });
-    }, 60000 * 5);
+    }, 30 * 60 * 1000); // keep it  30 * 60 * 1000
   }
 }
