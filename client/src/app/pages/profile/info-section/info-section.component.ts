@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 })
 export class InfoSectionComponent implements OnInit {
   fileData: File = null;
+  follow: any;
 
   constructor(private _http: HttpClient) {}
   user_id: string = localStorage.getItem("user_id");
@@ -21,6 +22,7 @@ export class InfoSectionComponent implements OnInit {
   photo: string;
 
   ngOnInit() {
+    this.getFollow();
     this._http
       .post("http://localhost:5000/findById", { user_id: this.user_id })
       .subscribe(data => {
@@ -32,6 +34,13 @@ export class InfoSectionComponent implements OnInit {
         this.bio = data[0]["bio"];
         this.gender = data[0]["gender"];
         this.photo = data[0]["photo"];
+      });
+    this._http
+      .post("http://localhost:5000/follow/getfollowers", {
+        followed_id: this.user_id
+      })
+      .subscribe(data => {
+        console.log(data, "followerrrrrrrrrrrrrs");
       });
   }
 
@@ -70,9 +79,27 @@ export class InfoSectionComponent implements OnInit {
           .subscribe(data => {
             console.log(data);
             this.photo = data[0]["photo"];
-            // document.getElementById("file-input").innerHTML = ""
           });
       });
     //
+  }
+
+  getFollow() {
+    this._http
+      .get("http://localhost:5000/follow/getfollowersInfo")
+      .subscribe(data => {
+        this.follow = data["length"];
+        console.log(this.follow, "ff");
+      });
+  }
+
+  followersInfo() {
+    Swal.fire(`
+      <ul>
+        <li>follower 1</li>
+        <li>follower 2</li>
+        <li>follower 3</li>
+      </ul>
+    `);
   }
 }

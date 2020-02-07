@@ -25,15 +25,54 @@
     </div>
   </div>
   <hr />
-  <button
-    id="editProfile"
-    class="btn"
-    [routerLink]="['/edit']"
-    routerLinkActive="router-link-active"
-  >
-    <mat-icon style="float: left; margin-top: 5px;">create</mat-icon>
-    edit profile
-  </button>
+  <div id="btns" class="container">
+    <div class="row">
+      <div id="followers" class="col-4">
+        <button
+          *ngIf="follow > 1"
+          id="followersBtn"
+          class="btn"
+          (click)="followersInfo()"
+          routerLinkActive="router-link-active"
+        >
+          {{ follow }}
+          followers
+        </button>
+        <button
+          *ngIf="follow === 1"
+          id="followersBtn"
+          class="btn"
+          (click)="followersInfo()"
+          routerLinkActive="router-link-active"
+        >
+          {{ follow }}
+          follower
+        </button>
+      </div>
+      <div id="editProfileDiv" class="col-4">
+        <button
+          id="editProfile"
+          class="btn"
+          [routerLink]="['/edit']"
+          routerLinkActive="router-link-active"
+        >
+          <mat-icon style="float: left; margin-top: 5px;">create</mat-icon>
+          edit profile
+        </button>
+      </div>
+      <div id="following" class="col-4">
+        <button
+          id="followingBtn"
+          class="btn"
+          [routerLink]="['/edit']"
+          routerLinkActive="router-link-active"
+        >
+          following
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- <div class="row">
     <div class="col-4"> -->
   <app-posts-section></app-posts-section>

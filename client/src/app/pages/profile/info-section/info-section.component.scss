@@ -77,16 +77,45 @@
     background-color: #161420;
     width: 80%;
   }
-  #editProfile {
-    // text-align: right;
-    width: 10%;
-    border-radius: 30px;
+  #btns {
+    margin-top: -35px;
     z-index: 1;
-    margin-top: -57px;
-    background-color: #ffb500;
-    &:hover {
-      color: white;
-      background-color: #db9e04;
+    height: 50px;
+    // background-color: red;
+    #editProfileDiv {
+      width: 10%;
+      // background-color: #ffb500;
+      #editProfile {
+        background-color: #ffb500;
+        border-radius: 30px;
+        &:hover {
+          color: white;
+          background-color: #db9e04;
+        }
+      }
+    }
+    #followers {
+      width: 10%;
+      #followersBtn {
+        background-color: #ffb500;
+        border-radius: 30px;
+        &:hover {
+          color: white;
+          background-color: #db9e04;
+        }
+      }
+    }
+
+    #following {
+      width: 10%;
+      #followingBtn {
+        background-color: #ffb500;
+        border-radius: 30px;
+        &:hover {
+          color: white;
+          background-color: #db9e04;
+        }
+      }
     }
   }
 }
