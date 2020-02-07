@@ -14,7 +14,7 @@ app.use(
 app.use(cookieParser());
 app.use(express.json());
 
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "http://localhost:4200");
   res.header(
     "Access-Control-Allow-Headers",
@@ -32,7 +32,8 @@ const path = require("path");
 const isAuth = require("./server/validation/tokenValidation");
 
 //////////////////// routes
-app.post("/auth", isAuth, (req, res) => {
+app.get("/auth", isAuth, (req, res) => {
+  console.log(req.cookies);
   res.json({
     message: "all good"
   });
@@ -42,7 +43,7 @@ app.post("/auth", isAuth, (req, res) => {
 app.post("/signup", User.signUp);
 app.post("/login", User.logIn);
 //app.get("/", User.enter);
-app.post("/logout", User.logOut);
+app.post("/logout", isAuth, User.logOut);
 app.get("/refreshtoken", User.refreshToken);
 app.get("/uploads/:name", (req, res) => {
   res.sendFile(path.resolve("folders/uploaded", req.params.name));
@@ -53,7 +54,7 @@ app.patch("/posts/update/:id", isAuth, Post.update);
 app.post("/posts/delete", isAuth, Post.delete);
 app.get("/getAllPosts", isAuth, Post.getAllPosts);
 //
-app.post("/follow/create", Follow.create);
+app.post("/follow/create", isAuth, Follow.create);
 app.post("/follow/delete", isAuth, Follow.delete);
 app.post("/follow/getfollowers", isAuth, Follow.getfollowers);
 app.get("/follow/getfollowersInfo", Follow.getInfoOfFollowers);
