@@ -1,0 +1,40 @@
+<div class="container" *ngFor="let userDatum of userData">
+  <div id="info" class="container">
+    <div class="row">
+      <div class="col">
+        <img
+          height="200px"
+          width="auto"
+          [src]="'http://127.0.0.1:5000/uploads/' + userDatum.photo"
+          class="rounded mx-auto d-block"
+          alt="..."
+        />
+      </div>
+    </div>
+    <div class="col  text-center">
+      <div id="text" class="form-group"></div>
+    </div>
+
+    <div class="col text-center">@{{ userDatum.username }}</div>
+    <br />
+    <div class="row text-center">
+      <div id="follow" class="col">
+        <button (click)="follow(userDatum.id)" *ngIf="!followed">follow</button>
+        <button (click)="unFollow(userDatum.id)" *ngIf="followed">
+          unfollow
+        </button>
+      </div>
+      <div class="col">
+        Bio <br />
+        {{ userDatum.bio }}
+      </div>
+      <div id="report" class="col">
+        <h5>{{ userDatum.gender }}</h5>
+      </div>
+    </div>
+    <div class="row text-center">
+      <div class="col">Age : {{ userDatum.age }} Years Old</div>
+      <div class="col">Email : {{ userDatum.email }}</div>
+    </div>
+  </div>
+</div>

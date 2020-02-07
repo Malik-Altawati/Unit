@@ -1,0 +1,58 @@
+<div id="uploadContainer">
+  <!-- <div class="row"> -->
+  <!-- <div class="col-8"> -->
+  <div id="text" class="form-group">
+    <h5>what would you like to say !!</h5>
+    <textarea
+      #pRef
+      type="text"
+      name="text"
+      (change)="postText($event)"
+    ></textarea>
+    <br />
+
+    <div class="image-upload">
+      <label for="file-input">
+        <div class="row">
+          <div class="col-4">
+            <mat-icon id="upload">add_photo_alternate</mat-icon>
+          </div>
+          <div class="col-8">
+            <p>Photo/Video</p>
+          </div>
+        </div>
+      </label>
+      <!-- <input id="file-input" type="file" /> -->
+      <input
+        id="file-input"
+        type="file"
+        name="image"
+        (change)="fileProgress($event)"
+      />
+    </div>
+
+    <!-- <div class="image-preview mb-3" *ngIf="previewUrl">
+        <img
+          [src]="previewUrl"
+          height="200"
+          width="200"
+          style="border-radius: 100%;"
+        />
+      </div> -->
+    <br />
+    <div class="form-group">
+      <button class="btn btn-primary" (click)="onSubmit()">submit</button>
+    </div>
+  </div>
+  <!-- </div> -->
+  <!-- <div class="col-4"> -->
+  <div id="image-preview" class="image-preview mb-3" *ngIf="previewUrl">
+    <img [src]="previewUrl" max-height="500" width="300" />
+  </div>
+  <!-- </div> -->
+  <!-- </div> -->
+
+  <!-- <div id="posts">
+    <app-post-card-component></app-post-card-component>
+  </div> -->
+</div>

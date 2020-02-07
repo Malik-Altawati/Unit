@@ -1,0 +1,96 @@
+<!-- <img
+  src="https://thumbor.forbes.com/thumbor/1280x868/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F753656677%2F960x0.jpg%3Ffit%3Dscale"
+/> -->
+<div class="alert alert-success" *ngIf="notifyMessage">{{ notifyMessage }}</div>
+<div id="body">
+  <div id="formDiv">
+    <form id="formSignup" [formGroup]="signupForm" (ngSubmit)="signup()">
+      <h2>Sign Up</h2>
+
+      <div class="form-group">
+        <label for="name">Full Name*</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          aria-describedby="name"
+          formControlName="name"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="username">User Name*</label>
+        <input
+          type="text"
+          class="form-control"
+          id="username"
+          aria-describedby="username"
+          formControlName="username"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email*</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          aria-describedby="email"
+          formControlName="email"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password*</label>
+        <input
+          #password
+          type="password"
+          class="form-control"
+          id="password"
+          placeholder="********"
+          aria-describedby="password"
+          formControlName="password"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password*</label>
+        <input
+          #confirmPassword
+          type="password"
+          class="form-control"
+          id="confirmPassword"
+          placeholder="********"
+          formControlName="confirmPassword"
+          aria-describedby="confirmPassword"
+        />
+      </div>
+
+      <div
+        *ngIf="
+          confirmPassword.value !== password.value &&
+          signupForm.controls.password.touched &&
+          signupForm.controls.confirmPassword.touched
+        "
+        class="alert alert-danger"
+      >
+        <!-- <div *ngIf="confirmPassword.errors.required"> -->
+        Password should be the same!!.
+        <!-- </div> -->
+      </div>
+
+      <button
+        [disabled]="!signupForm.valid"
+        type="submit"
+        class="btn btn-primary"
+      >
+        signUp
+      </button>
+    </form>
+    <div *ngIf="errors.length > 0" class="alert alert-danger">
+      <p *ngFor="let error of errors">
+        {{ error.detail }}
+      </p>
+    </div>
+  </div>
+</div>
