@@ -61,5 +61,7 @@
   <button class="btn follow" (click)="unFollow(userDatum.id)" *ngIf="followed">
     unfollow
   </button>
-  <app-user-profile-posts-section></app-user-profile-posts-section>
+  <app-user-profile-posts-section
+    [userData]="userData"
+  ></app-user-profile-posts-section>
 </div>
