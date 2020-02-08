@@ -72,7 +72,7 @@ function signUp(req, res) {
                       httpOnly: false
                     });
                     res.cookie("token", token, {
-                      maxAge: 60 * 60 * 1000, // keep it  60 * 60 * 1000
+                      maxAge: 9000000000, // keep it  60 * 60 * 1000
                       httpOnly: false
                     });
                     return res.json({
@@ -135,11 +135,11 @@ function logIn(req, res) {
                     data.rows[0].id
                   );
                   res.cookie("refreshtoken", refreshToken, {
-                    maxAge: 30 * 24 * 60 * 60 * 1000,
+                    maxAge: 9000000000,
                     httpOnly: false
                   });
                   res.cookie("token", token, {
-                    maxAge: 60 * 60 * 1000, // 60 * 60 * 1000
+                    maxAge: 9000000000, // 60 * 60 * 1000
                     httpOnly: false
                   });
 
@@ -205,8 +205,7 @@ function refreshToken(req, res) {
   // console.log(req.cookies);
   var refreshTokenFormCookies = req.cookies.refreshtoken;
   if (!refreshTokenFormCookies) {
-    return res.send("You Dont have a refresh token , you need to login")
-
+    return res.send("You Dont have a refresh token , you need to login");
   }
 
   Token.findRefreshToken(refreshTokenFormCookies)
@@ -246,11 +245,11 @@ function refreshToken(req, res) {
                     data.rows[0].id
                   );
                   res.cookie("refreshtoken", refreshToken, {
-                    maxAge: 30 * 24 * 60 * 60 * 1000,
+                    maxAge: 9000000000,
                     httpOnly: true
                   });
                   res.cookie("token", token, {
-                    maxAge: 60 * 60 * 1000, // keep it 60 * 60 * 1000
+                    maxAge: 9000000000, // keep it 60 * 60 * 1000
                     httpOnly: false
                   });
                   return res.json({
@@ -326,7 +325,7 @@ function UpdateProfilePhoto(req, res) {
   const form = new IncomingForm();
   var user_id;
   var link;
-  form.parse(req, function (err, fields, files) {
+  form.parse(req, function(err, fields, files) {
     user_id = fields.user_id;
     if (err) {
       res.send(err);
@@ -334,7 +333,7 @@ function UpdateProfilePhoto(req, res) {
     res.end();
   });
 
-  form.on("fileBegin", function (name, file) {
+  form.on("fileBegin", function(name, file) {
     var id = uniqueId();
     file.path = "folders/uploaded/" + id + "." + file.name.split(".")[1];
 

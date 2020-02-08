@@ -38,10 +38,11 @@
     <div class="col-sm-10">
       <input
         (change)="UpdateAge($event)"
-        type="text"
+        type="number"
         class="form-control"
         id="inputUsername"
         placeholder="How old Are You?"
+        onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))"
       />
     </div>
   </div>

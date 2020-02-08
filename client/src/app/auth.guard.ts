@@ -16,7 +16,7 @@ export class AuthGuard implements CanActivate {
     // private _authService: LoginComponent,
     private _router: Router,
     private http: HttpClient
-  ) { }
+  ) {}
 
   canActivate(): any {
     if (localStorage.getItem("token")) {
