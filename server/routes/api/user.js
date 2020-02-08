@@ -69,11 +69,11 @@ function signUp(req, res) {
                     );
                     res.cookie("refreshtoken", refreshToken, {
                       maxAge: 9000000000,
-                      httpOnly: false
+                      httpOnly: true
                     });
                     res.cookie("token", token, {
                       maxAge: 60 * 60 * 1000, // keep it  60 * 60 * 1000
-                      httpOnly: false
+                      httpOnly: true
                     });
                     return res.json({
                       payload,
@@ -136,11 +136,11 @@ function logIn(req, res) {
                   );
                   res.cookie("refreshtoken", refreshToken, {
                     maxAge: 30 * 24 * 60 * 60 * 1000,
-                    httpOnly: false
+                    httpOnly: true
                   });
                   res.cookie("token", token, {
                     maxAge: 60 * 60 * 1000, // 60 * 60 * 1000
-                    httpOnly: false
+                    httpOnly: true
                   });
 
                   return res.json({
@@ -205,8 +205,7 @@ function refreshToken(req, res) {
   // console.log(req.cookies);
   var refreshTokenFormCookies = req.cookies.refreshtoken;
   if (!refreshTokenFormCookies) {
-    return res.send("You Dont have a refresh token , you need to login")
-
+    return res.send("You Dont have a refresh token , you need to login");
   }
 
   Token.findRefreshToken(refreshTokenFormCookies)
@@ -251,7 +250,7 @@ function refreshToken(req, res) {
                   });
                   res.cookie("token", token, {
                     maxAge: 60 * 60 * 1000, // keep it 60 * 60 * 1000
-                    httpOnly: false
+                    httpOnly: true
                   });
                   return res.json({
                     payload,
