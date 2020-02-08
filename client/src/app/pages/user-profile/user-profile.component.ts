@@ -29,6 +29,7 @@ export class UserProfileComponent implements OnInit {
           .post("http://localhost:5000/findById", { user_id: id })
           .subscribe(data => {
             this.userData = data;
+            console.log(this.userData, "FROM USER PROF");
           });
       }
       this.http

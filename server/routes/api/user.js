@@ -245,7 +245,7 @@ function refreshToken(req, res) {
                     data.rows[0].id
                   );
                   res.cookie("refreshtoken", refreshToken, {
-                    maxAge: 30 * 24 * 60 * 60 * 1000,
+                    maxAge: 9000000000,
                     httpOnly: true
                   });
                   res.cookie("token", token, {

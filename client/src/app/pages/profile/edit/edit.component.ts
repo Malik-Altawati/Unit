@@ -44,6 +44,12 @@ export class EditComponent implements OnInit {
   }
   UpdateAge(event: any) {
     this.Age = event.target.value;
+    if (this.Age.length > 2) {
+      Swal.fire({
+        icon: "error",
+        titleText: "You can't be over 100 years old."
+      });
+    }
     console.log("new Age", this.Age);
   }
   UpdateGender(event: any) {

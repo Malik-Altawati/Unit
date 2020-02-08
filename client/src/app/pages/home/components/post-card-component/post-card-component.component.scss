@@ -7,14 +7,21 @@
 }
 
 .example-card {
-  border: 1px solid rgba(128, 128, 128, 0.911);
+  border-radius: 20px;
   color: white;
   background-color: #2a263d;
   margin-top: 2%;
   max-width: 600px;
   max-height: 1500px;
+  img {
+    border-radius: 20px;
+  }
   #content {
     padding-top: 3%;
+  }
+  #footer {
+    text-align: center;
+    padding-bottom: 3%;
   }
 }
 

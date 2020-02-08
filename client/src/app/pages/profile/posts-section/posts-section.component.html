@@ -1,56 +1,97 @@
 <div class="container">
-  <div id="card" class="row" class="d-flex justify-content-center">
-    <div class="col" *ngFor="let item of Data">
-      <!--[ngIf]="(item.type =='image')" -->
-      <div *ngIf="item.type == 'image'" class="card" style="width: 400px;">
-        <img
-          class="card-img-top"
-          [src]="'http://127.0.0.1:5000/uploads/' + item.link"
-          alt="Card image cap"
-        />
+  <mat-card
+    id="card"
+    class="animated fadeInUp example-card"
+    *ngFor="let item of Data"
+  >
+    <div
+      id="content"
+      *ngIf="item.type === 'image'"
+      (click)="widePost(item.link)"
+    >
+      <img
+        mat-card-image
+        [src]="'http://127.0.0.1:5000/uploads/' + item.link"
+        alt=""
+      />
+    </div>
+    <div
+      id="content"
+      *ngIf="item.type === 'video'"
+      (click)="widePost(item.link)"
+    >
+      <iframe
+        class="card-img-top"
+        [src]="'http://127.0.0.1:5000/uploads/' + item.link | safe"
+        alt="Card image cap"
+        allowfullscreen
+      >
+      </iframe>
+    </div>
+    <div id="content" *ngIf="item.type === 'audio'">
+      <audio
+        class="card-img-top"
+        [src]="'http://127.0.0.1:5000/uploads/' + item.link | safe"
+        alt="Card image cap"
+        controls
+      ></audio>
+    </div>
 
-        <div class="card-body">
-          <h5 class="card-title">{{ item.created_at | dateAgo }}</h5>
-          <p class="card-text">{{ item.post }}</p>
-          <a (click)="delete(item.id)" class="btn btn-primary">Delete</a>
-        </div>
-      </div>
+    <mat-card-footer class="footer" id="footer">
+      <h6>{{ item.post }}</h6>
+      <small>{{ item.created_at | dateAgo }}</small>
+      <br /><br />
+      <button (click)="delete(item.id)" class="btn">delete</button>
+    </mat-card-footer>
+  </mat-card>
+  <!-- <div id="card" class="row" *ngFor="let item of Data">
+    <div *ngIf="item.type == 'image'" style="width: 400px;">
+      <img
+        class="card-img-top"
+        [src]="'http://127.0.0.1:5000/uploads/' + item.link"
+        alt="Card image cap"
+      />
 
-      <div *ngIf="item.type == 'video'" class="card" style="width: 400px;">
-        <iframe
-          class="card-img-top"
-          [src]="'http://127.0.0.1:5000/uploads/' + item.link | safe"
-          alt="Card image cap"
-          allowfullscreen
-        >
-        </iframe>
-        <div class="card-body">
-          <h5 class="card-title">{{ item.created_at | dateAgo }}</h5>
-          <p class="card-text">{{ item.post }}</p>
-          <a (click)="delete(item.id)" class="btn btn-primary">Delete</a>
-        </div>
-      </div>
-
-      <div *ngIf="item.type == 'audio'" class="card" style="width: 18rem;">
-        <!-- <iframe class="card-img-top" [src]="'http://127.0.0.1:5000/uploads/' + item.link | safe"
-                    alt="Card image cap">
-                </iframe> -->
-        <audio
-          class="card-img-top"
-          [src]="'http://127.0.0.1:5000/uploads/' + item.link | safe"
-          alt="Card image cap"
-          controls
-        ></audio>
-        <div class="card-body">
-          <h5 class="card-title">{{ item.created_at | dateAgo }}</h5>
-          <p class="card-text">{{ item.post }}</p>
-          <a (click)="delete(item.id)" class="btn btn-primary">Delete</a>
-        </div>
+      <div class="card-body">
+        <h5 class="card-title">{{ item.created_at | dateAgo }}</h5>
+        <p class="card-text">{{ item.post }}</p>
+        <a (click)="delete(item.id)" class="btn btn-primary">Delete</a>
       </div>
     </div>
-  </div>
+
+    <div *ngIf="item.type == 'video'" class="card" style="width: 400px;">
+      <iframe
+        class="card-img-top"
+        [src]="'http://127.0.0.1:5000/uploads/' + item.link | safe"
+        alt="Card image cap"
+        allowfullscreen
+      >
+      </iframe>
+      <div class="card-body">
+        <h5 class="card-title">{{ item.created_at | dateAgo }}</h5>
+        <p class="card-text">{{ item.post }}</p>
+        <a (click)="delete(item.id)" class="btn btn-primary">Delete</a>
+      </div>
+    </div>
+
+    <div *ngIf="item.type == 'audio'" class="card" style="width: 18rem;">
+      <audio
+        class="card-img-top"
+        [src]="'http://127.0.0.1:5000/uploads/' + item.link | safe"
+        alt="Card image cap"
+        controls
+      ></audio>
+      <div class="card-body">
+        <h5 class="card-title">{{ item.created_at | dateAgo }}</h5>
+        <p class="card-text">{{ item.post }}</p>
+        <a (click)="delete(item.id)" class="btn btn-primary">Delete</a>
+      </div>
+    </div>
+  </div> -->
 </div>
 
 <!-- <div id="posts">
   <app-post-card-component></app-post-card-component>
 </div> -->
+
+<!-- https://instagram.ftun4-1.fna.fbcdn.net/v/t51.2885-15/e35/s1080x1080/81079470_180885033032053_8283358069387268417_n.jpg?_nc_ht=instagram.ftun4-1.fna.fbcdn.net&_nc_cat=101&_nc_ohc=O9wM-DGEdbAAX-ZYvmP&oh=041a0636bb14ceee374061fda31ba877&oe=5EC8D020 -->

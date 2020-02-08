@@ -29,7 +29,7 @@ function findById(id) {
 function createUser(name, username, email, password) {
   return conn.query(
     `INSERT into users(name, username, email, password , photo, gender) VALUES($1, $2 , $3, $4, $5, $6)`,
-    [name, username, email, password, "newUser.jpg", "-"]
+    [name, username, email, password, "default.gif", "-"]
   );
 }
 
