@@ -210,8 +210,9 @@ function refreshToken(req, res) {
 
   Token.findRefreshToken(refreshTokenFormCookies)
     .then(result => {
-      // console.log("results *******************", result);
+      console.log("results *******************", result);
       var expirydate = result.refresh_token_expires_at;
+
       // console.log("user_id", result.user_id);
       var newDate = new Date();
       var comparison = expirydate.getTime() > newDate.getTime() ? true : false;
