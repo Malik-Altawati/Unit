@@ -45,8 +45,20 @@ function getfollowersInfo() {
     });
 }
 
+function getfollowingList() {
+  return FollowController.getfollowingList()
+    .then(data => {
+      return data;
+    })
+    .catch(err => {
+      throw "could not get followers";
+    });
+}
+
 module.exports.follow = followUser;
 module.exports.find = getUserFollowers;
 module.exports.unfollow = unFollowUser;
 
 module.exports.getfollowersInfo = getfollowersInfo;
+module.exports.getfollowingList = getfollowingList;
+

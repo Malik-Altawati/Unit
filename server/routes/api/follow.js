@@ -49,9 +49,21 @@ function getInfoOfFollowers(req, res) {
       }
     });
 }
+function getfollowingList(req, res) {
+  FollowUp.getfollowingList()
+    .then(data => {
+      return res.send(data.rows);
+    })
+    .catch(err => {
+      if (err) {
+        console.error(err);
+      }
+    });
+}
 
 
 module.exports.create = follow;
 module.exports.delete = unfollow;
 module.exports.getfollowers = getfollowers;
 module.exports.getInfoOfFollowers = getInfoOfFollowers;
+module.exports.getfollowingList = getfollowingList;

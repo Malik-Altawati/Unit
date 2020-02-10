@@ -14,7 +14,7 @@ app.use(
 app.use(cookieParser());
 app.use(express.json());
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "http://localhost:4200");
   res.header(
     "Access-Control-Allow-Headers",
@@ -58,6 +58,7 @@ app.post("/follow/create", isAuth, Follow.create);
 app.post("/follow/delete", isAuth, Follow.delete);
 app.post("/follow/getfollowers", isAuth, Follow.getfollowers);
 app.get("/follow/getfollowersInfo", Follow.getInfoOfFollowers);
+app.get("/follow/getfollowingList", Follow.getfollowingList);
 
 //
 app.get("/getAllUsers", isAuth, User.getAll);

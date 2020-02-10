@@ -26,6 +26,10 @@ function getfollowers(followed_id) {
     return conn.query(`SELECT * FROM follows WHERE followed_id = $1`, [followed_id])
 }
 
+function getfollowingList() {
+    return conn.query(`select users.id, users.name, users.username, users.photo, follows.follower_id from users  JOIN follows on followed_id = users.id;`)
+}
+
 
 function follow(follower_id, followed_id) {
     return conn.query(`INSERT into follows(follower_id, followed_id) VALUES($1, $2)`, [follower_id, followed_id])
@@ -43,3 +47,4 @@ module.exports.follow = follow;
 module.exports.unfollow = unfollow;
 
 module.exports.getfollowersInfo = getfollowersInfo;
+module.exports.getfollowingList = getfollowingList;
