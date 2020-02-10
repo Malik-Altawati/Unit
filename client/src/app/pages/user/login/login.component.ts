@@ -57,6 +57,7 @@ export class LoginComponent implements OnInit {
       .post("http://localhost:5000/login", this.loginForm.value, options)
       .subscribe(data => {
         if (data["success"]) {
+          localStorage.setItem("user", JSON.stringify(data["payload"]));
           localStorage.setItem("user_id", data["payload"]["id"]);
           localStorage.setItem("email", data["payload"]["email"]);
           localStorage.setItem("token", data["token"]);
