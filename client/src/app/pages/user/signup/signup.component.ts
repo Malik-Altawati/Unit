@@ -55,6 +55,7 @@ export class SignupComponent implements OnInit {
       .subscribe(data => {
         console.log(data);
         if (data["success"]) {
+          localStorage.setItem("user", JSON.stringify(data["payload"]));
           localStorage.setItem("user_id", data["payload"]["id"]);
           localStorage.setItem("email", data["payload"]["email"]);
           localStorage.setItem("token", data["token"]);

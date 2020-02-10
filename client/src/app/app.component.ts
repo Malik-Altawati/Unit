@@ -9,16 +9,30 @@ import { HttpClient } from "@angular/common/http";
 export class AppComponent {
   title = "Unit";
   refreshValue = "";
-  constructor(private http: HttpClient) {}
+  counter: number = 0;
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
+    this.http.get("http://localhost:5000/refreshtoken").subscribe(data => {
+      console.log("we got a new token");
+      console.log(data);
+      console.log("localSrtorage");
+      localStorage.setItem("user_id", data["payload"]["id"]);
+      localStorage.setItem("email", data["payload"]["email"]);
+      localStorage.setItem("token", data["token"]);
+      localStorage.setItem("refreshtoken", data["refreshToken"]);
+      console.log("localSrtorage", localStorage);
+    });
     setInterval(() => {
       if (localStorage.getItem("refreshtoken")) {
         this.refreshValue = localStorage.getItem("refreshtoken");
       }
+      this.counter++;
+      console.log(this.counter, "counter from client");
       return this.http
         .get("http://localhost:5000/refreshtoken")
         .subscribe(data => {
+          console.log("we got a new token");
           console.log(data);
           console.log("localSrtorage");
           localStorage.setItem("user_id", data["payload"]["id"]);
@@ -27,6 +41,6 @@ export class AppComponent {
           localStorage.setItem("refreshtoken", data["refreshToken"]);
           console.log("localSrtorage", localStorage);
         });
-    }, 30 * 60 * 1000); // keep it  30 * 60 * 1000
+    }, 240000); // keep it  30 * 60 * 1000
   }
 }

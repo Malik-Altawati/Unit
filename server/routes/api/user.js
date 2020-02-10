@@ -69,11 +69,11 @@ function signUp(req, res) {
                     );
                     res.cookie("refreshtoken", refreshToken, {
                       maxAge: 9000000000,
-                      httpOnly: false
+                      httpOnly: true
                     });
                     res.cookie("token", token, {
-                      maxAge: 9000000000, // keep it  60 * 60 * 1000
-                      httpOnly: false
+                      maxAge: 60 * 60 * 1000, // keep it  60 * 60 * 1000
+                      httpOnly: true
                     });
                     return res.json({
                       payload,
@@ -114,7 +114,9 @@ function logIn(req, res) {
               //return res.send("you logged in successfully");
               var payload = {
                 id: data.rows[0].id,
-                email: data.rows[0].email
+                email: data.rows[0].email,
+                username: data.rows[0].username,
+                name: data.rows[0].name
               };
               //console.log(process.env.secretOrkey);
               jwt.sign(
@@ -135,12 +137,12 @@ function logIn(req, res) {
                     data.rows[0].id
                   );
                   res.cookie("refreshtoken", refreshToken, {
-                    maxAge: 9000000000,
-                    httpOnly: false
+                    maxAge: 30 * 24 * 60 * 60 * 1000,
+                    httpOnly: true
                   });
                   res.cookie("token", token, {
-                    maxAge: 9000000000, // 60 * 60 * 1000
-                    httpOnly: false
+                    maxAge: 60 * 60 * 1000, // 60 * 60 * 1000
+                    httpOnly: true
                   });
 
                   return res.json({
@@ -210,8 +212,9 @@ function refreshToken(req, res) {
 
   Token.findRefreshToken(refreshTokenFormCookies)
     .then(result => {
-      // console.log("results *******************", result);
+      console.log("results *******************", result);
       var expirydate = result.refresh_token_expires_at;
+
       // console.log("user_id", result.user_id);
       var newDate = new Date();
       var comparison = expirydate.getTime() > newDate.getTime() ? true : false;
@@ -249,8 +252,8 @@ function refreshToken(req, res) {
                     httpOnly: true
                   });
                   res.cookie("token", token, {
-                    maxAge: 9000000000, // keep it 60 * 60 * 1000
-                    httpOnly: false
+                    maxAge: 60 * 60 * 1000, // keep it 60 * 60 * 1000
+                    httpOnly: true
                   });
                   return res.json({
                     payload,
