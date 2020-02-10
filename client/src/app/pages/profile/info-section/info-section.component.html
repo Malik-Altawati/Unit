@@ -29,23 +29,23 @@
     <div class="row">
       <div id="followers" class="col-4">
         <button
-          *ngIf="follow > 1"
+          *ngIf="followersLength > 1"
           id="followersBtn"
           class="btn"
           (click)="followersInfo()"
           routerLinkActive="router-link-active"
         >
-          {{ follow }}
+          {{ followersLength }}
           followers
         </button>
         <button
-          *ngIf="follow === 1"
+          *ngIf="followersLength === 1"
           id="followersBtn"
           class="btn"
           (click)="followersInfo()"
           routerLinkActive="router-link-active"
         >
-          {{ follow }}
+          {{ followersLength }}
           follower
         </button>
       </div>
