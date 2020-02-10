@@ -12,6 +12,8 @@ import { AbsoluteSourceSpan } from "@angular/compiler";
 })
 export class NavComponent implements OnInit {
   token;
+  navbarOpen = false;
+
   constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit() {
@@ -22,7 +24,9 @@ export class NavComponent implements OnInit {
       }
     }, 200);
   }
-
+  toggleNavbar() {
+    this.navbarOpen = !this.navbarOpen;
+  }
   logout() {
     localStorage.removeItem("token");
     const id = Number(localStorage.getItem("user_id"));

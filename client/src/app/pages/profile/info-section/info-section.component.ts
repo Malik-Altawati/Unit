@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import Swal from "sweetalert2";
+import { element } from "protractor";
 
 @Component({
   selector: "app-info-section",
@@ -9,7 +10,11 @@ import Swal from "sweetalert2";
 })
 export class InfoSectionComponent implements OnInit {
   fileData: File = null;
-  follow: any;
+  followers: Array<any> = [];
+  followersLength: any;
+  followersNames: any = "";
+  followersPhoto: any = "";
+  followersUserNames: any = "";
 
   constructor(private _http: HttpClient) { }
   user_id: string = localStorage.getItem("user_id");
@@ -87,19 +92,33 @@ export class InfoSectionComponent implements OnInit {
   getFollow() {
     this._http
       .get("http://localhost:5000/follow/getfollowersInfo")
-      .subscribe(data => {
-        this.follow = data["length"];
-        console.log(this.follow, "ff");
+      .subscribe((data: Array<any>) => {
+        // console.log(data, "data");
+        data.forEach(element => {
+          // console.log(element["followed_id"], "element");
+          // console.log(this.user_id, "inside the IF");
+          if (element["followed_id"] == this.user_id) {
+            this.followers.push(element);
+            // console.log(this.followers, "beeeeep");
+          }
+        });
+        // console.log(data, "f");
+
+        this.followersLength = this.followers["length"];
+        this.followers.forEach(element => {
+          console.log(element, "elem");
+          this.followersNames += element.name + "<br>";
+          this.followersUserNames += element.username + "<br>";
+          this.followersPhoto +=
+            `http://127.0.0.1:5000/uploads/${element.photo}` + "<br>";
+        });
+        // console.log(this.followers, "ff");
       });
   }
 
   followersInfo() {
-    Swal.fire(`
-      <ul>
-        <li>follower 1</li>
-        <li>follower 2</li>
-        <li>follower 3</li>
-      </ul>
-    `);
+    Swal.fire({
+      html: this.followersNames + this.followersUserNames
+    });
   }
 }
