@@ -48,15 +48,15 @@ app.get("/refreshtoken", User.refreshToken);
 app.get("/uploads/:name", (req, res) => {
   res.sendFile(path.resolve("folders/uploaded", req.params.name));
 });
-app.post("/posts/post", isAuth, Post.create);
-app.post("/posts/get", isAuth, Post.find);
+app.post("/posts/post", Post.create);
+app.post("/posts/get", Post.find);
 app.patch("/posts/update/:id", isAuth, Post.update);
-app.post("/posts/delete", isAuth, Post.delete);
-app.get("/getAllPosts", isAuth, Post.getAllPosts);
+app.post("/posts/delete", Post.delete);
+app.get("/getAllPosts", Post.getAllPosts);
 //
 app.post("/follow/create", isAuth, Follow.create);
 app.post("/follow/delete", isAuth, Follow.delete);
-app.post("/follow/getfollowers", isAuth, Follow.getfollowers);
+app.post("/follow/getfollowers", Follow.getfollowers);
 app.get("/follow/getfollowersInfo", Follow.getInfoOfFollowers);
 app.get("/follow/getfollowingList", Follow.getfollowingList);
 

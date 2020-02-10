@@ -35,6 +35,8 @@ import { UsersListComponent } from "./pages/home/components/users-list/users-lis
 import { UserProfileComponent } from "./pages/user-profile/user-profile.component";
 import { UserProfilePostsSectionComponent } from "./pages/user-profile/user-profile-posts-section/user-profile-posts-section.component";
 import { MatSidenavModule, MatListModule } from "@angular/material";
+import { ChatComponent } from './chat/chat.component';
+import { ChatroomComponent } from './chatroom/chatroom.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,9 @@ import { MatSidenavModule, MatListModule } from "@angular/material";
     DateAgoPipe,
     UsersListComponent,
     UserProfileComponent,
-    UserProfilePostsSectionComponent
+    UserProfilePostsSectionComponent,
+    ChatComponent,
+    ChatroomComponent
   ],
   imports: [
     MatListModule,
