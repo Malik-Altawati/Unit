@@ -1,37 +1,50 @@
-<!-- <img src="" /> -->
 <div class="alert alert-success" *ngIf="notifyMessage">{{ notifyMessage }}</div>
 <div id="body">
-  <!-- <div id="formDiv"> -->
-  <form id="formLogin" [formGroup]="loginForm" (ngSubmit)="login()">
-    <h2>Login</h2>
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input
-        type="email"
-        class="form-control"
-        id="email"
-        aria-describedby="email"
-        formControlName="email"
+  <div class="row">
+    <div class="col-8" id="bgImg">
+      <img
+        src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/beb84f63616517.5ab8e5806b1c2.gif"
+        alt=""
       />
     </div>
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input
-        type="password"
-        class="form-control"
-        id="password"
-        placeholder="********"
-        formControlName="password"
-      />
+    <div class="col-4">
+      <h2>Login</h2>
+      <form id="formLogin" [formGroup]="loginForm" (ngSubmit)="login()">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            aria-describedby="email"
+            formControlName="email"
+            placeholder="example@example.com"
+          />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            placeholder="********"
+            formControlName="password"
+          />
+        </div>
+        <button
+          [disabled]="!loginForm.valid"
+          type="submit"
+          class="btn btn-primary"
+        >
+          login
+        </button>
+      </form>
+      <div *ngIf="errors.length > 0" class="alert alert-danger">
+        <p *ngFor="let error of errors">
+          {{ error.detail }}
+        </p>
+      </div>
+      <!-- </div> -->
     </div>
-    <button [disabled]="!loginForm.valid" type="submit" class="btn btn-primary">
-      login
-    </button>
-  </form>
-  <div *ngIf="errors.length > 0" class="alert alert-danger">
-    <p *ngFor="let error of errors">
-      {{ error.detail }}
-    </p>
   </div>
-  <!-- </div> -->
 </div>

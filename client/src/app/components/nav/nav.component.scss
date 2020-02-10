@@ -12,7 +12,10 @@
     display: none;
   }
 
-  background: linear-gradient(to right, #00b4db, #0083b0);
+  // background-color: transparent;
+  background-color: #ba4555;
+
+  // background: linear-gradient(to right, #00b4db, #0083b0);
   .nav-wrapper {
     #logo {
       margin-left: 150px;
@@ -25,7 +28,7 @@
       li:hover {
         border-top-right-radius: 20%;
         border-top-left-radius: 20%;
-        background: linear-gradient(to bottom, #ffe600, #d8d403);
+        background: linear-gradient(to bottom, #dbc602, #b6b301);
       }
       li {
         margin-right: 50px;
@@ -50,7 +53,7 @@
         border-top-right-radius: 20%;
         border-top-left-radius: 20%;
         // background: linear-gradient(to bottom, #ff0099, #493240);
-        background-image: linear-gradient(to top, #ff5858 0%, #f09819 100%);
+        background-image: linear-gradient(to top, #0c2a4e 0%, #1f518d 100%);
       }
       li {
         margin-right: 50px;
@@ -60,38 +63,38 @@
 }
 
 // responsive nav bar
-@media (max-width: 992px) {
-  #navBarLandingPg .checkbtn {
-    display: block;
-  }
-  #navBarLandingPg #ul {
-    position: fixed;
-    width: 100%;
-    height: 100vh;
-    background: #2c3e50;
-    top: 63px;
-    right: -100%;
-    text-align: center;
-    transition: all 0.5s;
-  }
-  #navBarLandingPg #ul li a {
-    text-align: center;
-    display: block;
-    margin: 50px 0;
-    line-height: 30px;
-  }
-  #navBarLandingPg #ul li a {
-    font-size: 20px;
-  }
-  #navBarLandingPg #ul li a:hover,
-  #navBarLandingPg #ul li a.active {
-    background: none;
-    color: #0082e6;
-  }
-  #check:checked ~ #ul {
-    right: 0;
-  }
-}
+// @media (max-width: 992px) {
+//   #navBarLandingPg .checkbtn {
+//     display: block;
+//   }
+//   #navBarLandingPg #ul {
+//     position: fixed;
+//     width: 100%;
+//     height: 100vh;
+//     background: #2c3e50;
+//     top: 63px;
+//     right: -100%;
+//     text-align: center;
+//     transition: all 0.5s;
+//   }
+//   #navBarLandingPg #ul li a {
+//     text-align: center;
+//     display: block;
+//     margin: 50px 0;
+//     line-height: 30px;
+//   }
+//   #navBarLandingPg #ul li a {
+//     font-size: 20px;
+//   }
+//   #navBarLandingPg #ul li a:hover,
+//   #navBarLandingPg #ul li a.active {
+//     background: none;
+//     color: #0082e6;
+//   }
+//   #check:checked ~ #ul {
+//     right: 0;
+//   }
+// }
 
 #profile {
   text-align: center;
