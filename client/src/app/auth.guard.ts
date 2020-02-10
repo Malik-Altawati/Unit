@@ -3,6 +3,7 @@ import { CanActivate, Router, UrlTree } from "@angular/router";
 // import { LoginComponent } from "./user/login/login.component";
 import { HttpClient } from "@angular/common/http";
 import { map } from "rxjs/operators";
+import { UserService } from "./user.service";
 
 @Injectable({
   providedIn: "root"
@@ -15,7 +16,8 @@ export class AuthGuard implements CanActivate {
   constructor(
     // private _authService: LoginComponent,
     private _router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    private userService: UserService
   ) {}
 
   canActivate(): any {
@@ -27,7 +29,12 @@ export class AuthGuard implements CanActivate {
       map(data => {
         console.log(data["message"]);
         if (data["message"] === "all good") {
-          return true;
+          if (this.userService.loggedIn()) {
+            return true;
+          } else {
+            this._router.navigate(["/login"]);
+            return false;
+          }
         }
         localStorage.clear();
         this._router.navigate(["/login"]);

@@ -114,7 +114,9 @@ function logIn(req, res) {
               //return res.send("you logged in successfully");
               var payload = {
                 id: data.rows[0].id,
-                email: data.rows[0].email
+                email: data.rows[0].email,
+                username: data.rows[0].username,
+                name: data.rows[0].name
               };
               //console.log(process.env.secretOrkey);
               jwt.sign(
@@ -326,7 +328,7 @@ function UpdateProfilePhoto(req, res) {
   const form = new IncomingForm();
   var user_id;
   var link;
-  form.parse(req, function (err, fields, files) {
+  form.parse(req, function(err, fields, files) {
     user_id = fields.user_id;
     if (err) {
       res.send(err);
@@ -334,7 +336,7 @@ function UpdateProfilePhoto(req, res) {
     res.end();
   });
 
-  form.on("fileBegin", function (name, file) {
+  form.on("fileBegin", function(name, file) {
     var id = uniqueId();
     file.path = "folders/uploaded/" + id + "." + file.name.split(".")[1];
 

@@ -35,6 +35,15 @@ import { UsersListComponent } from "./pages/home/components/users-list/users-lis
 import { UserProfileComponent } from "./pages/user-profile/user-profile.component";
 import { UserProfilePostsSectionComponent } from "./pages/user-profile/user-profile-posts-section/user-profile-posts-section.component";
 import { MatSidenavModule, MatListModule } from "@angular/material";
+import { ChatComponent } from "./chat/chat.component";
+import { ChatroomComponent } from "./chatroom/chatroom.component";
+import { UserService } from "./user.service";
+import { WebsocketService } from "./websocket.service";
+import {
+  FlashMessagesModule,
+  FlashMessagesService
+} from "angular2-flash-messages/module";
+import { HttpModule } from "@angular/http";
 
 @NgModule({
   declarations: [
@@ -56,7 +65,9 @@ import { MatSidenavModule, MatListModule } from "@angular/material";
     DateAgoPipe,
     UsersListComponent,
     UserProfileComponent,
-    UserProfilePostsSectionComponent
+    UserProfilePostsSectionComponent,
+    ChatComponent,
+    ChatroomComponent
   ],
   imports: [
     MatListModule,
@@ -74,12 +85,16 @@ import { MatSidenavModule, MatListModule } from "@angular/material";
     FontAwesomeModule,
     MatIconModule,
     MatCardModule,
-    SweetAlert2Module
+    SweetAlert2Module,
+    HttpModule
   ],
   providers: [
     LoginComponent,
     AuthGuard,
-
+    FlashMessagesService,
+    UserService,
+    AuthGuard,
+    WebsocketService,
     [
       {
         provide: HTTP_INTERCEPTORS,
