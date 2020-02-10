@@ -29,11 +29,12 @@ import { PostCardComponentComponent } from "./pages/home/components/post-card-co
 import { HttpRequestInterceptor } from "./HttpRequestInterceptor";
 import { SweetAlert2Module } from "@sweetalert2/ngx-sweetalert2";
 import { SafePipe } from "./pipes/safe.pipe";
-import { ReversePipe } from './pipes/reverse.pipe';
-import { DateAgoPipe } from './pipes/date-ago.pipe';
-import { UsersListComponent } from './pages/home/components/users-list/users-list.component';
-import { UserProfileComponent } from './pages/user-profile/user-profile.component';
-import { UserProfilePostsSectionComponent } from './pages/user-profile/user-profile-posts-section/user-profile-posts-section.component';
+import { ReversePipe } from "./pipes/reverse.pipe";
+import { DateAgoPipe } from "./pipes/date-ago.pipe";
+import { UsersListComponent } from "./pages/home/components/users-list/users-list.component";
+import { UserProfileComponent } from "./pages/user-profile/user-profile.component";
+import { UserProfilePostsSectionComponent } from "./pages/user-profile/user-profile-posts-section/user-profile-posts-section.component";
+import { MatSidenavModule, MatListModule } from "@angular/material";
 
 @NgModule({
   declarations: [
@@ -58,6 +59,8 @@ import { UserProfilePostsSectionComponent } from './pages/user-profile/user-prof
     UserProfilePostsSectionComponent
   ],
   imports: [
+    MatListModule,
+    MatSidenavModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
