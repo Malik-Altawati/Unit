@@ -11,6 +11,9 @@ import { element } from "protractor";
 export class InfoSectionComponent implements OnInit {
   fileData: File = null;
   followers: Array<any> = [];
+  //
+  following: Array<any> = [];
+  //
   followersLength: any;
   followersNames: any = "";
   followersPhoto: any = "";
@@ -27,6 +30,7 @@ export class InfoSectionComponent implements OnInit {
   photo: string;
 
   ngOnInit() {
+    this.getFollowing()
     this.getFollow();
     this._http
       .post("http://localhost:5000/findById", { user_id: this.user_id })
@@ -114,6 +118,18 @@ export class InfoSectionComponent implements OnInit {
         });
         // console.log(this.followers, "ff");
       });
+  }
+
+  getFollowing() {
+    this._http
+      .get("http://localhost:5000/follow/getfollowinglist")
+      .subscribe((data: Array<any>) => {
+        data.forEach(element => {
+          if (element["follower_id"] == this.user_id && element["id"] != this.user_id) {
+            this.following.push(element);
+          }
+        });
+      })
   }
 
   followersInfo() {
