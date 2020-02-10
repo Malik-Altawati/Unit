@@ -11,7 +11,7 @@ export class InfoSectionComponent implements OnInit {
   fileData: File = null;
   follow: any;
 
-  constructor(private _http: HttpClient) {}
+  constructor(private _http: HttpClient) { }
   user_id: string = localStorage.getItem("user_id");
   name: string;
   username: string;
