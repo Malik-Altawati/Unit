@@ -33,6 +33,7 @@
     "hammerjs": "^2.0.8",
     "hover.css": "^2.3.2",
     "javascript-time-ago": "^2.0.6",
+    "peerjs": "^1.2.0",
     "rxjs": "^6.4.0",
     "rxjs-compat": "^6.5.4",
     "socket.io-client": "^2.3.0",

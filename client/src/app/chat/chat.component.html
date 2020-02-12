@@ -8,7 +8,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let user of Users">
-        <td *ngIf="user.username != userService.getLoggedInUser().username">{{ user.username }}</td>
+        <td *ngIf="user.username != userService.getLoggedInUser().username">{{ user.name }}</td>
         <td *ngIf="user.username != userService.getLoggedInUser().username"><button class="btn btn-success button"
             routerLink="/chatroom" [queryParams]="{ name: user.username, email: user.email }">Chat</button></td>
       </tr>

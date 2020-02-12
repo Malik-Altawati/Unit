@@ -8,7 +8,7 @@ import { environment } from "../environments/environment";
 @Injectable()
 export class WebsocketService {
   private socket = io("http://localhost:5000");
-  constructor() {}
+  constructor() { }
 
   joinRoom(data) {
     console.log(data);

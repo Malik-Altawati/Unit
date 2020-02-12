@@ -133,6 +133,7 @@ io.sockets.on("connection", socket => {
       .in(data.room)
       .emit("typing", { data: data, isTyping: true });
   });
+
 });
 
 server.listen(port, () =>
